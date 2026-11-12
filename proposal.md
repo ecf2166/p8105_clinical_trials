@@ -1,0 +1,84 @@
+Final Project Proposal
+================
+Alexa Burko (asb2338), Emma Fanuele (ecf2166), Lauren Littig (ll3969),
+Sanyu Takirambudde (stt2133)
+
+## Motivation
+
+Clinical trials are essential to advancing medical knowledge and
+developing new treatments, yet the distribution of clinical research
+across diseases and geographic regions may not reflect different
+populations’ health needs. Understanding whether clinical research
+priorities align with the conditions responsible for the greatest
+disease burden could reveal geographic disparities in research activity
+and potential gaps in global health research.
+
+Using publicly available data from ClinicalTrials.gov, AACT, and WHO
+Global Health Estimates, our project aims to examine geographic and
+temporal trends in clinical trial activity and evaluate how closely
+research distribution across disease categories aligns with
+country-specific disease burden, measured in disability-adjusted life
+years (DALYs).
+
+## Anticipated data sources:
+
+We will use the Aggregate Analysis of ClinicalTrials.gov (AACT) database
+for study identifiers, conditions and MeSH terms, locations, start
+dates, study type, phase, enrollment, and sponsor information. We will
+link these records to WHO estimates of disability-adjusted life years
+(DALYs) by cause and country. We will finalize disease categories,
+geographic coverage, and the trial-start and burden-reference periods
+after assessing data availability and compatibility. \## Intended Final
+Products We will develop an interactive website presenting our research
+questions, data preparation, visualizations, key findings, and
+limitations. Deliverables will also include a written report, a narrated
+two-minute screencast, and a GitHub repository with reproducible R
+Markdown analyses.
+
+## Planned Analyses:
+
+Geographic distribution: Interactive world maps showing the number and
+distribution of registered clinical trials across countries.
+Disease-specific research priorities: Classify clinical trials into
+broader disease categories using MeSH terms and compare the most
+frequently studied conditions across countries. Temporal trends: Examine
+changes in clinical trial activity across disease categories from
+2015–2025 (for example) Trial characteristics: Compare sponsor types
+across countries and disease categories. Research priorities vs. disease
+burden: Compare the proportion of clinical trials investigating
+different disease categories with the proportion of country-specific
+disability-adjusted life years (DALYs) attributable to those conditions.
+
+## Visualizations
+
+Planned visualizations include paired maps of disease burden and
+research activity, scatterplots comparing their shares, and heatmaps
+summarizing differences across countries and diseases. We will also
+explore whether these patterns differ between industry and other
+lead-sponsor categories.
+
+## Coding Challenges
+
+The main coding challenges will be mapping AACT condition and MeSH terms
+to WHO cause categories, harmonizing country identifiers and periods,
+handling missing data, and preventing duplicate counts when joining
+tables. We will specify counting rules for multinational and
+multiple-condition trials and assess how alternative rules affect our
+comparisons. Interpretation will acknowledge that AACT represents
+ClinicalTrials.gov registrations and that trial locations do not
+directly measure local enrollment, research spending, or access to
+treatment.
+
+## Planned timeline
+
+Nov 13 \| Finalize project scope, research questions, and data sources;
+submit proposal\
+Nov 16–20 \| Project review meeting; acquire, clean and merge data;
+finalize analytic approach and roles\
+Nov 21–27 \| Develop and validate the MeSH disease classification
+system\
+Nov 28–Dec 4 \| Conduct exploratory analyses, evaluate trial
+activity-disease burden patterns, develop visualizations \|\
+Dec 5–11 \| Finalize analyses, written report, and interactive website;
+record screencast\
+Dec 12 \| Submit all deliverables and peer assessments
