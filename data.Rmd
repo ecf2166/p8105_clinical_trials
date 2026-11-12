@@ -1,0 +1,52 @@
+---
+title: "Data"
+output: github_document
+date: "2026-11-11"
+---
+
+```{r}
+library(tidyverse)
+
+aact <- "/Users/emmafanuele/Library/Mobile Documents/com~apple~CloudDocs/Columbia/Data Science I/Clinical Trials/20261111_export_ctgov"
+read_aact <- function(table) {
+  read_delim(file.path(aact, paste0(table, ".txt")), delim = "|")
+}
+
+countries  <- read_aact("countries")
+conditions <- read_aact("browse_conditions") 
+studies    <- read_aact("studies")
+
+conditions2 <- read_aact("conditions") 
+
+sponsors <- read_aact("sponsors") 
+
+interventions <- read_aact("browse_interventions")
+
+baseline = read_aact("baseline_counts")
+
+unique_conditions = unique(conditions$mesh_term)
+
+conditions |> 
+  count(mesh_term, sort=T) |> 
+  slice_tail(n=50)
+
+conditions |> 
+  count(nct_id) |> 
+  summarize(
+    mean = mean(n)
+  ) |> 
+  nrow()
+
+rows = nrow(conditions)
+
+conditions |> 
+  filter(mesh_type == "mesh-ancestor") |>
+  count(mesh_term, sort = T) |> 
+  head(30)
+  
+
+unique(sponsors$agency_class)
+
+studies <- read_aact("studies") 
+```
+
