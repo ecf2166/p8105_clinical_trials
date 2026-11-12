@@ -7,71 +7,46 @@ date: "2026-11-11"
 ```{r}
 library(tidyverse)
 
-read_aact = function(table) {
-  read_delim(
-    file.path("raw_data", paste0(table, ".txt")),
-    delim = "|",
-    col_types = cols(.default = "c")
-  )
-}
+source("source/read_aact.R")
 
-# Studies: interventional trials starting 2015–2025
 studies = read_aact("studies")
+countries = read_aact("countries")
+sponsors = read_aact("sponsors")
+conditions = read_aact("conditions")
+browse_conditions = read_aact("browse_conditions")
+interventions = read_aact("browse_interventions")
+baseline = read_aact("baseline_counts")
+```
 
-keep_ids = pull(studies, nct_id)
 
-# Other tables, restricted to those trials
-tables = c("countries", "sponsors", "conditions", "browse_conditions")
-
-aact = tables |>
-  set_names() |>
-  map(\(t) read_aact(t) |> filter(nct_id %in% keep_ids))
-
-# Save as .rds
-write_rds(studies, file.path("data", "studies.rds"), compress = "xz")
-iwalk(aact, \(df, name) write_rds(df, file.path("data", paste0(name, ".rds")), compress = "xz"))
-
-# Sizes in MB; anything over ~50 should be gitignored
-file.size(list.files("data", full.names = TRUE)) / 1e6
+```{r eval = F}
+# don't want to knit this every time, only run once
+# for keeping data in in RDS format to save space (and so this knits)
+write_rds(studies, "data/studies.rds", compress = "gz")
+write_rds(countries, "data/countries.rds", compress = "gz")
+write_rds(sponsors, "data/sponsors.rds", compress = "gz")
+write_rds(conditions, "data/conditions.rds", compress = "gz")
+write_rds(browse_conditions, "data/browse_conditions.rds", compress = "gz")
 ```
 
 
 ```{r}
-library(tidyverse)
+unique_conditions = unique(browse_conditions$mesh_term)
 
-aact = "/Users/emmafanuele/Library/Mobile Documents/com~apple~CloudDocs/Columbia/Data Science I/Clinical Trials/data"
-read_aact <- function(table) {
-  read_delim(file.path(aact, paste0(table, ".txt")), delim = "|")
-}
-
-countries = read_aact("countries")
-conditions = read_aact("browse_conditions") 
-studies = read_aact("studies")
-
-conditions2 = read_aact("conditions") 
-
-sponsors = read_aact("sponsors") 
-
-interventions = read_aact("browse_interventions")
-
-baseline = read_aact("baseline_counts")
-
-unique_conditions = unique(conditions$mesh_term)
-
-conditions |> 
+browse_conditions |> 
   count(mesh_term, sort=T) |> 
   slice_tail(n=50)
 
-conditions |> 
+browse_conditions |> 
   count(nct_id) |> 
   summarize(
     mean = mean(n)
   ) |> 
   nrow()
 
-rows = nrow(conditions)
+rows = nrow(browse_conditions)
 
-conditions |> 
+browse_conditions |> 
   filter(mesh_type == "mesh-ancestor") |>
   count(mesh_term, sort = T) |> 
   head(30)
