@@ -1,4 +1,5 @@
-Final Project Proposal
+Final Project Proposal: Geographic Disparities in Clinical Trial
+Activity and Disease Burden
 ================
 Alexa Burko (asb2338), Emma Fanuele (ecf2166), Lauren Littig (ll3969),
 Sanyu Takirambudde (stt2133)
@@ -20,34 +21,41 @@ research distribution across disease categories aligns with
 country-specific disease burden, measured in disability-adjusted life
 years (DALYs).
 
-## Anticipated data sources:
+## Anticipated data sources
 
-We will use the Aggregate Analysis of ClinicalTrials.gov (AACT) database
-for study identifiers, conditions and MeSH terms, locations, start
-dates, study type, phase, enrollment, and sponsor information. We will
-link these records to WHO estimates of disability-adjusted life years
-(DALYs) by cause and country. We will finalize disease categories,
-geographic coverage, and the trial-start and burden-reference periods
-after assessing data availability and compatibility. \## Intended Final
-Products We will develop an interactive website presenting our research
+We will use the [Aggregate Analysis of ClinicalTrials.gov
+(AACT)](https://aact.ctti-clinicaltrials.org/snapshots) database for
+study identifiers, conditions and MeSH terms, locations, start dates,
+study type, phase, enrollment, and sponsor information. We will link
+these records to [WHO estimates of disability-adjusted life years
+(DALYs)](https://www.who.int/data/gho/data/themes/mortality-and-global-health-estimates/global-health-estimates-leading-causes-of-dalys)
+by cause and country. We will finalize disease categories, geographic
+coverage, and the trial-start and burden-reference periods after
+assessing data availability and compatibility.
+
+## Intended Final Products
+
+We will develop an interactive website presenting our research
 questions, data preparation, visualizations, key findings, and
 limitations. Deliverables will also include a written report, a narrated
 two-minute screencast, and a GitHub repository with reproducible R
 Markdown analyses.
 
-## Planned Analyses:
+## Planned analyses
 
-Geographic distribution: Interactive world maps showing the number and
-distribution of registered clinical trials across countries.
-Disease-specific research priorities: Classify clinical trials into
+**Geographic distribution:** Interactive world maps showing the number
+and distribution of registered clinical trials across countries.\
+**Disease-specific research priorities:** Classify clinical trials into
 broader disease categories using MeSH terms and compare the most
-frequently studied conditions across countries. Temporal trends: Examine
-changes in clinical trial activity across disease categories from
-2015–2025 (for example) Trial characteristics: Compare sponsor types
-across countries and disease categories. Research priorities vs. disease
-burden: Compare the proportion of clinical trials investigating
-different disease categories with the proportion of country-specific
-disability-adjusted life years (DALYs) attributable to those conditions.
+frequently studied conditions across countries.\
+**Temporal trends:** Examine changes in clinical trial activity across
+disease categories over time.\
+**Trial characteristics:** Compare sponsor types across countries and
+disease categories.\
+**Research priorities vs. disease burden:** Compare the proportion of
+clinical trials investigating different disease categories with the
+proportion of country-specific disability-adjusted life years (DALYs)
+attributable to those conditions.
 
 ## Visualizations
 
@@ -57,7 +65,7 @@ summarizing differences across countries and diseases. We will also
 explore whether these patterns differ between industry and other
 lead-sponsor categories.
 
-## Coding Challenges
+## Coding challenges
 
 The main coding challenges will be mapping AACT condition and MeSH terms
 to WHO cause categories, harmonizing country identifiers and periods,
@@ -71,14 +79,11 @@ treatment.
 
 ## Planned timeline
 
-Nov 13 \| Finalize project scope, research questions, and data sources;
-submit proposal\
-Nov 16–20 \| Project review meeting; acquire, clean and merge data;
-finalize analytic approach and roles\
-Nov 21–27 \| Develop and validate the MeSH disease classification
-system\
-Nov 28–Dec 4 \| Conduct exploratory analyses, evaluate trial
-activity-disease burden patterns, develop visualizations \|\
-Dec 5–11 \| Finalize analyses, written report, and interactive website;
-record screencast\
-Dec 12 \| Submit all deliverables and peer assessments
+| Dates | Milestone |
+|----|----|
+| Nov 13 | Finalize project scope, research questions, and data sources; submit proposal |
+| Nov 16–20 | Project review meeting; acquire, clean and merge data; finalize analytic approach and roles |
+| Nov 21–27 | Develop and validate the MeSH disease classification system |
+| Nov 28–Dec 4 | Conduct exploratory analyses, evaluate trial activity-disease burden patterns, develop visualizations |
+| Dec 5–11 | Finalize analyses, written report, and interactive website; record screencast |
+| Dec 12 | Submit all deliverables and peer assessments |
