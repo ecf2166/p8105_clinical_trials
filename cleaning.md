@@ -27,12 +27,14 @@ studies = read_aact("studies", col_select = c(nct_id, brief_title, official_titl
     start_date = as.Date(start_date),
     completion_date = as.Date(completion_date),
     enrollment = as.numeric(enrollment)
-  )
+  ) |> 
+  filter(!is.na(start_date))
 
 countries = read_aact("countries", col_select = c(nct_id, name, removed)) |>
   rename(country = name) |>
-  # AACT may store booleans as "t"/"f"; this handles both that and "true"/"false"
-  mutate(removed = str_to_lower(removed) == "t")
+  mutate(removed = str_to_lower(removed) == "t") |> 
+  filter(removed == FALSE) |> 
+  select(-removed)
 
 sponsors = read_aact("sponsors", col_select = c(nct_id, name, agency_class, lead_or_collaborator)) |>
   rename(sponsor_name = name)
@@ -52,23 +54,12 @@ browse_interventions = read_aact("browse_interventions", col_select = c(nct_id, 
 # Baseline participants (only trials that posted results)
 # Largest participant count per trial = the Total group
 
-baseline_counts = read_aact("baseline_counts", col_select = c(nct_id, units, scope, count)) |>
-  filter(units == "Participants", scope == "overall") |>
+baseline_counts = read_aact("baseline_counts", col_select = c(nct_id, units, count)) |>
+  filter(units == "Participants") |>
   mutate(count = as.numeric(count)) |>
   group_by(nct_id) |>
   summarize(baseline_n = max(count))
-
-
-
-# number of countries removed (removed = TRUE)
-count(countries, removed)
 ```
-
-    ## # A tibble: 2 × 2
-    ##   removed      n
-    ##   <lgl>    <int>
-    ## 1 FALSE   790664
-    ## 2 TRUE     36138
 
 Saving data
 
@@ -164,17 +155,13 @@ coverage |>
 
 | Group                                       | Trials  | Share |
 |:--------------------------------------------|:--------|:------|
-| Classified into at least one category       | 439,522 | 72%   |
-| No MeSH condition terms at all              | 129,732 | 21%   |
-| Have MeSH terms, but none in our categories | 41,979  | 7%    |
+| Classified into at least one category       | 435,908 | 72%   |
+| No MeSH condition terms at all              | 128,107 | 21%   |
+| Have MeSH terms, but none in our categories | 41,835  | 7%    |
 
 ``` r
-unique_conditions = unique(browse_conditions$mesh_term)
-```
+unique_conditions = unique(browse_conditions$mesh_term_condition)
 
-    ## Warning: Unknown or uninitialised column: `mesh_term`.
-
-``` r
 browse_conditions |> 
   count(mesh_term_condition, sort=T) |> 
   slice_tail(n=50)
@@ -200,11 +187,13 @@ browse_conditions |>
   count(nct_id) |> 
   summarize(
     mean = mean(n)
-  ) |> 
-  nrow()
+  )
 ```
 
-    ## [1] 1
+    ## # A tibble: 1 × 1
+    ##    mean
+    ##   <dbl>
+    ## 1  9.19
 
 ``` r
 rows = nrow(browse_conditions)
@@ -238,8 +227,147 @@ unique(sponsors$agency_class)
     ##  [7] "NETWORK"   "AMBIG"     "INDIV"     NA
 
 ``` r
-studies <- read_aact("studies") 
+studies |>
+  mutate(group = case_when(
+    nct_id %in% pull(classified, nct_id) ~ "Classified into at least one category",
+    nct_id %in% pull(browse_conditions, nct_id) ~ "Have MeSH terms, but none in our categories",
+    TRUE ~ "No MeSH condition terms at all"
+  )) |> 
+  filter(group == "No MeSH condition terms at all") |>
+  select(nct_id, brief_title,enrollment, group)
 ```
+
+    ## # A tibble: 128,107 × 4
+    ##    nct_id      brief_title                                      enrollment group
+    ##    <chr>       <chr>                                                 <dbl> <chr>
+    ##  1 NCT03124173 Cognitive Control of Language                            23 No M…
+    ##  2 NCT06401486 DOuble-Lumen Intubation With VIdeolaryngoscopy          916 No M…
+    ##  3 NCT02173197 Effectiveness of Occupational Therapy Intervent…         20 No M…
+    ##  4 NCT06632483 An Observational Study to Learn More About How …        604 No M…
+    ##  5 NCT04910815 Feasibility of a New Diagnostic Device to Asses…        110 No M…
+    ##  6 NCT06763536 Oral Nicotine Pouches Versus Nicotine Replaceme…       1000 No M…
+    ##  7 NCT06955403 Acuvue Oaysis Contact Lens Wearers Being Refit …         40 No M…
+    ##  8 NCT06479330 Evaluating the Impact of Incremental Doses of a…         60 No M…
+    ##  9 NCT02556541 Ultrasound-guided Peripheral Vascular Access in…         50 No M…
+    ## 10 NCT01255306 The Influence of Silicone Oil on Nerve Fiber La…         60 No M…
+    ## # ℹ 128,097 more rows
+
+Exploring studies with missing MeSH terms for conditions
+
+``` r
+eligibilities = read_aact("eligibilities", col_select = c(nct_id, healthy_volunteers))
+designs       = read_aact("designs", col_select = c(nct_id, primary_purpose))
+
+study_groups = studies |>
+  mutate(group = case_when(
+    nct_id %in% pull(classified, nct_id)        ~ "Classified",
+    nct_id %in% pull(browse_conditions, nct_id) ~ "Other MeSH",
+    TRUE                                        ~ "No MeSH"
+  )) |>
+  left_join(eligibilities, by = "nct_id") |>
+  left_join(designs, by = "nct_id")
+
+# Compare distributions across groups, one variable at a time
+study_groups |>
+  count(group, study_type) |>
+  group_by(group) |>
+  mutate(pct = n / sum(n)) |>
+  ungroup()
+```
+
+    ## # A tibble: 8 × 4
+    ##   group      study_type           n      pct
+    ##   <chr>      <chr>            <int>    <dbl>
+    ## 1 Classified EXPANDED_ACCESS     53 0.000122
+    ## 2 Classified INTERVENTIONAL  330453 0.758   
+    ## 3 Classified OBSERVATIONAL   105402 0.242   
+    ## 4 No MeSH    EXPANDED_ACCESS     13 0.000101
+    ## 5 No MeSH    INTERVENTIONAL   99261 0.775   
+    ## 6 No MeSH    OBSERVATIONAL    28833 0.225   
+    ## 7 Other MeSH INTERVENTIONAL   33824 0.809   
+    ## 8 Other MeSH OBSERVATIONAL     8011 0.191
+
+``` r
+no_mesh_ids = study_groups |> filter(group == "No MeSH") |> pull(nct_id)
+
+conditions |>
+  filter(nct_id %in% no_mesh_ids) |>
+  count(condition_name, sort = TRUE) |>
+  head(40)
+```
+
+    ## # A tibble: 40 × 2
+    ##    condition_name            n
+    ##    <chr>                 <int>
+    ##  1 healthy                8587
+    ##  2 healthy volunteers     2274
+    ##  3 anesthesia              878
+    ##  4 healthy subjects        777
+    ##  5 hiv                     750
+    ##  6 pregnancy               647
+    ##  7 aging                   612
+    ##  8 healthy participants    598
+    ##  9 healthy volunteer       558
+    ## 10 advanced solid tumors   521
+    ## # ℹ 30 more rows
+
+We wanted to investigate whether there were certain countries with more
+missing MeSH terms for conditions. It appears the ocuntries with the
+highest percent of missing MeSH terms are in the Middle East.
+
+``` r
+study_groups |>
+  filter(study_type == "INTERVENTIONAL") |>
+  inner_join(filter(countries), by = "nct_id") |>
+  group_by(country) |>
+  summarize(
+    n_trials     = n(),
+    pct_no_mesh  = mean(group == "No MeSH")
+  ) |>
+  filter(n_trials >= 100) |>
+  arrange(desc(pct_no_mesh))
+```
+
+    ## # A tibble: 106 × 3
+    ##    country    n_trials pct_no_mesh
+    ##    <chr>         <int>       <dbl>
+    ##  1 Egypt         13774       0.379
+    ##  2 Syria           281       0.320
+    ##  3 Iraq            429       0.296
+    ##  4 Jordan          553       0.280
+    ##  5 Bangladesh      733       0.270
+    ##  6 Rwanda          130       0.269
+    ##  7 Ethiopia        267       0.262
+    ##  8 China         42429       0.261
+    ##  9 Pakistan       5793       0.247
+    ## 10 Lebanon         658       0.243
+    ## # ℹ 96 more rows
+
+``` r
+study_groups |>
+  filter(study_type == "INTERVENTIONAL",
+         start_date_type == "ACTUAL",
+         !is.na(start_date))
+```
+
+    ## # A tibble: 271,846 × 18
+    ##    nct_id      brief_title          official_title acronym study_type start_date
+    ##    <chr>       <chr>                <chr>          <chr>   <chr>      <date>    
+    ##  1 NCT03124173 Cognitive Control o… Cognitive Con… LANGUA… INTERVENT… 2015-01-14
+    ##  2 NCT06053320 Spatial-Motor Strok… Novel Spatial… <NA>    INTERVENT… 2023-04-11
+    ##  3 NCT06464237 Metacognitive Inter… Metacognitive… Mio     INTERVENT… 2025-08-01
+    ##  4 NCT07250165 Combined Therapy of… Prospective, … <NA>    INTERVENT… 2024-08-10
+    ##  5 NCT06029426 Study to Evaluate t… A Phase 3, Ra… <NA>    INTERVENT… 2023-09-20
+    ##  6 NCT05505630 The Effects of Seda… The Effects o… SED-TU… INTERVENT… 2023-01-31
+    ##  7 NCT04835142 Comparison of A140 … Phase III Cli… <NA>    INTERVENT… 2020-12-31
+    ##  8 NCT07643714 Effects of ACT-Base… The Effect of… <NA>    INTERVENT… 2025-10-06
+    ##  9 NCT06745479 Decision-Making in … Promoting Ada… <NA>    INTERVENT… 2025-01-07
+    ## 10 NCT02527031 A Comparative Study… A Comparative… APACAR2 INTERVENT… 2016-03-29
+    ## # ℹ 271,836 more rows
+    ## # ℹ 12 more variables: start_date_type <chr>, completion_date <date>,
+    ## #   overall_status <chr>, why_stopped <chr>, phase <chr>, enrollment <dbl>,
+    ## #   enrollment_type <chr>, source <chr>, source_class <chr>, group <chr>,
+    ## #   healthy_volunteers <chr>, primary_purpose <chr>
 
 Next steps:
 

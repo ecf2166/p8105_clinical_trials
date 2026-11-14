@@ -16,12 +16,14 @@ studies = read_aact("studies", col_select = c(nct_id, brief_title, official_titl
     start_date = as.Date(start_date),
     completion_date = as.Date(completion_date),
     enrollment = as.numeric(enrollment)
-  )
+  ) |> 
+  filter(!is.na(start_date))
 
 countries = read_aact("countries", col_select = c(nct_id, name, removed)) |>
   rename(country = name) |>
-  # AACT may store booleans as "t"/"f"; this handles both that and "true"/"false"
-  mutate(removed = str_to_lower(removed) == "t")
+  mutate(removed = str_to_lower(removed) == "t") |> 
+  filter(removed == FALSE) |> 
+  select(-removed)
 
 sponsors = read_aact("sponsors", col_select = c(nct_id, name, agency_class, lead_or_collaborator)) |>
   rename(sponsor_name = name)
@@ -41,16 +43,12 @@ browse_interventions = read_aact("browse_interventions", col_select = c(nct_id, 
 # Baseline participants (only trials that posted results)
 # Largest participant count per trial = the Total group
 
-baseline_counts = read_aact("baseline_counts", col_select = c(nct_id, units, scope, count)) |>
-  filter(units == "Participants", scope == "overall") |>
+baseline_counts = read_aact("baseline_counts", col_select = c(nct_id, units, count)) |>
+  filter(units == "Participants") |>
   mutate(count = as.numeric(count)) |>
   group_by(nct_id) |>
   summarize(baseline_n = max(count))
 
-
-
-# number of countries removed (removed = TRUE)
-count(countries, removed)
 ```
 
 Saving data
@@ -133,7 +131,7 @@ coverage |>
 
 
 ```{r}
-unique_conditions = unique(browse_conditions$mesh_term)
+unique_conditions = unique(browse_conditions$mesh_term_condition)
 
 browse_conditions |> 
   count(mesh_term_condition, sort=T) |> 
@@ -143,8 +141,7 @@ browse_conditions |>
   count(nct_id) |> 
   summarize(
     mean = mean(n)
-  ) |> 
-  nrow()
+  )
 
 rows = nrow(browse_conditions)
 
@@ -155,9 +152,71 @@ browse_conditions |>
   
 
 unique(sponsors$agency_class)
-
-studies <- read_aact("studies") 
 ```
+
+
+```{r}
+studies |>
+  mutate(group = case_when(
+    nct_id %in% pull(classified, nct_id) ~ "Classified into at least one category",
+    nct_id %in% pull(browse_conditions, nct_id) ~ "Have MeSH terms, but none in our categories",
+    TRUE ~ "No MeSH condition terms at all"
+  )) |> 
+  filter(group == "No MeSH condition terms at all") |>
+  select(nct_id, brief_title,enrollment, group)
+```
+
+
+Exploring studies with missing MeSH terms for conditions
+```{r}
+eligibilities = read_aact("eligibilities", col_select = c(nct_id, healthy_volunteers))
+designs       = read_aact("designs", col_select = c(nct_id, primary_purpose))
+
+study_groups = studies |>
+  mutate(group = case_when(
+    nct_id %in% pull(classified, nct_id)        ~ "Classified",
+    nct_id %in% pull(browse_conditions, nct_id) ~ "Other MeSH",
+    TRUE                                        ~ "No MeSH"
+  )) |>
+  left_join(eligibilities, by = "nct_id") |>
+  left_join(designs, by = "nct_id")
+
+# Compare distributions across groups, one variable at a time
+study_groups |>
+  count(group, study_type) |>
+  group_by(group) |>
+  mutate(pct = n / sum(n)) |>
+  ungroup()
+
+no_mesh_ids = study_groups |> filter(group == "No MeSH") |> pull(nct_id)
+
+conditions |>
+  filter(nct_id %in% no_mesh_ids) |>
+  count(condition_name, sort = TRUE) |>
+  head(40)
+```
+
+We wanted to investigate whether there were certain countries with more missing MeSH terms for conditions. It appears the ocuntries with the highest percent of missing MeSH terms are in the Middle East.
+```{r}
+study_groups |>
+  filter(study_type == "INTERVENTIONAL") |>
+  inner_join(filter(countries), by = "nct_id") |>
+  group_by(country) |>
+  summarize(
+    n_trials     = n(),
+    pct_no_mesh  = mean(group == "No MeSH")
+  ) |>
+  filter(n_trials >= 100) |>
+  arrange(desc(pct_no_mesh))
+```
+
+```{r}
+study_groups |>
+  filter(study_type == "INTERVENTIONAL",
+         start_date_type == "ACTUAL",
+         !is.na(start_date))
+```
+
 
 Next steps: 
 
