@@ -17,7 +17,7 @@ studies = read_aact("studies", col_select = c(nct_id, brief_title, official_titl
     completion_date = as.Date(completion_date),
     enrollment = as.numeric(enrollment)
   ) |> 
-  filter(!is.na(start_date))
+  filter(!is.na(start_date), start_date_type == "ACTUAL")
 
 countries = read_aact("countries", col_select = c(nct_id, name, removed)) |>
   rename(country = name) |>
@@ -209,15 +209,29 @@ study_groups |>
   filter(n_trials >= 100) |>
   arrange(desc(pct_no_mesh))
 ```
+# Importing WHO DALY Data (2010, 2015, 2019, 2023)
 
 ```{r}
-study_groups |>
-  filter(study_type == "INTERVENTIONAL",
-         start_date_type == "ACTUAL",
-         !is.na(start_date))
+library(readxl)
+
+source("source/read_daly.R")
+
+daly_df = bind_rows(
+  read_daly(2010),
+  read_daly(2015),
+  read_daly(2019),
+  read_daly(2023)
+)
+```
+ 
+# Trials_df
+
+```{r}
+trials_df = studies |> 
+  mutate(start_year = lubridate::year(start_date)) |> 
+  distinct(nct_id, .keep_all=TRUE)
+
+trials_df |> 
+  count(study_type, sort=T)
 ```
 
-
-Next steps: 
-
-- download and merge the WHO DALY data
