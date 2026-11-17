@@ -1,6 +1,5 @@
 Data
 ================
-2026-11-11
 
 ``` r
 library(tidyverse)
@@ -190,7 +189,7 @@ unique(sponsors$agency_class)
     ##  [1] "INDUSTRY"  "OTHER"     "OTHER_GOV" "NIH"       "UNKNOWN"   "FED"      
     ##  [7] "NETWORK"   "AMBIG"     "INDIV"     NA
 
-### We’re conflicted on whether or not to include trials that are observational in our analyses.
+### QUESTION: We’re conflicted on whether or not to include trials that are observational in our analyses.
 
 The argument against it is that all clinical trials are registered on
 clinicaltrials.gov, whereas not all observational studies are. By
@@ -326,7 +325,7 @@ daly_df = bind_rows(
   read_daly(2023)
 )
 
-# how should we merge? --> thinking by country, year, and cause (need to match causes to mesh terms)
+# QUESTION: how should we merge? --> thinking by country, year, and cause (need to match causes to mesh terms)
 ```
 
 # Trials_df
@@ -899,3 +898,20 @@ no_iso = countries |>
 
 # we will remove these countries from the country-level analyses, since we can't match them to DALY data
 ```
+
+# Import IHME Data: All countries/territories, World Bank Income Levels, Year 2023 only
+
+``` r
+ihme_2023 = read_csv("data/IHME-GBD_2023_DATA-30ca978e-1.csv")
+```
+
+    ## Rows: 8815 Columns: 11
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (7): population_group, measure, location, sex, age, cause, metric
+    ## dbl (4): year, val, upper, lower
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+woop. will add more years tmrw maybeeee

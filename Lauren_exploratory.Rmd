@@ -1,0 +1,1125 @@
+---
+title: "Lauren Exploratory"
+author: "Lauren Littig"
+date: "2026-11-17"
+output: html_document
+---
+
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(countrycode)
+library(sf)
+library(rnaturalearth)
+library(plotly)
+library(scales)
+library(shiny)
+
+
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.asp = .6,
+  out.width = "90%"
+)
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+```
+
+
+```{r}
+studies = read_rds("data/studies.rds")
+countries = read_rds("data/countries.rds")
+sponsors = read_rds("data/sponsors.rds")
+conditions = read_rds("data/conditions.rds")
+browse_conditions = read_rds("data/browse_conditions.rds")
+browse_interventions = read_rds("data/browse_interventions.rds")
+baseline_counts = read_rds("data/baseline_counts.rds")
+eligibilities = read_rds("data/eligibilities.rds")
+designs = read_rds("data/designs.rds")
+
+# for now will replace ask emma:
+
+library(readxl)
+
+source("source/read_daly.R")
+
+daly_df = bind_rows(
+  read_daly(2010),
+  read_daly(2015),
+  read_daly(2019),
+  read_daly(2023)
+)
+
+top_level_dz = c(
+  "infections",                                   # C01
+  "neoplasms",                                    # C04
+  "musculoskeletal diseases",                     # C05
+  "digestive system diseases",                    # C06
+  "stomatognathic diseases",                      # C07
+  "respiratory tract diseases",                   # C08
+  "otorhinolaryngologic diseases",                # C09
+  "nervous system diseases",                      # C10
+  "eye diseases",                                 # C11
+  "urogenital diseases",                          # C12
+  "cardiovascular diseases",                      # C14
+  "hemic and lymphatic diseases",                 # C15
+  "congenital, hereditary, and neonatal diseases and abnormalities",  # C16
+  "skin and connective tissue diseases",          # C17
+  "nutritional and metabolic diseases",           # C18
+  "endocrine system diseases",                    # C19
+  "immune system diseases",                       # C20
+  "disorders of environmental origin",            # C21
+  "wounds and injuries",                          # C26
+  "chemically-induced disorders",                 # C25
+  "occupational diseases",                        # C24
+  "mental disorders"                              # F03
+)
+
+trials_df = studies |> 
+  mutate(start_year = lubridate::year(start_date)) |> 
+  distinct(nct_id, .keep_all=TRUE)
+```
+
+Number of unique studies per country
+
+```{r}
+studies_by_country = countries |>
+  semi_join(studies, by = "nct_id") |>
+  group_by(country) |>
+  summarise(
+    n_studies = n_distinct(nct_id),
+    .groups = "drop"
+  ) |>
+  arrange(desc(n_studies))
+
+# View top 20 countries
+studies_by_country |>
+  slice_head(n = 20)
+```
+
+Countries With the Most Registered Clinical Studies
+
+```{r}
+studies_by_country |>
+  slice_max(n_studies, n = 20) |>
+  ggplot(aes(
+    x = n_studies,
+    y = reorder(country, n_studies)
+  )) +
+  geom_col(fill = "steelblue") +
+  scale_x_continuous(labels = scales::comma) +
+  labs(
+    title = "Countries With the Most Registered Clinical Studies",
+    subtitle = "ClinicalTrials.gov / AACT",
+    x = "Number of unique registered studies",
+    y = "Country"
+  ) +
+  theme_minimal()
+
+```
+
+Registered Clinical Studies by Country and Study Type
+
+```{r}
+studies_by_country_type = countries |>
+  inner_join(
+    studies |>
+      select(nct_id, study_type),
+    by = "nct_id"
+  ) |>
+  group_by(country, study_type) |>
+  summarise(
+    n_studies = n_distinct(nct_id),
+    .groups = "drop"
+  )
+
+# Identify top 20 countries overall
+top_countries = studies_by_country |>
+  slice_max(n_studies, n = 20) |>
+  pull(country)
+
+# Stacked bar chart
+studies_by_country_type |>
+  filter(country %in% top_countries) |>
+  ggplot(aes(
+    x = n_studies,
+    y = forcats::fct_reorder(
+      country, n_studies, .fun = sum
+    ),
+    fill = study_type
+  )) +
+  geom_col() +
+  scale_x_continuous(labels = scales::comma) +
+  labs(
+    title = "Registered Clinical Studies by Country and Study Type",
+    x = "Number of registered studies",
+    y = "Country",
+    fill = "Study Type"
+  ) +
+  theme_minimal()
+```
+
+# Clinical Research Activity Over Time
+change this after pulling bc we have both actual and estimated now...
+
+```{r}
+studies_by_year = studies |>
+  mutate(year = year(start_date)) |>
+  filter(between(year, 2015, 2025)) |>
+  group_by(year) |>
+  summarize(
+    n_studies = n_distinct(nct_id),
+    .groups = "drop"
+  )
+
+studies_by_year |>
+  ggplot(aes(x = year, y = n_studies)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = 2015:2025) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    title = "Clinical Research Activity Over Time",
+    subtitle = "Registered studies with actual start dates, 2015–2025",
+    x = "Study start year",
+    y = "Number of studies"
+  ) +
+  theme_minimal()
+
+```
+
+# Trends in Registered Clinical Studies by Study Type
+
+```{r}
+
+studies_by_type_year = studies |>
+  mutate(year = year(start_date)) |>
+  filter(
+    between(year, 2015, 2025),
+    study_type %in% c("INTERVENTIONAL", "OBSERVATIONAL")
+  ) |>
+  group_by(year, study_type) |>
+  summarize(
+    n_studies = n_distinct(nct_id),
+    .groups = "drop"
+  )
+
+studies_by_type_year |>
+  ggplot(aes(
+    x = year,
+    y = n_studies,
+    color = study_type
+  )) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = 2015:2025) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    title = "Trends in Registered Clinical Studies by Study Type",
+    x = "Study start year",
+    y = "Number of studies",
+    color = "Study type"
+  ) +
+  theme_minimal()
+
+```
+
+# Study Type Composition Over Time
+
+```{r}
+
+studies_by_type_year |>
+  group_by(year) |>
+  mutate(
+    proportion = n_studies / sum(n_studies)
+  ) |>
+  ungroup() |>
+  ggplot(aes(
+    x = year,
+    y = proportion,
+    fill = study_type
+  )) +
+  geom_col() +
+  scale_y_continuous(
+    labels = scales::percent
+  ) +
+  scale_x_continuous(breaks = 2015:2025) +
+  labs(
+    title = "Study Type Composition Over Time",
+    x = "Study start year",
+    y = "Percentage of registered studies",
+    fill = "Study type"
+  ) +
+  theme_minimal()
+
+```
+
+
+```{r}
+
+# Count studies initiated between 2015 and 2025
+studies_by_country = countries |>
+  inner_join(
+    studies |>
+      mutate(year = year(start_date)) |>
+      filter(between(year, 2015, 2025)) |>
+      select(nct_id),
+    by = "nct_id"
+  ) |>
+  mutate(
+    country_iso3 = countrycode(
+      country,
+      origin = "country.name",
+      destination = "iso3c"
+    )
+  ) |>
+  filter(!is.na(country_iso3)) |>
+  group_by(country_iso3) |>
+  summarize(
+    n_studies = n_distinct(nct_id),
+    .groups = "drop"
+  )
+
+```
+
+```{r}
+
+# Import country boundaries
+world = ne_countries(
+  scale = "small",
+  returnclass = "sf"
+) |>
+  filter(admin != "Antarctica") |>
+  mutate(
+    country_iso3 = if_else(
+      iso_a3 == "-99",
+      adm0_a3,
+      iso_a3
+    )
+  )
+
+# Join study counts to map
+world_studies = world |>
+  left_join(
+    studies_by_country,
+    by = "country_iso3"
+  )
+
+# Plot
+world_studies |>
+  ggplot(aes(fill = n_studies)) +
+  geom_sf(color = "white", linewidth = 0.1) +
+  scale_fill_viridis_c(
+    trans = "log10",
+    labels = scales::comma,
+    na.value = "grey90",
+    name = "Number of studies"
+  ) +
+  coord_sf(expand = FALSE) +
+  labs(
+    title = "Global Distribution of Registered Clinical Studies",
+    subtitle = "Studies initiated between 2015 and 2025",
+    caption = "Source: ClinicalTrials.gov / AACT"
+  ) +
+  theme_void() +
+  theme(
+    plot.title = element_text(face = "bold"),
+    legend.position = "bottom"
+  )
+
+```
+
+```{r}
+studies_by_country |>
+  plot_ly(
+    type = "choropleth",
+    locations = ~country_iso3,
+    z = ~n_studies,
+    text = ~paste0(
+      country_iso3,
+      "<br>Registered studies: ",
+      scales::comma(n_studies)
+    ),
+    hoverinfo = "text",
+    colorscale = "Viridis"
+  ) |>
+  layout(
+    title = "Global Distribution of Registered Clinical Studies",
+    geo = list(
+      showframe = FALSE,
+      showcoastlines = FALSE,
+      projection = list(type = "natural earth")
+    )
+  )
+```
+
+
+```{r}
+
+map_year = 2023
+
+# Clean country names in AACT
+countries_clean = countries |>
+  mutate(
+    country_iso3 = countrycode(
+      country,
+      origin = "country.name",
+      destination = "iso3c"
+    ),
+    country_iso3 = if_else(
+      country == "Serbia and Montenegro",
+      NA_character_,
+      country_iso3
+    )
+  ) |>
+  filter(!is.na(country_iso3)) |>
+  distinct(nct_id, country, country_iso3)
+
+# Count unique studies in the selected year
+trial_counts = trials_df |>
+  filter(start_year == map_year) |>
+  select(nct_id) |>
+  inner_join(countries_clean, by = "nct_id") |>
+  group_by(country, country_iso3) |>
+  summarise(
+    n_trials = n_distinct(nct_id),
+    .groups = "drop"
+  )
+
+# Pull one population value per country for the selected year
+pop_df = daly_df |>
+  filter(year == map_year) |>
+  distinct(country, pop_thousands) |>
+  mutate(
+    country_iso3 = countrycode(
+      country,
+      origin = "country.name",
+      destination = "iso3c"
+    ),
+    country_iso3 = if_else(
+      country == "Serbia and Montenegro",
+      NA_character_,
+      country_iso3
+    )
+  ) |>
+  filter(!is.na(country_iso3), !is.na(pop_thousands), pop_thousands > 0)
+
+# Merge trial counts with population
+trial_density = trial_counts |>
+  inner_join(
+    pop_df |>
+      select(country_iso3, pop_thousands),
+    by = "country_iso3"
+  ) |>
+  mutate(
+    studies_per_million = n_trials / pop_thousands * 1000
+  )
+
+trial_density |>
+  arrange(desc(studies_per_million)) |>
+  slice_head(n = 20)
+```
+
+```{r}
+plot_ly(
+  data = trial_density,
+  type = "choropleth",
+  locations = ~country_iso3,
+  locationmode = "ISO-3",
+  z = ~studies_per_million,
+  text = ~paste0(
+    country,
+    "<br>Trials: ", comma(n_trials),
+    "<br>Population (thousands): ", comma(pop_thousands),
+    "<br>Trials per million: ", round(studies_per_million, 2)
+  ),
+  hoverinfo = "text",
+  colorscale = "Viridis"
+) |>
+  layout(
+    title = paste(
+      "Registered Clinical Studies per Million Population,",
+      map_year
+    ),
+    geo = list(
+      showframe = FALSE,
+      showcoastlines = FALSE,
+      projection = list(type = "natural earth")
+    )
+  )
+```
+
+# Investigate whether the proportion of registered observational versus interventional studies varies across countries
+
+```{r}
+
+study_types_country = studies |>
+  select(nct_id, study_type) |>
+  filter(
+    study_type %in% c("INTERVENTIONAL", "OBSERVATIONAL")
+  ) |>
+  distinct() |>
+  inner_join(
+    countries |> distinct(nct_id, country),
+    by = "nct_id"
+  ) |>
+  count(country, study_type, name = "n_studies") |>
+  group_by(country) |>
+  mutate(
+    total_studies = sum(n_studies),
+    proportion = n_studies / total_studies
+  ) |>
+  ungroup()
+
+study_types_country
+
+
+# Identify the 80 countries with the most studies
+top_countries = study_types_country |>
+  distinct(country, total_studies) |>
+  slice_max(total_studies, n = 80) |>
+  pull(country)
+
+study_types_country |>
+  filter(country %in% top_countries) |>
+  ggplot(aes(
+    x = proportion,
+    y = forcats::fct_reorder(country, total_studies),
+    fill = study_type
+  )) +
+  geom_col() +
+  scale_x_continuous(labels = scales::percent) +
+  labs(
+    title = "Distribution of Clinical Study Types by Country",
+    subtitle = "Top 80 countries by registered study count",
+    x = "Percentage of registered studies",
+    y = "Country",
+    fill = "Study Type"
+  ) +
+  theme_minimal()
+
+```
+
+Combine country information with broad MeSH categories
+
+
+```{r}
+
+# One row per study-country
+study_country = studies |>
+  select(nct_id) |>
+  inner_join(countries, by = "nct_id") |>
+  distinct(nct_id, country)
+
+# One row per study-disease category
+study_disease = browse_conditions |>
+  filter(mesh_term_condition %in% top_level_dz) |>
+  transmute(
+    nct_id,
+    disease_category = mesh_term_condition
+  ) |>
+  distinct()
+
+# Combine countries and diseases
+study_country_disease = study_country |>
+  inner_join(
+    study_disease,
+    by = "nct_id",
+    relationship = "many-to-many"
+  )
+
+# Calculate denominators for each country
+country_totals = study_country |>
+  count(country, name = "n_total")
+
+country_classified = study_country_disease |>
+  distinct(nct_id, country) |>
+  count(country, name = "n_classified")
+
+# Count studies investigating each disease in each country
+country_disease = study_country_disease |>
+  count(country, disease_category, name = "n_studies") |>
+  left_join(country_totals, by = "country") |>
+  left_join(country_classified, by = "country") |>
+  mutate(
+    pct_studies = 100 * n_studies / n_total,
+    pct_classified = 100 * n_studies / n_classified
+  )
+
+```
+
+## Which diseases are studied most in each country?
+
+```{r}
+
+top_diseases_by_country = country_disease |>
+  group_by(country) |>
+  slice_max(n_studies, n = 5, with_ties = FALSE) |>
+  arrange(country, desc(n_studies)) |>
+  ungroup()
+
+top_diseases_by_country |>
+  select(country, disease_category, n_studies, pct_studies)
+
+
+# Top 20 countries by overall number of studies
+top_20_countries = country_totals |>
+  slice_max(n_total, n = 20, with_ties = FALSE) |>
+  pull(country)
+
+# Top 10 disease categories globally
+top_10_diseases = study_disease |>
+  count(disease_category, sort = TRUE) |>
+  slice_head(n = 10) |>
+  pull(disease_category)
+
+# Prepare heatmap
+heatmap_df = country_disease |>
+  filter(
+    country %in% top_20_countries,
+    disease_category %in% top_10_diseases
+  )
+
+# Plot
+heatmap_df |>
+  ggplot(aes(
+    x = disease_category,
+    y = forcats::fct_reorder(country, n_total),
+    fill = pct_studies
+  )) +
+  geom_tile(color = "white") +
+  scale_fill_viridis_c(
+    name = "% of studies"
+  ) +
+  labs(
+    title = "Disease-Specific Clinical Research Across Countries",
+    subtitle = "Top 20 countries and 10 most common disease categories",
+    x = "Disease category",
+    y = "Country"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(
+      angle = 45,
+      hjust = 1
+    )
+  )
+
+```
+
+# Interactive map!!!
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(countrycode)
+library(shiny)
+library(plotly)
+library(DT)
+
+# =====================================================
+# 1. PREPARE MAP AND DISEASE DATA
+# =====================================================
+
+years_keep = 2019:2023
+
+selected_studies = trials_df |>
+  filter(start_year %in% years_keep) |>
+  distinct(nct_id)
+
+# One row per study-country
+trial_countries = countries |>
+  mutate(
+    country_iso3 = countrycode(
+      country, "country.name", "iso3c"
+    )
+  ) |>
+  filter(!is.na(country_iso3)) |>
+  distinct(nct_id, country_iso3)
+
+study_country_map = selected_studies |>
+  inner_join(trial_countries, by = "nct_id") |>
+  distinct(nct_id, country_iso3)
+
+# Count unique studies by country
+country_counts = study_country_map |>
+  group_by(country_iso3) |>
+  summarise(
+    n_studies = n_distinct(nct_id),
+    .groups = "drop"
+  )
+
+# WHO population for 2023
+population = daly_df |>
+  filter(year == 2023) |>
+  mutate(
+    country_iso3 = countrycode(
+      country, "country.name", "iso3c"
+    )
+  ) |>
+  filter(
+    !is.na(country_iso3),
+    !is.na(pop_thousands),
+    pop_thousands > 0
+  ) |>
+  distinct(country_iso3, pop_thousands)
+
+# Confirm one population per country
+stopifnot(!anyDuplicated(population$country_iso3))
+
+# Map data: annual studies per million residents
+map_df = country_counts |>
+  inner_join(population, by = "country_iso3") |>
+  mutate(
+    density = n_studies /
+      length(years_keep) / pop_thousands * 1000,
+    country_name = countrycode(
+      country_iso3, "iso3c", "country.name"
+    )
+  )
+
+# Broad disease classifications
+study_diseases = browse_conditions |>
+  filter(mesh_term_condition %in% top_level_dz) |>
+  transmute(
+    nct_id,
+    disease_category = mesh_term_condition
+  ) |>
+  distinct()
+
+# Disease-specific counts and proportions
+country_diseases = study_country_map |>
+  inner_join(
+    study_diseases,
+    by = "nct_id",
+    relationship = "many-to-many"
+  ) |>
+  distinct(nct_id, country_iso3, disease_category) |>
+  count(
+    country_iso3,
+    disease_category,
+    name = "n_category"
+  ) |>
+  left_join(country_counts, by = "country_iso3") |>
+  mutate(
+    pct_studies = 100 * n_category / n_studies
+  )
+
+
+# =====================================================
+# 2. USER INTERFACE
+# =====================================================
+
+ui = fluidPage(
+
+  titlePanel("Global Clinical Research Explorer"),
+
+  fluidRow(
+
+    column(
+      7,
+      h4("Registered studies per million residents"),
+      plotlyOutput("world_map", height = "600px")
+    ),
+
+    column(
+      5,
+      h4(textOutput("country_title")),
+      plotlyOutput("disease_plot", height = "650px")
+    )
+
+  ),
+
+  hr(),
+
+  fluidRow(
+    column(
+      12,
+      h4(textOutput("studies_heading")),
+      DTOutput("studies_table"),
+      br(),
+      p(
+        "Dates describe the overall registered study,",
+        "not necessarily its activities within the",
+        "selected country. Completion dates may be",
+        "actual or estimated."
+      )
+    )
+  )
+
+)
+
+
+# =====================================================
+# 3. SERVER
+# =====================================================
+
+server = function(input, output, session) {
+
+  # Default to USA, if available
+  default_country = if (
+    "USA" %in% map_df$country_iso3
+  ) {
+    "USA"
+  } else {
+    map_df$country_iso3[1]
+  }
+
+  selected_country = reactiveVal(default_country)
+  selected_disease = reactiveVal(NULL)
+
+
+  # ---------------------------------------------------
+  # A. INTERACTIVE WORLD MAP
+  # ---------------------------------------------------
+
+  output$world_map = renderPlotly({
+
+    p = plot_ly(
+      data = map_df,
+      type = "choropleth",
+      locations = ~country_iso3,
+      locationmode = "ISO-3",
+      z = ~density,
+      key = ~country_iso3,
+      source = "world",
+      text = ~paste0(
+        country_name,
+        "<br>Studies: ", scales::comma(n_studies),
+        "<br>Annual studies per million: ",
+        round(density, 2)
+      ),
+      hoverinfo = "text",
+      colorscale = "Viridis"
+    ) |>
+      layout(
+        geo = list(
+          showframe = FALSE,
+          showcoastlines = FALSE,
+          projection = list(type = "natural earth")
+        )
+      )
+
+    event_register(p, "plotly_click")
+  })
+
+
+  # Detect country clicks
+  observeEvent(
+    event_data(
+      "plotly_click",
+      source = "world",
+      priority = "event"
+    ),
+    {
+      clicked = event_data(
+        "plotly_click",
+        source = "world"
+      )
+
+      req(nrow(clicked) > 0)
+
+      code = if ("key" %in% names(clicked)) {
+        as.character(clicked$key[1])
+      } else if ("location" %in% names(clicked)) {
+        as.character(clicked$location[1])
+      } else {
+        NULL
+      }
+
+      req(
+        !is.null(code),
+        code %in% map_df$country_iso3
+      )
+
+      selected_country(code)
+    }
+  )
+
+
+  # Clear disease when selecting a new country
+  observeEvent(
+    selected_country(),
+    {
+      selected_disease(NULL)
+    },
+    ignoreInit = TRUE
+  )
+
+
+  # Country heading
+  output$country_title = renderText({
+
+    country_name = countrycode(
+      selected_country(),
+      "iso3c",
+      "country.name"
+    )
+
+    paste("Disease research profile:", country_name)
+  })
+
+
+  # ---------------------------------------------------
+  # B. CLICKABLE DISEASE BAR CHART
+  # ---------------------------------------------------
+
+  output$disease_plot = renderPlotly({
+
+    d = country_diseases |>
+      filter(country_iso3 == selected_country()) |>
+      arrange(pct_studies) |>
+      mutate(
+        disease_label = factor(
+          disease_category,
+          levels = disease_category
+        )
+      )
+
+    validate(
+      need(nrow(d) > 0, "No classified studies available")
+    )
+
+    p = plot_ly(
+      data = d,
+      x = ~pct_studies,
+      y = ~disease_label,
+      key = ~disease_category,
+      source = "disease",
+      type = "bar",
+      orientation = "h",
+      text = ~paste0(
+        round(pct_studies, 1), "%",
+        "<br>", scales::comma(n_category),
+        " studies",
+        "<br>Click to see studies"
+      ),
+      hoverinfo = "text"
+    ) |>
+      layout(
+        xaxis = list(
+          title = "% of registered studies",
+          range = c(0, 100)
+        ),
+        yaxis = list(
+          title = "",
+          automargin = TRUE
+        ),
+        margin = list(l = 260, r = 20)
+      )
+
+    event_register(p, "plotly_click")
+  })
+
+
+  # Detect disease category clicks
+  observeEvent(
+    event_data(
+      "plotly_click",
+      source = "disease",
+      priority = "event"
+    ),
+    {
+      clicked = event_data(
+        "plotly_click",
+        source = "disease"
+      )
+
+      req(nrow(clicked) > 0)
+
+      disease = if ("key" %in% names(clicked)) {
+        as.character(clicked$key[1])
+      } else if ("y" %in% names(clicked)) {
+        as.character(clicked$y[1])
+      } else {
+        NULL
+      }
+
+      available = country_diseases |>
+        filter(country_iso3 == selected_country()) |>
+        pull(disease_category)
+
+      req(
+        !is.null(disease),
+        disease %in% available
+      )
+
+      selected_disease(disease)
+    }
+  )
+
+
+  # ---------------------------------------------------
+  # C. GET INDIVIDUAL STUDIES
+  # ---------------------------------------------------
+
+  # Only retrieve details for selected country/disease
+  study_details = reactive({
+
+    req(selected_country(), selected_disease())
+
+    matching_ids = study_country_map |>
+      filter(country_iso3 == selected_country()) |>
+      semi_join(
+        study_diseases |>
+          filter(
+            disease_category == selected_disease()
+          ),
+        by = "nct_id"
+      ) |>
+      distinct(nct_id)
+
+    matching_ids |>
+      left_join(
+        trials_df |>
+          select(
+            nct_id,
+            brief_title,
+            study_type,
+            start_date,
+            completion_date,
+            overall_status
+          ),
+        by = "nct_id",
+        relationship = "many-to-one"
+      ) |>
+      mutate(
+        start_date = as.Date(start_date),
+        completion_date = as.Date(completion_date),
+        duration_months = if_else(
+          !is.na(start_date) &
+            !is.na(completion_date) &
+            completion_date >= start_date,
+          round(
+            as.numeric(
+              completion_date - start_date
+            ) / 30.44,
+            1
+          ),
+          NA_real_
+        )
+      )
+  })
+
+
+  # ---------------------------------------------------
+  # D. STUDY TABLE HEADING
+  # ---------------------------------------------------
+
+  output$studies_heading = renderText({
+
+    if (is.null(selected_disease())) {
+      return(
+        "Click a disease category to view individual studies"
+      )
+    }
+
+    country_name = countrycode(
+      selected_country(),
+      "iso3c",
+      "country.name"
+    )
+
+    paste0(
+      "Studies in ", country_name,
+      " — ", selected_disease(),
+      " (", scales::comma(nrow(study_details())),
+      " studies)"
+    )
+  })
+
+
+  # ---------------------------------------------------
+  # E. SEARCHABLE STUDY TABLE
+  # ---------------------------------------------------
+
+  output$studies_table = DT::renderDT({
+
+    req(selected_disease())
+
+    d = study_details() |>
+      arrange(desc(start_date)) |>
+      transmute(
+        `NCT ID` = nct_id,
+        `Study title` = coalesce(
+          brief_title, "Title unavailable"
+        ),
+        `Study type` = study_type,
+        `Start date` = as.character(start_date),
+        `Completion date` = as.character(completion_date),
+        `Reported interval (months)` = duration_months,
+        `Status` = overall_status
+      )
+
+    # Clickable study titles
+    d$`Study title` = paste0(
+      '<a href="https://clinicaltrials.gov/study/',
+      d$`NCT ID`,
+      '" target="_blank" rel="noopener noreferrer">',
+      htmltools::htmlEscape(d$`Study title`),
+      '</a>'
+    )
+
+    DT::datatable(
+      d,
+      rownames = FALSE,
+      filter = "top",
+      escape = which(names(d) != "Study title"),
+      options = list(
+        pageLength = 10,
+        lengthMenu = c(10, 25, 50),
+        scrollX = TRUE
+      )
+    )
+
+  }, server = TRUE)
+
+}
+
+
+# =====================================================
+# 4. LAUNCH APP
+# =====================================================
+
+shinyApp(ui = ui, server = server)
+
+```
+
+
+
+
+
+## Countries With the Highest Share of Cancer Research
+
+```{r}
+country_disease |>
+  filter(
+    disease_category == "neoplasms",
+    n_total >= 100
+  ) |>
+  arrange(desc(pct_studies)) |>
+  slice_head(n = 20) |>
+  ggplot(aes(
+    x = pct_studies,
+    y = reorder(country, pct_studies)
+  )) +
+  geom_col() +
+  labs(
+    title = "Countries With the Highest Share of Cancer Research",
+    subtitle = "Countries with at least 100 registered studies",
+    x = "Percentage of studies investigating neoplasms",
+    y = "Country"
+  ) +
+  theme_minimal()
+```
+
+
