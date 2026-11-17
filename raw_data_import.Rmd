@@ -1,0 +1,70 @@
+---
+title: "Import raw data"
+output: html_document
+date: "2026-11-17"
+---
+# Loading AACT data
+
+```{r}
+source("source/read_aact.R")
+
+studies = read_aact("studies", col_select = c(nct_id, brief_title, official_title, acronym, study_type, start_date, start_date_type, completion_date, overall_status, why_stopped, phase, enrollment, enrollment_type, source, source_class)) |>
+  mutate(
+    start_date = as.Date(start_date),
+    completion_date = as.Date(completion_date),
+    enrollment = as.numeric(enrollment)
+  ) |> 
+  filter(!is.na(start_date), start_date_type == "ACTUAL")
+
+countries = read_aact("countries", col_select = c(nct_id, name, removed)) |>
+  rename(country = name) |>
+  mutate(removed = str_to_lower(removed) == "t") |> 
+  filter(removed == FALSE) |> 
+  select(-removed)
+
+sponsors = read_aact("sponsors", col_select = c(nct_id, name, agency_class, lead_or_collaborator)) |>
+  rename(sponsor_name = name)
+
+conditions = read_aact("conditions", col_select = c(nct_id, downcase_name)) |>
+  rename(condition_name = downcase_name)
+
+browse_conditions = read_aact("browse_conditions", col_select = c(nct_id, downcase_mesh_term, mesh_type)) |>
+  rename(mesh_term_condition = downcase_mesh_term,
+         mesh_type_condition = mesh_type)
+
+browse_interventions = read_aact("browse_interventions", col_select = c(nct_id, downcase_mesh_term, mesh_type)) |>
+  rename(mesh_term_intervention = downcase_mesh_term,
+         mesh_type_intervention = mesh_type)
+
+
+# Baseline participants (only trials that posted results)
+# Largest participant count per trial = the Total group
+
+baseline_counts = read_aact("baseline_counts", col_select = c(nct_id, units, count)) |>
+  filter(units == "Participants") |>
+  mutate(count = as.numeric(count)) |>
+  group_by(nct_id) |>
+  summarize(baseline_n = max(count))
+```
+
+Saving data
+```{r eval = F}
+# don't want to knit this every time, only run once
+# for keeping data in in RDS format to save space (and so this knits)
+write_rds(studies, "data/studies.rds", compress = "gz")
+write_rds(countries, "data/countries.rds", compress = "gz")
+write_rds(sponsors, "data/sponsors.rds", compress = "gz")
+write_rds(conditions, "data/conditions.rds", compress = "gz")
+write_rds(browse_conditions, "data/browse_conditions.rds", compress = "gz")
+write_rds(browse_interventions, "data/browse_interventions.rds", compress = "gz")
+write_rds(baseline_counts, "data/baseline_counts.rds", compress = "gz")
+```
+
+```{r}
+eligibilities = read_aact("eligibilities", col_select = c(nct_id, healthy_volunteers))
+designs       = read_aact("designs", col_select = c(nct_id, primary_purpose))
+
+write_rds(eligibilities, "data/eligibilities.rds", compress = "gz")
+write_rds(designs, "data/designs.rds", compress = "gz")
+```
+
