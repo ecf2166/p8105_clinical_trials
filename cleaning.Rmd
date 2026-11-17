@@ -48,7 +48,6 @@ baseline_counts = read_aact("baseline_counts", col_select = c(nct_id, units, cou
   mutate(count = as.numeric(count)) |>
   group_by(nct_id) |>
   summarize(baseline_n = max(count))
-
 ```
 
 Saving data
@@ -127,24 +126,29 @@ coverage |>
   knitr::kable(col.names = c("Group", "Trials", "Share"))
 ```
 
+We will use the classified mesh terms and list the "have mesh terms but none in our categories" as "other". For analyses based on condition, we will exclude those with no Mesh terms, otherwise we will keep them in.
 
 
-
+Initial analyses
 ```{r}
+# unique conditions
 unique_conditions = unique(browse_conditions$mesh_term_condition)
 
+# 50 least common mesh terms
+# 6,052 total condition mesh terms (ancestor + list)
 browse_conditions |> 
   count(mesh_term_condition, sort=T) |> 
   slice_tail(n=50)
 
+# mean rows (number of mesh terms) per trial
 browse_conditions |> 
   count(nct_id) |> 
   summarize(
     mean = mean(n)
   )
 
-rows = nrow(browse_conditions)
-
+# looking at mesh ancestors (broader terms --> what we're more interested in)
+# 1,854 ancestors 
 browse_conditions |> 
   filter(mesh_type_condition == "mesh-ancestor") |>
   count(mesh_term_condition, sort = T) |> 
@@ -154,6 +158,10 @@ browse_conditions |>
 unique(sponsors$agency_class)
 ```
 
+
+### We're conflicted on whether or not to include trials that are observational in our analyses.
+The argument against it is that all clinical trials are registered on clinicaltrials.gov, whereas not all observational studies are. 
+By including observational studies, we may have a lot of bias
 
 ```{r}
 studies |>
@@ -171,6 +179,9 @@ Exploring studies with missing MeSH terms for conditions
 ```{r}
 eligibilities = read_aact("eligibilities", col_select = c(nct_id, healthy_volunteers))
 designs       = read_aact("designs", col_select = c(nct_id, primary_purpose))
+
+write_rds(eligibilities, "data/eligibilities.rds", compress = "gz")
+write_rds(designs, "data/designs.rds", compress = "gz")
 
 study_groups = studies |>
   mutate(group = case_when(
@@ -209,6 +220,7 @@ study_groups |>
   filter(n_trials >= 100) |>
   arrange(desc(pct_no_mesh))
 ```
+
 # Importing WHO DALY Data (2010, 2015, 2019, 2023)
 
 ```{r}
@@ -222,6 +234,8 @@ daly_df = bind_rows(
   read_daly(2019),
   read_daly(2023)
 )
+
+# how should we merge? --> thinking by country, year, and cause (need to match causes to mesh terms)
 ```
  
 # Trials_df
@@ -233,5 +247,28 @@ trials_df = studies |>
 
 trials_df |> 
   count(study_type, sort=T)
+```
+```{r}
+unique(countries$country)
+
+unique(daly_df$country)
+
+setdiff(countries$country, daly_df$country)
+setdiff(daly_df$country, countries$country)
+
+# make countries the same across data sets
+```
+
+```{r}
+library(countrycode)
+
+countries <- countries |>
+  mutate(iso3 = countrycode(country, origin = "country.name", destination = "iso3c"))
+
+no_iso = countries |> 
+  filter(is.na(iso3)) |> 
+  distinct(country)
+
+# we will remove these countries from the country-level analyses, since we can't match them to DALY data
 ```
 

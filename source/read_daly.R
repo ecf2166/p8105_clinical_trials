@@ -1,7 +1,15 @@
 read_daly = function(year) {
   path = list.files("data", pattern = paste0("^daly.*_", year, "[_.].*xlsx$"), full.names = TRUE)
   
-  read_xlsx(path, sheet = "All ages", skip = 6, .name_repair = "unique_quiet") |>
+  raw = read_xlsx(path, sheet = "All ages", skip = 6, .name_repair = "unique_quiet")
+  
+  iso_lookup = raw |>
+    slice(1) |>
+    select(-(1:7)) |>
+    mutate(across(everything(), as.character)) |>
+    pivot_longer(everything(), names_to = "country", values_to = "iso3")
+  
+  raw |>
     rename(sex = 1, ghe_code = 2, col3 = 3, col4 = 4, col5 = 5, col6 = 6, col7 = 7) |>
     filter(sex == "Persons", !is.na(ghe_code)) |>
     mutate(
@@ -29,5 +37,7 @@ read_daly = function(year) {
     mutate(
       daly_thousands = as.numeric(daly_thousands),
       year = year
-    )
+    ) |>
+    left_join(iso_lookup, by = "country") |>
+    relocate(iso3, .after = country)
 }
