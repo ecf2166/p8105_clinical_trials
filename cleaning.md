@@ -1,6 +1,5 @@
 Data
 ================
-2026-11-11
 
 ``` r
 library(tidyverse)
@@ -190,7 +189,7 @@ unique(sponsors$agency_class)
     ##  [1] "INDUSTRY"  "OTHER"     "OTHER_GOV" "NIH"       "UNKNOWN"   "FED"      
     ##  [7] "NETWORK"   "AMBIG"     "INDIV"     NA
 
-### We’re conflicted on whether or not to include trials that are observational in our analyses.
+### QUESTION: We’re conflicted on whether or not to include trials that are observational in our analyses.
 
 The argument against it is that all clinical trials are registered on
 clinicaltrials.gov, whereas not all observational studies are. By
@@ -326,7 +325,7 @@ daly_df = bind_rows(
   read_daly(2023)
 )
 
-# how should we merge? --> thinking by country, year, and cause (need to match causes to mesh terms)
+# QUESTION: how should we merge? --> thinking by country, year, and cause (need to match causes to mesh terms)
 ```
 
 # Trials_df

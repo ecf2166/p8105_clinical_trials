@@ -3,6 +3,10 @@ title: "Import raw data"
 output: html_document
 date: "2026-11-17"
 ---
+
+# QUESTION: We talked about merging, but with so many countries, mesh terms, conditions, etc, this would create a df with likely millions of rows. Do we keep them all separate, or merge into a few different dfs? or just create dfs out of the ones we need when making visualizations? 
+
+
 # Loading AACT data
 
 ```{r}
@@ -49,6 +53,8 @@ baseline_counts = read_aact("baseline_counts", col_select = c(nct_id, units, cou
   mutate(count = as.numeric(count)) |>
   group_by(nct_id) |>
   summarize(baseline_n = max(count))
+
+
 ```
 
 Saving data
