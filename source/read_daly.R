@@ -9,6 +9,13 @@ read_daly = function(year) {
     mutate(across(everything(), as.character)) |>
     pivot_longer(everything(), names_to = "country", values_to = "iso3")
   
+  pop_lookup = raw |>
+    rename(sex = 1, ghe_code = 2) |>
+    filter(sex == "Persons", is.na(ghe_code)) |>
+    select(-(1:7)) |>
+    mutate(across(everything(), as.numeric)) |>
+    pivot_longer(everything(), names_to = "country", values_to = "pop_thousands")
+  
   raw |>
     rename(sex = 1, ghe_code = 2, col3 = 3, col4 = 4, col5 = 5, col6 = 6, col7 = 7) |>
     filter(sex == "Persons", !is.na(ghe_code)) |>
@@ -39,5 +46,6 @@ read_daly = function(year) {
       year = year
     ) |>
     left_join(iso_lookup, by = "country") |>
+    left_join(pop_lookup, by = "country") |>
     relocate(iso3, .after = country)
 }
