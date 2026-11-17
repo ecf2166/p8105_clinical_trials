@@ -222,3 +222,10 @@ no_iso = countries |>
 # we will remove these countries from the country-level analyses, since we can't match them to DALY data
 ```
 
+# Import IHME Data: All countries/territories, World Bank Income Levels, Year 2023 only
+
+```{r}
+ihme_2023 = read_csv("data/IHME-GBD_2023_DATA-30ca978e-1.csv")
+```
+
+woop. will add more years tmrw maybeeee

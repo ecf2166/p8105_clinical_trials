@@ -898,3 +898,20 @@ no_iso = countries |>
 
 # we will remove these countries from the country-level analyses, since we can't match them to DALY data
 ```
+
+# Import IHME Data: All countries/territories, World Bank Income Levels, Year 2023 only
+
+``` r
+ihme_2023 = read_csv("data/IHME-GBD_2023_DATA-30ca978e-1.csv")
+```
+
+    ## Rows: 8815 Columns: 11
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (7): population_group, measure, location, sex, age, cause, metric
+    ## dbl (4): year, val, upper, lower
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+woop. will add more years tmrw maybeeee
