@@ -5,6 +5,10 @@ date: "2026-11-17"
 output: html_document
 ---
 
+# Look at a few case studies...
+
+# Look at top 20 mesh terms, see which are msot popular, then look at level 3 for those terms.
+
 
 ```{r}
 library(tidyverse)
