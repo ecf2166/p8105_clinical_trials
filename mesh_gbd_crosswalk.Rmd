@@ -97,7 +97,7 @@ The output has one row per `nct_id × analysis_cause_id`, with the terms corresp
 We also need to come up with a reasonable denominator and treatment of partially mapped trials before comparing research shares with burden shares.
 Next we need to link countries, deduplicate trial–country–category combinations and decide how to count multinational trials.
 
-## Sources and checks
+## Sources
 
 - IHME GBD cause hierarchy: `IHME_GBD_2023_HIERARCHIES_Y2025M10D23.XLSX`, sheet `Cause Hierarchy`.
 - [NLM MeSH tree structures](https://www.nlm.nih.gov/mesh/intro_trees.html).
