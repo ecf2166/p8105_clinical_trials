@@ -65,14 +65,14 @@ direct_mesh = function(browse_conditions, cohort) {
 # To resolve a term, enter reviewed_gbd_cause_id and reviewer, then approve.
 build_mesh_review = function(browse_conditions, cohort, hierarchy, proposed_rules,
                              previous_review = NULL) {
-  targets = gbd_targets(hierarchy)
+  gbd_categories = gbd_targets(hierarchy)
   proposed_rules = proposed_rules |>
     mutate(mesh_term = normalize_mesh(mesh_term),
                   target_cause_id = as.integer(target_cause_id))
   stopifnot(!anyDuplicated(proposed_rules$mesh_term),
             all(proposed_rules$action %in% c("map", "review", "exclude")))
   if (any(!is.na(proposed_rules$target_cause_id) &
-          !proposed_rules$target_cause_id %in% targets$cause_id)) {
+          !proposed_rules$target_cause_id %in% gbd_categories$cause_id)) {
     stop("A proposed rule references a cause ID absent from the hierarchy.")
   }
   terms = browse_conditions |>
@@ -82,7 +82,7 @@ build_mesh_review = function(browse_conditions, cohort, hierarchy, proposed_rule
     distinct()
   frequency = direct_mesh(browse_conditions, cohort) |>
     count(mesh_term, name = "n_trials_in_cohort")
-  exact = targets |>
+  exact = gbd_categories |>
     filter(!is.na(analysis_cause_id)) |>
     transmute(mesh_term = normalize_mesh(cause_name),
                      exact_cause_id = as.integer(cause_id))
@@ -109,7 +109,7 @@ build_mesh_review = function(browse_conditions, cohort, hierarchy, proposed_rule
           "No proposed mapping. Review the mesh term and trial condition context."))) |>
     select(mesh_term, n_trials_in_cohort, proposed_action,
                   proposed_gbd_cause_id, mapping_method, rationale) |>
-    left_join(targets |>
+    left_join(gbd_categories |>
       select(proposed_gbd_cause_id = cause_id,
                     proposed_gbd_cause = cause_name,
                     proposed_level2_id = level2_id,
@@ -142,7 +142,7 @@ build_mesh_review = function(browse_conditions, cohort, hierarchy, proposed_rule
 # Pending terms remain unresolved unless allow_proposed is TRUE and the proposed action is "map". 
 # The resolved cause must be a GBD cause with a level-2 ancestor or Injuries (687).
 resolve_mesh_review = function(review, hierarchy, allow_proposed = FALSE) {
-  targets = gbd_targets(hierarchy)
+  gbd_categories = gbd_targets(hierarchy)
   stopifnot(!anyDuplicated(review$mesh_term))
   if (any(is.na(review$review_decision) |
           !review$review_decision %in% c("pending", "approve", "exclude"))) {
@@ -167,12 +167,12 @@ resolve_mesh_review = function(review, hierarchy, allow_proposed = FALSE) {
         proposed_action == "exclude" ~ "excluded_proposed",
         TRUE ~ "needs_review"))
   invalid = !is.na(out$resolved_cause_id) &
-    !out$resolved_cause_id %in% targets$cause_id[!is.na(targets$analysis_cause_id)]
+    !out$resolved_cause_id %in% gbd_categories$cause_id[!is.na(gbd_categories$analysis_cause_id)]
   if (any(invalid) || any(out$review_decision == "approve" & is.na(out$resolved_cause_id))) {
     stop("Approved/proposed target must be a valid GBD cause with a level-2 ancestor, or Injuries (687).")
   }
   out |>
-    left_join(targets |>
+    left_join(gbd_categories |>
       select(resolved_cause_id = cause_id, resolved_cause_name = cause_name,
                     level2_id, level2_cause, analysis_cause_id, analysis_cause),
       by = "resolved_cause_id")
