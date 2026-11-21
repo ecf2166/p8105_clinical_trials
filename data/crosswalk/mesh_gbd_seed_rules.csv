@@ -1,0 +1,684 @@
+mesh_term,target_cause_id,action,rationale
+abdominal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"abortion, habitual",995,map,Miscarriage/abortion maternal branch.
+"abortion, spontaneous",995,map,Miscarriage/abortion maternal branch.
+acquired immunodeficiency syndrome,298,map,HIV condition alias; GBD HIV/AIDS branch.
+acute coronary syndrome,493,map,Ischemic heart disease alias/subtype.
+acute kidney injury,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+acute pain,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+adrenal cortex neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+adrenal gland neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+adrenocortical carcinoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+agnosia,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+agoraphobia,571,map,Proposed anxiety-disorder grouping; inspect GBD category definitions for OCD/PTSD before approval.
+aids-related kaposi sarcoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+alcohol drinking,,review,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.
+alcohol-related disorders,560,map,Alcohol use disorder alias; not alcohol consumption alone.
+alcoholism,560,map,Alcohol use disorder alias; not alcohol consumption alone.
+alzheimer disease,543,map,Dementia grouped under Neurological disorders in supplied GBD hierarchy.
+amphetamine-related disorders,564,map,Amphetamine use disorder alias.
+"amputation, traumatic",687,map,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism."
+amyotrophic lateral sclerosis,554,map,Motor neuron disease alias/subtype.
+anal canal carcinoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+anemia,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+"anemia, iron-deficiency",390,review,Dietary versus non-dietary etiology requires review.
+"anemia, sickle cell",615,map,Sickle cell disorder alias.
+angina pectoris,493,map,Ischemic heart disease alias/subtype.
+"angina, unstable",493,map,Ischemic heart disease alias/subtype.
+ankle fractures,687,map,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism."
+anus neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"aortic aneurysm, abdominal",501,map,Aortic aneurysm subtype.
+"aortic aneurysm, thoracic",501,map,Aortic aneurysm subtype.
+aortic valve stenosis,504,map,Rheumatic/nonrheumatic subtype is not specified; both fall within cardiovascular level 2. Review detailed target.
+appendiceal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"arthritis, psoriatic",639,map,Proposed other musculoskeletal disorder; confirm GBD residual scope; systemic conditions cross MeSH organ trees.
+"arthritis, rheumatoid",627,map,Rheumatoid arthritis alias.
+ascorbic acid deficiency,391,map,Specified deficiency; proposed other nutritional deficiencies.
+asperger syndrome,575,map,Autism spectrum alias/subtype.
+asphyxia neonatorum,382,review,Perinatal versus adult injury not fully specified for some terms; review.
+astigmatism,999,map,Refraction-disorder alias/subtype.
+atrial fibrillation,500,map,Atrial fibrillation/flutter combined GBD cause.
+atrial flutter,500,map,Atrial fibrillation/flutter combined GBD cause.
+attention deficit disorder with hyperactivity,578,map,ADHD alias.
+autism spectrum disorder,575,map,Autism spectrum alias/subtype.
+autistic disorder,575,map,Autism spectrum alias/subtype.
+behavior,,exclude,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone."
+bile duct neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+biliary tract neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+blastic plasmacytoid dendritic cell neoplasm,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+bone marrow neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+bone neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+brain infarction,495,map,Ischemic stroke alias.
+brain injuries,687,map,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism."
+"brain injuries, traumatic",687,map,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism."
+brain ischemia,494,map,Cerebrovascular grouping proposed; confirm the term represents stroke rather than a risk state.
+brain neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+brain stem neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+breast carcinoma in situ,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+breast feeding,,exclude,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone."
+breast neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"breast neoplasms, male",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+bronchial neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+bronchiectasis,520,map,Proposed other chronic respiratory disease.
+bronchiolitis,322,map,Proposed lower respiratory infection grouping; influenza site/severity is not identified by this term alone. Review before use.
+"bronchitis, chronic",509,map,Chronic obstructive pulmonary disease alias/subtype.
+burkitt lymphoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+burns,687,map,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism."
+carcinoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+carcinoma in situ,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, acinar cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, adenoid cystic",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, adenosquamous",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, basal cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, basosquamous",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, bronchogenic",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, ductal",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, ductal, breast",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, embryonal",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, endometrioid",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, giant cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, hepatocellular",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, intraductal, noninfiltrating",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, islet cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, large cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, lobular",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, medullary",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, merkel cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, mucoepidermoid",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, neuroendocrine",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, non-small-cell lung",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, ovarian epithelial",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, pancreatic ductal",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, papillary",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, papillary, follicular",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, renal cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, signet ring cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, skin appendage",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, small cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, squamous cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"carcinoma, transitional cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+cardiomyopathies,499,map,Cardiomyopathy grouping.
+"cardiomyopathy, dilated",499,map,Cardiomyopathy grouping.
+"cardiomyopathy, hypertrophic",499,map,Cardiomyopathy grouping.
+cardiovascular diseases,491,review,Broad heading is a candidate only: MeSH descendants can include congenital disease and other GBD branches.
+cecal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+celiac disease,1161,map,Proposed other digestive disease; validate scope of residual category.
+central nervous system neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+cerebellar neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+cerebral hemorrhage,496,review,Traumatic/nontraumatic distinction is necessary for broad hemorrhage terms.
+cerebral infarction,494,map,Cerebrovascular grouping proposed; confirm the term represents stroke rather than a risk state.
+cerebral palsy,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+cerebrovascular disorders,494,map,Cerebrovascular grouping proposed; confirm the term represents stroke rather than a risk state.
+chickenpox,342,map,Varicella/herpes zoster branch.
+chlamydia infections,395,map,Proposed chlamydial infection alias; check anatomical context.
+chlamydia trachomatis infections,395,map,Proposed chlamydial infection alias; check anatomical context.
+cholangiocarcinoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+cholecystitis,534,map,Gallbladder/biliary disease subtype.
+cholelithiasis,534,map,Gallbladder/biliary disease subtype.
+choroid neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+choroid plexus carcinoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+choroid plexus neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+chronic pain,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+clear-cell metastatic renal cell carcinoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+cleft lip,641,map,Congenital defects go to Other non-communicable diseases rather than the affected organ system.
+cleft palate,641,map,Congenital defects go to Other non-communicable diseases rather than the affected organ system.
+cocaine-related disorders,563,map,Cocaine use disorder alias.
+cognitive dysfunction,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+"colitis, ulcerative",1024,map,Ulcerative colitis alias.
+colonic neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+colorectal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"colorectal neoplasms, hereditary nonpolyposis",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+common bile duct neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+common cold,328,map,Upper respiratory infection grouping; chronic/noninfectious presentations require review.
+composite lymphoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+congenital abnormalities,641,map,Congenital defects go to Other non-communicable diseases rather than the affected organ system.
+"congenital, hereditary, and neonatal diseases and abnormalities",,review,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.
+constipation,1161,map,Proposed other digestive disease; validate scope of residual category.
+coronary artery disease,493,map,Ischemic heart disease alias/subtype.
+coronary disease,493,map,Ischemic heart disease alias/subtype.
+coronavirus infections,,review,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.
+"covid-19, post-acute sequelae",1048,map,COVID-19-specific condition; post-acute sequela mapping needs scope review.
+craniocerebral trauma,687,map,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism."
+critical illness,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+crohn disease,1025,map,Crohn disease alias.
+cystitis,595,map,"Urinary infection branch is Other non-communicable diseases, not Other infectious diseases; review chronic renal overlap."
+deep vein thrombosis,507,map,Proposed other cardiovascular/circulatory cause; validate against GBD scope.
+dementia,543,map,Dementia grouped under Neurological disorders in supplied GBD hierarchy.
+"dementia, vascular",543,map,Dementia grouped under Neurological disorders in supplied GBD hierarchy.
+"dendritic cell sarcoma, follicular",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"dendritic cell sarcoma, interdigitating",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+dengue hemorrhagic fever,357,map,Dengue subtype.
+dental caries,680,map,Oral condition mapping at parent level; no split between deciduous/permanent teeth inferred.
+depression,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+depressive disorder,567,map,Depressive disorder alias.
+"depressive disorder, major",568,map,Major depressive disorder alias/subtype.
+"depressive disorder, treatment-resistant",568,map,Major depressive disorder alias/subtype.
+"dermatitis, allergic contact",978,map,Contact dermatitis alias.
+"dermatitis, atopic",977,map,Atopic dermatitis alias.
+"dermatitis, contact",978,map,Contact dermatitis alias.
+"dermatitis, seborrheic",979,map,Seborrhoeic dermatitis alias.
+diabetes complications,587,review,"Diabetes complication; category attribution needs review, especially vision/neuropathy studies."
+"diabetes mellitus, type 1",975,map,Type 1 diabetes alias.
+"diabetes mellitus, type 2",976,map,Type 2 diabetes alias.
+diabetic foot,587,review,"Diabetes complication; category attribution needs review, especially vision/neuropathy studies."
+diabetic nephropathies,589,map,Chronic kidney disease grouping; polycystic/diabetic etiologies stay within diabetes/kidney level 2.
+diabetic neuropathies,587,review,"Diabetes complication; category attribution needs review, especially vision/neuropathy studies."
+diabetic retinopathy,587,review,"Diabetes complication; category attribution needs review, especially vision/neuropathy studies."
+diarrhea,302,review,Infectious versus noninfectious etiology cannot be inferred; candidate only.
+diffuse intrinsic pontine glioma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+digestive system diseases,,review,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.
+digestive system neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+disease,,exclude,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone."
+diverticulitis,1161,map,Proposed other digestive disease; validate scope of residual category.
+"diverticulosis, colonic",1161,map,Proposed other digestive disease; validate scope of residual category.
+dracunculiasis,936,map,Guinea worm disease alias.
+dry eye syndromes,679,map,Proposed other sense-organ disease; check cause scope.
+duodenal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+duodenal ulcer,527,map,Peptic ulcer disease subtype.
+duodenitis,528,map,Combined GBD gastritis/duodenitis category.
+dyslipidemias,,review,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.
+dysmenorrhea,612,map,Proposed other gynecological disease.
+dysthymic disorder,569,map,Dysthymia alias.
+dystocia,370,map,Maternal obstructed labor/rupture branch.
+dystonia,557,map,Proposed other neurological disorder; residual-category scope needs review.
+ear neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+echinococcosis,353,map,Proposed echinococcosis grouping; confirm subtype.
+eclampsia,369,map,"Maternal hypertensive condition, not general cardiovascular grouping."
+edentulous mouth,680,map,Oral condition mapping at parent level; no split between deciduous/permanent teeth inferred.
+emergencies,,exclude,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone."
+endocrine gland neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+endocrine system diseases,,review,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.
+endometrial neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+enteropathy-associated t-cell lymphoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+epidural neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+epilepsy,545,review,MeSH epilepsy may include secondary epilepsy; GBD target is idiopathic epilepsy. Review etiology.
+"epilepsy, drug-resistant",545,review,MeSH epilepsy may include secondary epilepsy; GBD target is idiopathic epilepsy. Review etiology.
+"epilepsy, focal",545,review,MeSH epilepsy may include secondary epilepsy; GBD target is idiopathic epilepsy. Review etiology.
+"epilepsy, generalized",545,review,MeSH epilepsy may include secondary epilepsy; GBD target is idiopathic epilepsy. Review etiology.
+"epilepsy, temporal lobe",545,review,MeSH epilepsy may include secondary epilepsy; GBD target is idiopathic epilepsy. Review etiology.
+esophageal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+esophageal squamous cell carcinoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+eye diseases,,review,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.
+eye neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+eyelid neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+fallopian tube neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+fatigue,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+feeding and eating disorders,572,review,Feeding disorders can extend beyond GBD eating-disorder scope.
+feeding behavior,,exclude,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone."
+female urogenital diseases and pregnancy complications,,review,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.
+fibrolamellar hepatocellular carcinoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+fibromyalgia,639,map,Proposed other musculoskeletal disorder; confirm GBD residual scope; systemic conditions cross MeSH organ trees.
+fibrosis,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+folic acid deficiency,391,map,Specified deficiency; proposed other nutritional deficiencies.
+"fractures, bone",687,map,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism."
+frailty,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+frontotemporal dementia,543,map,Dementia grouped under Neurological disorders in supplied GBD hierarchy.
+gallbladder neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+gallstones,534,map,Gallbladder/biliary disease subtype.
+gastritis,528,map,Combined GBD gastritis/duodenitis category.
+gastroenteritis,302,review,Infectious versus noninfectious etiology cannot be inferred; candidate only.
+gastroesophageal reflux,536,map,GERD candidate; distinguish disease from physiological reflux in review.
+gastrointestinal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"genital neoplasms, female",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"genital neoplasms, male",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+gingivitis,680,map,Oral condition mapping at parent level; no split between deciduous/permanent teeth inferred.
+"glaucoma, angle-closure",670,map,Glaucoma subtype.
+"glaucoma, open-angle",670,map,Glaucoma subtype.
+glioblastoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+glioma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"glioma, subependymal",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+glucose intolerance,,review,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.
+gonococcal infections,396,map,Gonococcal infection alias.
+gonorrhea,396,map,Gonococcal infection alias.
+graves disease,619,map,Specified endocrine/blood condition; broad MeSH endocrine headings cannot all be assigned here.
+guillain-barre syndrome,557,map,Proposed other neurological disorder; residual-category scope needs review.
+head and neck neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+health behavior,,exclude,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone."
+healthy subjects,,exclude,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone."
+healthy volunteers,,exclude,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone."
+hearing loss,674,map,Hearing loss grouping.
+"hearing loss, conductive",674,map,Hearing loss grouping.
+"hearing loss, sensorineural",674,map,Hearing loss grouping.
+"heart defects, congenital",641,map,Congenital defects go to Other non-communicable diseases rather than the affected organ system.
+heart failure,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+heart neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+heart valve diseases,504,map,Rheumatic/nonrheumatic subtype is not specified; both fall within cardiovascular level 2. Review detailed target.
+hellp syndrome,369,map,"Maternal hypertensive condition, not general cardiovascular grouping."
+hematologic neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+hemic and lymphatic diseases,,review,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.
+hemophilia a,619,map,Specified endocrine/blood condition; broad MeSH endocrine headings cannot all be assigned here.
+hemophilia b,619,map,Specified endocrine/blood condition; broad MeSH endocrine headings cannot all be assigned here.
+hemorrhage,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+"hemorrhagic fever, ebola",843,map,Ebola alias.
+hepatitis a,401,map,Hepatitis A candidate for acute hepatitis.
+hepatitis b,402,review,Acute versus chronic not specified; chronic hepatitis B belongs in Digestive diseases.
+"hepatitis b, chronic",522,map,GBD 2023 explicitly places chronic hepatitis B in Digestive diseases.
+hepatitis c,403,review,Acute versus chronic not specified; chronic hepatitis C belongs in Digestive diseases.
+"hepatitis c, chronic",523,map,GBD 2023 explicitly places chronic hepatitis C in Digestive diseases.
+hepatitis e,404,map,Hepatitis E candidate for acute hepatitis.
+"hepatitis, viral, human",400,review,Acute versus chronic hepatitis crosses GBD level-2 groups.
+"hernia, abdominal",531,map,Abdominal hernia subtype.
+"hernia, femoral",531,map,Abdominal hernia subtype.
+"hernia, inguinal",531,map,Abdominal hernia subtype.
+"hernia, ventral",531,map,Abdominal hernia subtype.
+herpes genitalis,398,map,Genital herpes alias.
+herpes zoster,342,map,Varicella/herpes zoster branch.
+hidradenitis suppurativa,668,map,Proposed other skin disease; validate residual scope.
+hip fractures,687,map,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism."
+histiocytic sarcoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+hiv infections,298,map,HIV condition alias; GBD HIV/AIDS branch.
+hiv seropositivity,298,map,HIV condition alias; GBD HIV/AIDS branch.
+huntington disease,557,map,Proposed other neurological disorder; residual-category scope needs review.
+"hyperbilirubinemia, neonatal",384,map,Neonatal jaundice grouping.
+hypercholesterolemia,,review,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.
+hyperlipidemias,,review,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.
+hyperopia,999,map,Refraction-disorder alias/subtype.
+hypertension,,review,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.
+"hypertension, pregnancy-induced",369,map,"Maternal hypertensive condition, not general cardiovascular grouping."
+hyperthyroidism,619,map,Specified endocrine/blood condition; broad MeSH endocrine headings cannot all be assigned here.
+hypopharyngeal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+hypothyroidism,619,map,Specified endocrine/blood condition; broad MeSH endocrine headings cannot all be assigned here.
+hypoxia,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+"hypoxia-ischemia, brain",382,review,Perinatal versus adult injury not fully specified for some terms; review.
+hypoxic-ischemic encephalopathy,382,review,Perinatal versus adult injury not fully specified for some terms; review.
+idiopathic pulmonary fibrosis,516,map,Interstitial lung disease grouping; confirm primary disease versus secondary fibrosis.
+ileus,530,map,Paralytic ileus/intestinal obstruction combined category.
+immune system diseases,,review,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.
+immune thrombocytopenia,619,map,Specified endocrine/blood condition; broad MeSH endocrine headings cannot all be assigned here.
+"infant, premature, diseases",381,map,Neonatal preterm-birth grouping; neonatal disease context required.
+infections,,review,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.
+infertility,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+"infertility, female",606,map,Female infertility branch.
+"infertility, male",598,map,Male infertility branch.
+inflammation,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+inflammatory bowel diseases,532,map,Inflammatory bowel disease umbrella.
+inflammatory breast neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"influenza, human",322,map,Proposed lower respiratory infection grouping; influenza site/severity is not identified by this term alone. Review before use.
+infratentorial neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+insulin resistance,,review,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.
+intellectual disability,582,review,Idiopathic versus syndromic cause not identified; candidate only.
+intermittent claudication,502,map,Proposed peripheral arterial disease mapping; anatomical scope should be checked.
+"intestinal diseases, infectious",321,review,Parasitic intestinal causes can instead be in NTD/malaria; do not automatically assign.
+"intestinal diseases, parasitic",321,review,Parasitic intestinal causes can instead be in NTD/malaria; do not automatically assign.
+intestinal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+intestinal obstruction,530,map,Paralytic ileus/intestinal obstruction combined category.
+"intracranial hemorrhage, hypertensive",496,review,Traumatic/nontraumatic distinction is necessary for broad hemorrhage terms.
+intracranial hemorrhages,496,review,Traumatic/nontraumatic distinction is necessary for broad hemorrhage terms.
+intraocular lymphoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+iron deficiency,390,review,Dietary versus non-dietary etiology requires review.
+irritable bowel syndrome,1161,map,Proposed other digestive disease; validate scope of residual category.
+"jaundice, neonatal",384,map,Neonatal jaundice grouping.
+jaw neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+keratoconjunctivitis sicca,679,map,Proposed other sense-organ disease; check cause scope.
+kidney calculi,596,map,Urolithiasis alias.
+"kidney diseases, cystic",589,map,Chronic kidney disease grouping; polycystic/diabetic etiologies stay within diabetes/kidney level 2.
+"kidney failure, chronic",589,map,Chronic kidney disease grouping; polycystic/diabetic etiologies stay within diabetes/kidney level 2.
+kidney neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+kwashiorkor,387,map,Protein-energy deficiency alias.
+laryngeal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+latent tuberculosis,954,map,Latent tuberculosis alias.
+leiomyoma,604,review,Leiomyoma without uterine site is ambiguous.
+leukemia,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, b-cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, basophilic, acute",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, biphenotypic, acute",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, eosinophilic, acute",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, erythroblastic, acute",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, hairy cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, large granular lymphocytic",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, lymphocytic, chronic, b-cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, lymphoid",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, mast-cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, megakaryoblastic, acute",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, monocytic, acute",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, myelogenous, chronic, bcr-abl positive",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, myeloid",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, myeloid, accelerated phase",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, myeloid, acute",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, myeloid, chronic, atypical, bcr-abl negative",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, myeloid, chronic-phase",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, myelomonocytic, acute",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, myelomonocytic, chronic",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, myelomonocytic, juvenile",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, neutrophilic, chronic",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, plasma cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, prolymphocytic",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, prolymphocytic, b-cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, prolymphocytic, t-cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, promyelocytic, acute",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia, t-cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"leukemia-lymphoma, adult t-cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+lewy body disease,543,map,Dementia grouped under Neurological disorders in supplied GBD hierarchy.
+lip neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+liver cirrhosis,521,map,Chronic liver disease; not acute infectious hepatitis.
+"liver cirrhosis, alcoholic",521,map,Chronic liver disease; not acute infectious hepatitis.
+"liver diseases, alcoholic",521,map,Chronic liver disease; not acute infectious hepatitis.
+liver neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"liver neoplasms, experimental",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+lower urinary tract symptoms,602,map,Proposed other urinary disease; confirm symptom-specific scope.
+lung diseases,,review,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.
+"lung diseases, interstitial",516,map,Interstitial lung disease grouping; confirm primary disease versus secondary fibrosis.
+lung neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"lupus erythematosus, systemic",639,map,Proposed other musculoskeletal disorder; confirm GBD residual scope; systemic conditions cross MeSH organ trees.
+lymphoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"lymphoma, aids-related",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"lymphoma, b-cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"lymphoma, b-cell, marginal zone",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"lymphoma, extranodal nk-t-cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"lymphoma, follicular",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"lymphoma, large b-cell, diffuse",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"lymphoma, large-cell, anaplastic",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"lymphoma, large-cell, immunoblastic",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"lymphoma, mantle-cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"lymphoma, non-hodgkin",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"lymphoma, primary cutaneous anaplastic large cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"lymphoma, primary effusion",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"lymphoma, t-cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"lymphoma, t-cell, cutaneous",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"lymphoma, t-cell, peripheral",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+macular degeneration,672,map,Age-related macular degeneration candidate; generic macular degeneration requires review.
+"macular degeneration, age-related",672,map,Age-related macular degeneration candidate; generic macular degeneration requires review.
+"malaria, falciparum",345,map,Malaria subtype.
+"malaria, vivax",345,map,Malaria subtype.
+malnutrition,386,review,Broad nutrition term can include excess as well as deficiency; review.
+mandibular neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+marasmus,387,map,Protein-energy deficiency alias.
+marijuana abuse,565,map,Cannabis use disorder alias.
+marijuana dependence,565,map,Cannabis use disorder alias.
+mast-cell sarcoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+maxillary neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+maxillary sinus neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+mediastinal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+medication adherence,,exclude,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone."
+melanoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"melanoma, cutaneous malignant",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+meningeal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+menorrhagia,612,map,Proposed other gynecological disease.
+mental disorders,558,review,MeSH mental-disorder umbrella may include substance use; do not map its descendants wholesale.
+mesothelioma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"mesothelioma, malignant",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+metabolic dysfunction-associated steatotic liver disease,971,map,Fatty liver disease alias; GBD hierarchy label uses NAFLD/NASH.
+metabolic syndrome,,review,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.
+methamphetamine abuse,564,map,Amphetamine use disorder alias.
+microcystic adnexal carcinoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+migraine disorders,547,map,Migraine subtype.
+migraine with aura,547,map,Migraine subtype.
+migraine without aura,547,map,Migraine subtype.
+mitral valve insufficiency,504,map,Rheumatic/nonrheumatic subtype is not specified; both fall within cardiovascular level 2. Review detailed target.
+molluscum contagiosum,660,map,Specified viral skin disease.
+motor activity,,exclude,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone."
+motor neuron disease,554,map,Motor neuron disease alias/subtype.
+mouth neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+multiple myeloma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+multiple trauma,687,map,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism."
+musculoskeletal diseases,,review,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.
+myasthenia gravis,557,map,Proposed other neurological disorder; residual-category scope needs review.
+myelodysplastic syndromes,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+myeloproliferative disorders,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+myocardial infarction,493,map,Ischemic heart disease alias/subtype.
+myocardial ischemia,493,map,Ischemic heart disease alias/subtype.
+myopia,999,map,Refraction-disorder alias/subtype.
+narcolepsy,557,map,Proposed other neurological disorder; residual-category scope needs review.
+nasopharyngeal carcinoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+nasopharyngeal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+nasopharyngitis,328,map,Upper respiratory infection grouping; chronic/noninfectious presentations require review.
+neoplasm metastasis,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+neoplasm micrometastasis,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasm recurrence, local",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasm regression, spontaneous",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+neoplasm seeding,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasm, residual",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+neoplasms by histologic type,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+neoplasms by site,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, adipose tissue",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, basal cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, bone tissue",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, connective and soft tissue",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, connective tissue",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, cystic, mucinous, and serous",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, experimental",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, fibrous tissue",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, germ cell and embryonal",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, glandular and epithelial",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, hormone-dependent",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, mesothelial",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, multiple primary",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, muscle tissue",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, nerve tissue",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, neuroepithelial",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, plasma cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, radiation-induced",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, second primary",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, squamous cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"neoplasms, unknown primary",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+nephrolithiasis,596,map,Urolithiasis alias.
+nerve sheath neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+nervous system diseases,,review,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.
+nervous system neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+neuralgia,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+neuroblastoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+non-alcoholic fatty liver disease,971,map,Fatty liver disease alias; GBD hierarchy label uses NAFLD/NASH.
+non-muscle invasive bladder neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+non-st elevated myocardial infarction,493,map,Ischemic heart disease alias/subtype.
+nonalcoholic steatohepatitis,971,map,Fatty liver disease alias; GBD hierarchy label uses NAFLD/NASH.
+nose neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+nutrition disorders,386,review,Broad nutrition term can include excess as well as deficiency; review.
+nutritional and metabolic diseases,,review,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.
+obesity,,review,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.
+"obesity, morbid",,review,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.
+obsessive-compulsive disorder,571,map,Proposed anxiety-disorder grouping; inspect GBD category definitions for OCD/PTSD before approval.
+onychomycosis,659,map,Specified fungal skin disease; skin infections belong to Skin and subcutaneous diseases.
+opioid-related disorders,562,map,Opioid use disorder alias.
+opium dependence,562,map,Opioid use disorder alias.
+optic nerve glioma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+optic nerve neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+orbital lymphoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+orbital neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+oropharyngeal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"osteoarthritis, hand",1016,map,Hand osteoarthritis alias.
+"osteoarthritis, hip",1014,map,Hip osteoarthritis alias.
+"osteoarthritis, knee",1015,map,Knee osteoarthritis alias.
+otitis media with effusion,329,map,"Otitis media rolls to respiratory infections, not sense organs."
+"otitis media, suppurative",329,map,"Otitis media rolls to respiratory infections, not sense organs."
+otorhinolaryngologic diseases,,review,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.
+otorhinolaryngologic neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+ovarian neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+overweight,,review,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.
+pain,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+"pain, postoperative",,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+"pancreatic carcinoma, familial",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+pancreatic intraductal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+pancreatic neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"pancreatitis, acute necrotizing",535,map,Pancreatitis subtype.
+"pancreatitis, chronic",535,map,Pancreatitis subtype.
+panic disorder,571,map,Proposed anxiety-disorder grouping; inspect GBD category definitions for OCD/PTSD before approval.
+"papillary renal cell carcinoma, sporadic",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+paranasal sinus neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+parathyroid neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+parkinson disease,544,map,Parkinson disease alias.
+parotid neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+pdgfra-associated chronic eosinophilic leukemia,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+pediatric obesity,,review,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.
+pelvic neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+pelvic organ prolapse,608,map,Genital prolapse alias.
+penile neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+peri-implantitis,680,map,Oral condition mapping at parent level; no split between deciduous/permanent teeth inferred.
+periodontal diseases,680,map,Oral condition mapping at parent level; no split between deciduous/permanent teeth inferred.
+periodontitis,680,map,Oral condition mapping at parent level; no split between deciduous/permanent teeth inferred.
+peripheral arterial disease,502,map,Proposed peripheral arterial disease mapping; anatomical scope should be checked.
+peripheral arterial occlusive diseases,502,map,Proposed peripheral arterial disease mapping; anatomical scope should be checked.
+peripheral nervous system neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+peritoneal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+perivascular epithelioid cell neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+pharyngeal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+pharyngitis,328,map,Upper respiratory infection grouping; chronic/noninfectious presentations require review.
+phobic disorders,571,map,Proposed anxiety-disorder grouping; inspect GBD category definitions for OCD/PTSD before approval.
+pituitary neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+plasmablastic lymphoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+pleural neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+pneumonia,322,map,Proposed lower respiratory infection grouping; influenza site/severity is not identified by this term alone. Review before use.
+"pneumonia, bacterial",322,map,Proposed lower respiratory infection grouping; influenza site/severity is not identified by this term alone. Review before use.
+"pneumonia, pneumococcal",322,map,Proposed lower respiratory infection grouping; influenza site/severity is not identified by this term alone. Review before use.
+"pneumonia, viral",322,map,Proposed lower respiratory infection grouping; influenza site/severity is not identified by this term alone. Review before use.
+"polycystic kidney, autosomal dominant",589,map,Chronic kidney disease grouping; polycystic/diabetic etiologies stay within diabetes/kidney level 2.
+polycystic ovary syndrome,605,map,Polycystic ovarian syndrome alias.
+postoperative complications,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+postpartum hemorrhage,367,map,Maternal hemorrhage alias.
+pre-eclampsia,369,map,"Maternal hypertensive condition, not general cardiovascular grouping."
+precursor b-cell lymphoblastic leukemia-lymphoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+precursor cell lymphoblastic leukemia-lymphoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+precursor t-cell lymphoblastic leukemia-lymphoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+prediabetic state,,review,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.
+pregnancy complications,366,map,"Maternal condition grouping; maternal disease, not normal pregnancy."
+"pregnancy complications, cardiovascular",366,map,"Maternal condition grouping; maternal disease, not normal pregnancy."
+"pregnancy complications, hematologic",366,map,"Maternal condition grouping; maternal disease, not normal pregnancy."
+"pregnancy complications, infectious",366,map,"Maternal condition grouping; maternal disease, not normal pregnancy."
+"pregnancy, ectopic",374,map,Ectopic pregnancy alias.
+premature birth,381,map,Neonatal preterm-birth grouping; neonatal disease context required.
+presbycusis,674,map,Hearing loss grouping.
+presbyopia,1000,map,Near vision loss candidate.
+pressure ulcer,665,map,Decubitus ulcer alias.
+prostatic hyperplasia,597,map,Benign prostatic hyperplasia alias.
+prostatic neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"prostatic neoplasms, castration-resistant",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+protein-energy malnutrition,387,map,Protein-energy deficiency alias.
+psychological well-being,,exclude,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone."
+"pulmonary disease, chronic obstructive",509,map,Chronic obstructive pulmonary disease alias/subtype.
+pulmonary embolism,507,map,Proposed other cardiovascular/circulatory cause; validate against GBD scope.
+pulmonary emphysema,509,map,Chronic obstructive pulmonary disease alias/subtype.
+pulmonary fibrosis,516,map,Interstitial lung disease grouping; confirm primary disease versus secondary fibrosis.
+"purpura, thrombocytopenic, idiopathic",619,map,Specified endocrine/blood condition; broad MeSH endocrine headings cannot all be assigned here.
+pyelonephritis,595,map,"Urinary infection branch is Other non-communicable diseases, not Other infectious diseases; review chronic renal overlap."
+quality of life,,exclude,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone."
+radius fractures,687,map,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism."
+rectal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+recurrence,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+refractive errors,999,map,Refraction-disorder alias/subtype.
+renal insufficiency,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+"renal insufficiency, chronic",589,map,Chronic kidney disease grouping; polycystic/diabetic etiologies stay within diabetes/kidney level 2.
+respiratory distress syndrome,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+"respiratory distress syndrome, newborn",381,map,Neonatal preterm-birth grouping; neonatal disease context required.
+respiratory insufficiency,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+respiratory syncytial virus infections,322,map,Proposed lower respiratory infection grouping; influenza site/severity is not identified by this term alone. Review before use.
+respiratory tract diseases,,review,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.
+respiratory tract infections,956,map,Respiratory infection umbrella; distinct from chronic respiratory causes.
+respiratory tract neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+restless legs syndrome,557,map,Proposed other neurological disorder; residual-category scope needs review.
+retinal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+retinoblastoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+retroperitoneal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+rosacea,668,map,Proposed other skin disease; validate residual scope.
+salivary gland neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+salmonella infections,958,review,"Typhoidal, invasive nontyphoidal and diarrheal presentations differ; review."
+sarcoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"sarcoma, alveolar soft part",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"sarcoma, clear cell",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"sarcoma, endometrial stromal",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"sarcoma, ewing",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"sarcoma, kaposi",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"sarcoma, myeloid",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"sarcoma, synovial",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+sarcopenia,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+sars-cov-2 infection,1048,map,COVID-19-specific condition; post-acute sequela mapping needs scope review.
+"scleroderma, systemic",639,map,Proposed other musculoskeletal disorder; confirm GBD residual scope; systemic conditions cross MeSH organ trees.
+sedentary behavior,,review,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.
+sepsis,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+severe acute malnutrition,387,map,Protein-energy deficiency alias.
+sexually transmitted diseases,393,map,STI umbrella remains within GBD HIV/AIDS and STI level 2.
+"sexually transmitted diseases, bacterial",393,map,STI umbrella remains within GBD HIV/AIDS and STI level 2.
+"sexually transmitted diseases, viral",393,map,STI umbrella remains within GBD HIV/AIDS and STI level 2.
+"shock, septic",,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+sickle cell disease,615,map,Sickle cell disorder alias.
+sigmoid neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+sinonasal undifferentiated carcinoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+sinusitis,328,map,Upper respiratory infection grouping; chronic/noninfectious presentations require review.
+skin and connective tissue diseases,,review,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.
+skin neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+skull base neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+skull neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+sleep apnea syndromes,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+"sleep apnea, obstructive",,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+sleep initiation and maintenance disorders,,review,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket."
+small cell lung carcinoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+smoking,,review,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.
+smoking cessation,,review,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.
+smoldering multiple myeloma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+soft tissue neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+spina bifida cystica,641,map,Congenital defects go to Other non-communicable diseases rather than the affected organ system.
+spinal cord injuries,687,map,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism."
+spinal cord neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+spinal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"spondylitis, ankylosing",639,map,Proposed other musculoskeletal disorder; confirm GBD residual scope; systemic conditions cross MeSH organ trees.
+squamous cell carcinoma of head and neck,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+st elevation myocardial infarction,493,map,Ischemic heart disease alias/subtype.
+stomach neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+stomach ulcer,527,map,Peptic ulcer disease subtype.
+"stress disorders, post-traumatic",571,map,Proposed anxiety-disorder grouping; inspect GBD category definitions for OCD/PTSD before approval.
+"stress, psychological",,exclude,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone."
+subcutaneous panniculitis-like t-cell lymphoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+submandibular gland neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+substance-related disorders,973,review,"May include tobacco use, which is a GBD risk factor rather than this cause group."
+supratentorial neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+tension-type headache,548,map,Tension-type headache exact condition.
+testicular neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+thoracic neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+thymus neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"thyroid carcinoma, anaplastic",410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+thyroid neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"thyroiditis, autoimmune",619,map,Specified endocrine/blood condition; broad MeSH endocrine headings cannot all be assigned here.
+tibial fractures,687,map,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism."
+tinea,659,map,Specified fungal skin disease; skin infections belong to Skin and subcutaneous diseases.
+tinea capitis,659,map,Specified fungal skin disease; skin infections belong to Skin and subcutaneous diseases.
+tinea pedis,659,map,Specified fungal skin disease; skin infections belong to Skin and subcutaneous diseases.
+tobacco use disorder,,review,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.
+tongue neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+tonsillar neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+tonsillitis,328,map,Upper respiratory infection grouping; chronic/noninfectious presentations require review.
+tooth loss,680,map,Oral condition mapping at parent level; no split between deciduous/permanent teeth inferred.
+tracheal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"tremor, essential",557,map,Proposed other neurological disorder; residual-category scope needs review.
+trichomonas infections,397,map,Trichomoniasis alias.
+trichomonas vaginitis,397,map,Trichomoniasis alias.
+triple negative breast neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"trypanosomiasis, african",350,map,African trypanosomiasis alias.
+"tuberculosis, extrapulmonary",297,map,"Tuberculosis subtypes roll to respiratory infections and tuberculosis, regardless of organ."
+"tuberculosis, meningeal",297,map,"Tuberculosis subtypes roll to respiratory infections and tuberculosis, regardless of organ."
+"tuberculosis, multidrug-resistant",297,map,"Tuberculosis subtypes roll to respiratory infections and tuberculosis, regardless of organ."
+"tuberculosis, pulmonary",297,map,"Tuberculosis subtypes roll to respiratory infections and tuberculosis, regardless of organ."
+unilateral breast neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+ureteral calculi,596,map,Urolithiasis alias.
+ureteral neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+urethral neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+urinary bladder neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+"urinary bladder, overactive",602,map,Proposed other urinary disease; confirm symptom-specific scope.
+urinary incontinence,602,map,Proposed other urinary disease; confirm symptom-specific scope.
+"urinary incontinence, stress",602,map,Proposed other urinary disease; confirm symptom-specific scope.
+urinary tract infections,595,map,"Urinary infection branch is Other non-communicable diseases, not Other infectious diseases; review chronic renal overlap."
+urogenital diseases,,review,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.
+urogenital neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+urologic neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+uterine cervical neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+uterine fibroids,604,review,Leiomyoma without uterine site is ambiguous.
+"uterine hemorrhage, postpartum",367,map,Maternal hemorrhage alias.
+uterine neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+uterine prolapse,608,map,Genital prolapse alias.
+uterine rupture,370,map,Maternal obstructed labor/rupture branch.
+uveal melanoma,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+uveal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+vaginal neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+varicose veins,507,map,Proposed other cardiovascular/circulatory cause; validate against GBD scope.
+vascular neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+venous insufficiency,507,map,Proposed other cardiovascular/circulatory cause; validate against GBD scope.
+venous thromboembolism,507,map,Proposed other cardiovascular/circulatory cause; validate against GBD scope.
+venous thrombosis,507,map,Proposed other cardiovascular/circulatory cause; validate against GBD scope.
+vitamin b 12 deficiency,391,map,Specified deficiency; proposed other nutritional deficiencies.
+vitamin b deficiency,391,map,Specified deficiency; proposed other nutritional deficiencies.
+vitamin d deficiency,391,map,Specified deficiency; proposed other nutritional deficiencies.
+vitiligo,668,map,Proposed other skin disease; validate residual scope.
+vulvar neoplasms,410,map,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.
+warts,660,map,Specified viral skin disease.
+weight loss,,exclude,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone."
+whiplash injuries,687,map,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism."
+wounds and injuries,687,map,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism."
+zika virus infection,935,map,Zika disease alias; not the organism term alone.
