@@ -1,0 +1,196 @@
+---
+title: "Prepare IHME burden and trial classification tables"
+author: "Sanyu Takirambudde"
+date: "2026-11-22"
+output: github_document
+params:
+  output_dir: "data/tidy"
+  trial_start_year: 2010
+  trial_end_year: 2023
+  allow_proposed: true
+---
+
+This document produces four RDS tables for the project. Rerunning replaces these four outputs but doesn't edit the raw data, proposed mappings, or main review CSV.
+
+**Trial classifications are provisional when `allow_proposed` is true.** 
+
+The current setting includes pending proposed matches as well as approved matches.
+Set it to `false` in the header to use approved mappings only. 
+
+## 1. Load functions and choose settings
+
+```{r setup, message=FALSE}
+knitr::opts_chunk$set(error = FALSE)
+library(tidyverse)
+source("source/tidy_gbd.R")
+source("source/mesh_gbd_crosswalk.R")
+
+output_dir = params$output_dir
+trial_start_year = params$trial_start_year
+trial_end_year = params$trial_end_year
+allow_proposed = params$allow_proposed
+```
+
+## 2. Read the GBD hierarchy and category names
+
+```{r categories}
+hierarchy = read_csv(
+  "data/crosswalk/gbd_2023_cause_hierarchy.csv",
+  show_col_types = FALSE
+)
+
+analysis_categories = gbd_targets(hierarchy) |>
+  filter(!is.na(analysis_cause_id)) |>
+  distinct(analysis_cause_id, analysis_cause)
+```
+
+The same category IDs are used for burden and trials. The three original injury categories are combined into Injuries. Tthe other Level 2 categories stay separate.
+
+## 3. Prepare country DALYs
+
+```{r country-dalys}
+country_paths = list.files(
+  "data", pattern = "^IHME-GBD_[0-9]{4}.*[.]csv$", full.names = TRUE
+)
+
+gbd_countries = tidy_gbd_countries(country_paths)
+
+country_counts = gbd_countries |> count(iso3, year)
+
+daly_df = summarize_gbd_analysis(gbd_countries) |>
+  left_join(analysis_categories, by = "analysis_cause") |>
+  relocate(analysis_cause_id, .before = analysis_cause) |>
+  arrange(iso3, year, analysis_cause_id)
+```
+
+`daly_df` has one row per country/territory × year × analysis cause. The input is DALY **Number**, both sexes, all ages, age-standardized: values are DALYs, not thousands or rates. `daly_share` is a disease's share of the included DALYs **within that country and year**. It's not a country's share of global burden for that disease. I summed the injury point estimates. I didn't add uncertainty-interval endpoints as these aggregated outputs therefore don't include uncertainty intervals.
+
+## 4. Prepare income-group DALYs
+
+```{r income-dalys}
+income_path = "data/IHME-GBD_world-bank-income-groups.csv"
+income_source = read_gbd(income_path)
+income_counts = income_source |> count(location, year)
+
+daly_income_df = tidy_gbd_income(income_path) |>
+  left_join(analysis_categories, by = "analysis_cause") |>
+  relocate(analysis_cause_id, .before = analysis_cause) |>
+  arrange(income_group, year, analysis_cause_id)
+```
+
+`daly_income_df` uses the income-group aggregates supplied by IHME. Shares are within each income group and year.
+
+## 5. Read the crosswalk review and classify trials
+
+```{r trial-classification}
+studies = read_rds("data/studies.rds")
+browse = read_rds("data/browse_conditions.rds")
+review = read_csv(
+  "data/crosswalk/mesh_gbd_review.csv",
+  col_types = cols(
+    review_decision = col_character(),
+    reviewed_gbd_cause_id = col_integer(),
+    reviewer = col_character(), review_note = col_character()
+  ),
+  show_col_types = FALSE
+)
+cohort = crosswalk_cohort(studies, trial_start_year, trial_end_year)
+
+result = apply_mesh_crosswalk(
+  browse, cohort, review, hierarchy, allow_proposed = allow_proposed
+)
+
+# Keep coverage information alongside the classification outputs.
+trial_context = result$trial_audit |>
+  mutate(start_year = as.integer(format(start_date, "%Y")))
+
+trial_terms_df = result$term_evidence |>
+  select(nct_id, mesh_term, analysis_cause_id, analysis_cause,
+         resolved_cause_id, resolved_cause_name, mapping_status,
+         review_decision, reviewer, review_note) |>
+  left_join(trial_context, by = "nct_id") |>
+  mutate(proposed_mappings_allowed = allow_proposed) |>
+  arrange(nct_id, mesh_term)
+
+trial_cause_df = result$trial_causes |>
+  left_join(trial_context, by = "nct_id") |>
+  mutate(
+    classification_status = if_else(
+      all_terms_reviewed, "reviewed", "provisional"
+    ),
+    proposed_mappings_allowed = allow_proposed
+  ) |>
+  arrange(nct_id, analysis_cause_id)
+```
+
+`trial_terms_df` has one row per trial × MeSH term, including terms without a category.
+
+`trial_cause_df` has one row per trial × assigned analysis cause. Multiple terms
+supporting the same category don't create extra rows. A trial can count once in each of several categories. Countries are not joined yet, so these aren't trial-country tables.
+
+`classification_status = reviewed` applies to the terms supporting that category; other terms on the same trial may remain unresolved. Check `coverage_status` too.
+
+Trials with no MeSH terms are absent from `trial_terms_df`. 
+Trials with no mapped categories are absent from `trial_cause_df`. 
+Neither of these dataframes represents the full cohort denominator. 
+We should use the cohort and audit when calculating coverage.
+
+## 6. Check and summarize the outputs
+
+```{r checks}
+stopifnot(
+  !anyNA(daly_df$analysis_cause_id),
+  !anyNA(daly_income_df$analysis_cause_id),
+  !anyNA(daly_income_df$income_group),
+  !anyDuplicated(daly_df[c("iso3", "year", "analysis_cause_id")]),
+  !anyDuplicated(daly_income_df[c("income_group", "year", "analysis_cause_id")]),
+  !anyDuplicated(trial_terms_df[c("nct_id", "mesh_term")]),
+  !anyDuplicated(trial_cause_df[c("nct_id", "analysis_cause_id")]),
+  all(trial_cause_df$analysis_cause_id %in% daly_df$analysis_cause_id),
+  nrow(result$trial_audit) == nrow(cohort)
+)
+
+country_shares = daly_df |>
+  group_by(iso3, year) |>
+  summarize(n_causes = n(), total = sum(daly_share), .groups = "drop")
+
+income_shares = daly_income_df |>
+  group_by(income_group, year) |>
+  summarize(n_causes = n(), total = sum(daly_share), .groups = "drop")
+
+result$trial_audit |>
+  count(coverage_status, name = "n_trials") |>
+  mutate(percent = round(100 * n_trials / sum(n_trials), 1)) |>
+  knitr::kable()
+
+trial_terms_df |> 
+  count(mapping_status) |> 
+  knitr::kable()
+
+tibble(
+  file = 
+    c("daly.rds", "daly_income.rds", "trial_terms.rds", "trial_cause.rds"),
+  rows = 
+    c(nrow(daly_df), nrow(daly_income_df), nrow(trial_terms_df), nrow(trial_cause_df))
+) |> 
+  knitr::kable()
+```
+
+These checks detect structural problems. The disease burden files cover more years than the trial cohort. We need to restrict both to an agreed-upon comparison period when building the analysis.
+
+## 7. Save the four tables
+
+```{r save}
+dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
+
+write_rds(daly_df, file.path(output_dir, "daly.rds"), compress = "gz")
+
+write_rds(daly_income_df, file.path(output_dir, "daly_income.rds"), compress = "gz")
+
+write_rds(trial_terms_df, file.path(output_dir, "trial_terms.rds"), compress = "gz")
+
+write_rds(trial_cause_df, file.path(output_dir, "trial_cause.rds"), compress = "gz")
+```
+
+The four files are saved under `data/tidy/`.
+To load a saved table later, use `read_rds("data/tidy/daly.rds")`.
