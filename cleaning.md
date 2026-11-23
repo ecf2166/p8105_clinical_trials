@@ -71,18 +71,18 @@ browse_conditions |>
 ```
 
     ## # A tibble: 22 × 2
-    ##    mesh_term_condition                     n
-    ##    <chr>                               <int>
-    ##  1 neoplasms                          107074
-    ##  2 nervous system diseases             76732
-    ##  3 cardiovascular diseases             64877
-    ##  4 urogenital diseases                 54851
-    ##  5 respiratory tract diseases          52459
-    ##  6 nutritional and metabolic diseases  50446
-    ##  7 mental disorders                    49608
-    ##  8 immune system diseases              47561
-    ##  9 digestive system diseases           46498
-    ## 10 infections                          46462
+    ##    mesh_term_condition                    n
+    ##    <chr>                              <int>
+    ##  1 neoplasms                          64268
+    ##  2 nervous system diseases            48442
+    ##  3 cardiovascular diseases            35394
+    ##  4 mental disorders                   33623
+    ##  5 urogenital diseases                31089
+    ##  6 nutritional and metabolic diseases 30841
+    ##  7 respiratory tract diseases         30167
+    ##  8 digestive system diseases          27250
+    ##  9 immune system diseases             26448
+    ## 10 infections                         25123
     ## # ℹ 12 more rows
 
 ``` r
@@ -108,9 +108,9 @@ coverage |>
 
 | Group                                       | Trials  | Share |
 |:--------------------------------------------|:--------|:------|
-| Classified into at least one category       | 439,522 | 72%   |
-| No MeSH condition terms at all              | 129,732 | 21%   |
-| Have MeSH terms, but none in our categories | 41,979  | 7%    |
+| Classified into at least one category       | 267,759 | 69%   |
+| No MeSH condition terms at all              | 89,438  | 23%   |
+| Have MeSH terms, but none in our categories | 30,332  | 8%    |
 
 We will use the classified mesh terms and list the “have mesh terms but
 none in our categories” as “other”. For analyses based on condition, we
@@ -130,18 +130,18 @@ browse_conditions |>
 ```
 
     ## # A tibble: 50 × 2
-    ##    mesh_term_condition                              n
-    ##    <chr>                                        <int>
-    ##  1 toxocara canis infection (canine roundworms)     1
-    ##  2 tracheobronchomegaly                             1
-    ##  3 tremor hereditary essential, 1                   1
-    ##  4 trichohepatoenteric syndrome                     1
-    ##  5 trichophyton infection                           1
-    ##  6 tricuspid valve stenosis                         1
-    ##  7 trimethylaminuria                                1
-    ##  8 triphalangeal thumb                              1
-    ##  9 triploidy                                        1
-    ## 10 tropical calcific pancreatitis                   1
+    ##    mesh_term_condition             n
+    ##    <chr>                       <int>
+    ##  1 tay-sachs disease, juvenile     1
+    ##  2 teratogenesis                   1
+    ##  3 teratoid tumor, atypical        1
+    ##  4 thrombophilia, hereditary       1
+    ##  5 thumb deformity                 1
+    ##  6 thyroiditis, chronic            1
+    ##  7 time pressure                   1
+    ##  8 timothy syndrome                1
+    ##  9 tinea barbae                    1
+    ## 10 tongue habits                   1
     ## # ℹ 40 more rows
 
 ``` r
@@ -156,7 +156,7 @@ browse_conditions |>
     ## # A tibble: 1 × 1
     ##    mean
     ##   <dbl>
-    ## 1  9.19
+    ## 1  8.88
 
 ``` r
 # looking at mesh ancestors (broader terms --> what we're more interested in)
@@ -168,26 +168,26 @@ browse_conditions |>
 ```
 
     ## # A tibble: 30 × 2
-    ##    mesh_term_condition                              n
-    ##    <chr>                                        <int>
-    ##  1 pathological conditions, signs and symptoms 144522
-    ##  2 neoplasms                                    96256
-    ##  3 pathologic processes                         77370
-    ##  4 nervous system diseases                      75975
-    ##  5 signs and symptoms                           75907
-    ##  6 neoplasms by site                            72772
-    ##  7 cardiovascular diseases                      59509
-    ##  8 urogenital diseases                          54793
-    ##  9 respiratory tract diseases                   52049
-    ## 10 nutritional and metabolic diseases           50375
+    ##    mesh_term_condition                             n
+    ##    <chr>                                       <int>
+    ##  1 pathological conditions, signs and symptoms 90254
+    ##  2 neoplasms                                   58106
+    ##  3 signs and symptoms                          51862
+    ##  4 nervous system diseases                     47954
+    ##  5 pathologic processes                        44668
+    ##  6 neoplasms by site                           43151
+    ##  7 cardiovascular diseases                     32894
+    ##  8 mental disorders                            32482
+    ##  9 neurologic manifestations                   31864
+    ## 10 urogenital diseases                         31063
     ## # ℹ 20 more rows
 
 ``` r
 unique(sponsors$agency_class)
 ```
 
-    ##  [1] "INDUSTRY"  "OTHER"     "OTHER_GOV" "NIH"       "UNKNOWN"   "FED"      
-    ##  [7] "NETWORK"   "AMBIG"     "INDIV"     NA
+    ## [1] "INDUSTRY"  "OTHER"     "OTHER_GOV" "NIH"       "UNKNOWN"   "FED"      
+    ## [7] "INDIV"     "NETWORK"   "AMBIG"
 
 ### QUESTION: We’re conflicted on whether or not to include trials that are observational in our analyses.
 
@@ -206,20 +206,20 @@ studies |>
   select(nct_id, brief_title,enrollment, group)
 ```
 
-    ## # A tibble: 129,732 × 4
+    ## # A tibble: 89,438 × 4
     ##    nct_id      brief_title                                      enrollment group
     ##    <chr>       <chr>                                                 <dbl> <chr>
     ##  1 NCT03124173 Cognitive Control of Language                            23 No M…
     ##  2 NCT06401486 DOuble-Lumen Intubation With VIdeolaryngoscopy          916 No M…
-    ##  3 NCT02173197 Effectiveness of Occupational Therapy Intervent…         20 No M…
-    ##  4 NCT06632483 An Observational Study to Learn More About How …        604 No M…
-    ##  5 NCT04910815 Feasibility of a New Diagnostic Device to Asses…        110 No M…
-    ##  6 NCT06763536 Oral Nicotine Pouches Versus Nicotine Replaceme…       1000 No M…
-    ##  7 NCT06955403 Acuvue Oaysis Contact Lens Wearers Being Refit …         40 No M…
-    ##  8 NCT06479330 Evaluating the Impact of Incremental Doses of a…         60 No M…
-    ##  9 NCT02556541 Ultrasound-guided Peripheral Vascular Access in…         50 No M…
-    ## 10 NCT01255306 The Influence of Silicone Oil on Nerve Fiber La…         60 No M…
-    ## # ℹ 129,722 more rows
+    ##  3 NCT04910815 Feasibility of a New Diagnostic Device to Asses…        110 No M…
+    ##  4 NCT06763536 Oral Nicotine Pouches Versus Nicotine Replaceme…       1000 No M…
+    ##  5 NCT06955403 Acuvue Oaysis Contact Lens Wearers Being Refit …         40 No M…
+    ##  6 NCT06479330 Evaluating the Impact of Incremental Doses of a…         60 No M…
+    ##  7 NCT02556541 Ultrasound-guided Peripheral Vascular Access in…         50 No M…
+    ##  8 NCT07631949 Osteopathy in Postpartum Lumbopelvic Pain                45 No M…
+    ##  9 NCT06542549 Efficacy and Safety of AK104 Combined With Chem…        100 No M…
+    ## 10 NCT02522832 Discovering New Treatments for Asthma and COPD.…         17 No M…
+    ## # ℹ 89,428 more rows
 
 Exploring studies with missing MeSH terms for conditions
 
@@ -241,19 +241,12 @@ study_groups |>
   ungroup()
 ```
 
-    ## # A tibble: 10 × 4
-    ##    group      study_type           n      pct
-    ##    <chr>      <chr>            <int>    <dbl>
-    ##  1 Classified EXPANDED_ACCESS    851 0.00194 
-    ##  2 Classified INTERVENTIONAL  332902 0.757   
-    ##  3 Classified OBSERVATIONAL   105769 0.241   
-    ##  4 No MeSH    EXPANDED_ACCESS    193 0.00149 
-    ##  5 No MeSH    INTERVENTIONAL   99605 0.768   
-    ##  6 No MeSH    OBSERVATIONAL    28941 0.223   
-    ##  7 No MeSH    <NA>               993 0.00765 
-    ##  8 Other MeSH EXPANDED_ACCESS     32 0.000762
-    ##  9 Other MeSH INTERVENTIONAL   33920 0.808   
-    ## 10 Other MeSH OBSERVATIONAL     8027 0.191
+    ## # A tibble: 3 × 4
+    ##   group      study_type          n   pct
+    ##   <chr>      <chr>           <int> <dbl>
+    ## 1 Classified INTERVENTIONAL 267759     1
+    ## 2 No MeSH    INTERVENTIONAL  89438     1
+    ## 3 Other MeSH INTERVENTIONAL  30332     1
 
 ``` r
 no_mesh_ids = study_groups |> filter(group == "No MeSH") |> pull(nct_id)
@@ -267,16 +260,16 @@ conditions |>
     ## # A tibble: 40 × 2
     ##    condition_name            n
     ##    <chr>                 <int>
-    ##  1 healthy                8678
-    ##  2 healthy volunteers     2277
-    ##  3 anesthesia              878
-    ##  4 healthy subjects        777
-    ##  5 hiv                     756
-    ##  6 pregnancy               654
-    ##  7 aging                   612
-    ##  8 healthy participants    599
-    ##  9 healthy volunteer       558
-    ## 10 advanced solid tumors   522
+    ##  1 healthy                5877
+    ##  2 healthy volunteers     1977
+    ##  3 healthy subjects        606
+    ##  4 anesthesia              578
+    ##  5 healthy participants    576
+    ##  6 hiv                     526
+    ##  7 healthy volunteer       485
+    ##  8 aging                   471
+    ##  9 advanced solid tumors   464
+    ## 10 advanced solid tumor    425
     ## # ℹ 30 more rows
 
 We wanted to investigate whether there were certain countries with more
@@ -296,20 +289,20 @@ study_groups |>
   arrange(desc(pct_no_mesh))
 ```
 
-    ## # A tibble: 107 × 3
+    ## # A tibble: 98 × 3
     ##    country    n_trials pct_no_mesh
     ##    <chr>         <int>       <dbl>
-    ##  1 Egypt         13864       0.378
-    ##  2 Syria           281       0.320
-    ##  3 Iraq            429       0.296
-    ##  4 Jordan          582       0.277
-    ##  5 Bangladesh      738       0.268
-    ##  6 China         42902       0.259
-    ##  7 Rwanda          139       0.259
-    ##  8 Ethiopia        272       0.257
-    ##  9 Pakistan       5813       0.246
-    ## 10 Lebanon         703       0.233
-    ## # ℹ 97 more rows
+    ##  1 Egypt         13556       0.384
+    ##  2 Syria           275       0.327
+    ##  3 Iraq            425       0.299
+    ##  4 Jordan          526       0.289
+    ##  5 Bangladesh      657       0.288
+    ##  6 Rwanda          117       0.282
+    ##  7 China         40792       0.267
+    ##  8 Ethiopia        248       0.266
+    ##  9 Lebanon         577       0.260
+    ## 10 Pakistan       5658       0.250
+    ## # ℹ 88 more rows
 
 # Importing WHO DALY Data (2010, 2015, 2019, 2023)
 
@@ -339,248 +332,230 @@ trials_df |>
   count(study_type, sort=T)
 ```
 
-    ## # A tibble: 4 × 2
-    ##   study_type           n
-    ##   <chr>            <int>
-    ## 1 INTERVENTIONAL  466427
-    ## 2 OBSERVATIONAL   142737
-    ## 3 EXPANDED_ACCESS   1076
-    ## 4 <NA>               993
+    ## # A tibble: 1 × 2
+    ##   study_type          n
+    ##   <chr>           <int>
+    ## 1 INTERVENTIONAL 387529
 
 ``` r
 unique(countries$country)
 ```
 
-    ##   [1] "Austria"                             
-    ##   [2] "Germany"                             
-    ##   [3] "Australia"                           
-    ##   [4] "Belgium"                             
-    ##   [5] "Brazil"                              
-    ##   [6] "France"                              
-    ##   [7] "Israel"                              
-    ##   [8] "Italy"                               
-    ##   [9] "Japan"                               
-    ##  [10] "South Africa"                        
-    ##  [11] "South Korea"                         
-    ##  [12] "Spain"                               
-    ##  [13] "Taiwan"                              
-    ##  [14] "United Kingdom"                      
-    ##  [15] "Canada"                              
-    ##  [16] "Georgia"                             
-    ##  [17] "Russia"                              
-    ##  [18] "Turkey (Türkiye)"                    
-    ##  [19] "Romania"                             
-    ##  [20] "Thailand"                            
-    ##  [21] "United States"                       
-    ##  [22] "Sweden"                              
-    ##  [23] "China"                               
-    ##  [24] "Bangladesh"                          
-    ##  [25] "Norway"                              
-    ##  [26] "Egypt"                               
-    ##  [27] "India"                               
-    ##  [28] "Finland"                             
-    ##  [29] "Greece"                              
-    ##  [30] "Tanzania"                            
-    ##  [31] "Poland"                              
-    ##  [32] "Portugal"                            
-    ##  [33] "Czechia"                             
-    ##  [34] "Argentina"                           
-    ##  [35] "Serbia and Montenegro"               
-    ##  [36] "Hong Kong"                           
-    ##  [37] "Bulgaria"                            
-    ##  [38] "Hungary"                             
-    ##  [39] "Lithuania"                           
-    ##  [40] "Malaysia"                            
-    ##  [41] "Mexico"                              
-    ##  [42] "Netherlands"                         
-    ##  [43] "Slovakia"                            
-    ##  [44] "Switzerland"                         
-    ##  [45] "Saudi Arabia"                        
-    ##  [46] "Ukraine"                             
-    ##  [47] "Chile"                               
-    ##  [48] "Indonesia"                           
-    ##  [49] "Pakistan"                            
-    ##  [50] "Peru"                                
-    ##  [51] "Philippines"                         
-    ##  [52] "Singapore"                           
-    ##  [53] "Iraq"                                
-    ##  [54] "Belarus"                             
-    ##  [55] "Serbia"                              
-    ##  [56] "Denmark"                             
-    ##  [57] "Puerto Rico"                         
-    ##  [58] "Croatia"                             
-    ##  [59] "Iran"                                
-    ##  [60] "Kenya"                               
-    ##  [61] "Nigeria"                             
-    ##  [62] "Uganda"                              
-    ##  [63] "Guinea"                              
-    ##  [64] "Moldova"                             
-    ##  [65] "New Zealand"                         
-    ##  [66] "Bosnia and Herzegovina"              
-    ##  [67] "Costa Rica"                          
-    ##  [68] "Latvia"                              
-    ##  [69] "Vietnam"                             
-    ##  [70] "Kazakhstan"                          
+    ##   [1] "China"                               
+    ##   [2] "South Korea"                         
+    ##   [3] "Taiwan"                              
+    ##   [4] "Thailand"                            
+    ##   [5] "Russia"                              
+    ##   [6] "Bangladesh"                          
+    ##   [7] "Canada"                              
+    ##   [8] "United States"                       
+    ##   [9] "Egypt"                               
+    ##  [10] "India"                               
+    ##  [11] "Italy"                               
+    ##  [12] "Finland"                             
+    ##  [13] "Greece"                              
+    ##  [14] "Germany"                             
+    ##  [15] "Poland"                              
+    ##  [16] "Portugal"                            
+    ##  [17] "United Kingdom"                      
+    ##  [18] "Sweden"                              
+    ##  [19] "Argentina"                           
+    ##  [20] "Belgium"                             
+    ##  [21] "France"                              
+    ##  [22] "Brazil"                              
+    ##  [23] "Hong Kong"                           
+    ##  [24] "Turkey (Türkiye)"                    
+    ##  [25] "Spain"                               
+    ##  [26] "Bulgaria"                            
+    ##  [27] "Czechia"                             
+    ##  [28] "Hungary"                             
+    ##  [29] "Lithuania"                           
+    ##  [30] "Malaysia"                            
+    ##  [31] "Mexico"                              
+    ##  [32] "Netherlands"                         
+    ##  [33] "Romania"                             
+    ##  [34] "Slovakia"                            
+    ##  [35] "Saudi Arabia"                        
+    ##  [36] "Australia"                           
+    ##  [37] "South Africa"                        
+    ##  [38] "Ukraine"                             
+    ##  [39] "Singapore"                           
+    ##  [40] "Peru"                                
+    ##  [41] "Switzerland"                         
+    ##  [42] "Iraq"                                
+    ##  [43] "Belarus"                             
+    ##  [44] "Serbia"                              
+    ##  [45] "Israel"                              
+    ##  [46] "Norway"                              
+    ##  [47] "Denmark"                             
+    ##  [48] "Croatia"                             
+    ##  [49] "Iran"                                
+    ##  [50] "Pakistan"                            
+    ##  [51] "Guinea"                              
+    ##  [52] "Japan"                               
+    ##  [53] "Vietnam"                             
+    ##  [54] "New Zealand"                         
+    ##  [55] "Puerto Rico"                         
+    ##  [56] "Uganda"                              
+    ##  [57] "Chile"                               
+    ##  [58] "Indonesia"                           
+    ##  [59] "Georgia"                             
+    ##  [60] "Moldova"                             
+    ##  [61] "Cyprus"                              
+    ##  [62] "Ethiopia"                            
+    ##  [63] "Austria"                             
+    ##  [64] "Nigeria"                             
+    ##  [65] "Armenia"                             
+    ##  [66] "Paraguay"                            
+    ##  [67] "Zambia"                              
+    ##  [68] "Ireland"                             
+    ##  [69] "Jamaica"                             
+    ##  [70] "Lebanon"                             
     ##  [71] "North Macedonia"                     
-    ##  [72] "Cambodia"                            
-    ##  [73] "Cameroon"                            
-    ##  [74] "Ethiopia"                            
-    ##  [75] "Cyprus"                              
-    ##  [76] "Colombia"                            
-    ##  [77] "Dominican Republic"                  
-    ##  [78] "Guatemala"                           
-    ##  [79] "Panama"                              
-    ##  [80] "Ireland"                             
-    ##  [81] "Luxembourg"                          
-    ##  [82] "Armenia"                             
-    ##  [83] "Paraguay"                            
-    ##  [84] "Zambia"                              
-    ##  [85] "Sri Lanka"                           
-    ##  [86] "Sudan"                               
-    ##  [87] "Mali"                                
-    ##  [88] "Lebanon"                             
-    ##  [89] "Jamaica"                             
-    ##  [90] "Nepal"                               
-    ##  [91] "Monaco"                              
-    ##  [92] "Jordan"                              
-    ##  [93] "Morocco"                             
-    ##  [94] "Ecuador"                             
-    ##  [95] "San Marino"                          
-    ##  [96] "Democratic Republic of the Congo"    
-    ##  [97] "Papua New Guinea"                    
-    ##  [98] "Iceland"                             
-    ##  [99] "Tunisia"                             
-    ## [100] "Fiji"                                
-    ## [101] "Laos"                                
-    ## [102] "Mozambique"                          
-    ## [103] "Senegal"                             
-    ## [104] "United Arab Emirates"                
-    ## [105] "Estonia"                             
-    ## [106] "Venezuela"                           
-    ## [107] "Benin"                               
-    ## [108] "Slovenia"                            
-    ## [109] "Mongolia"                            
-    ## [110] "Martinique"                          
-    ## [111] "Mauritius"                           
-    ## [112] "Malawi"                              
-    ## [113] "Burkina Faso"                        
-    ## [114] "El Salvador"                         
-    ## [115] "Uruguay"                             
-    ## [116] "Zimbabwe"                            
-    ## [117] "Honduras"                            
-    ## [118] "Trinidad and Tobago"                 
-    ## [119] "Netherlands Antilles"                
-    ## [120] "Kyrgyzstan"                          
-    ## [121] "South Georgia and the Islands"       
-    ## [122] "Kosovo"                              
-    ## [123] "Syria"                               
-    ## [124] "The Gambia"                          
-    ## [125] "Ghana"                               
-    ## [126] "Yemen"                               
-    ## [127] "Guadeloupe"                          
-    ## [128] "Reunion"                             
-    ## [129] "Botswana"                            
-    ## [130] "Albania"                             
-    ## [131] "Uzbekistan"                          
-    ## [132] "Republic of the Congo"               
-    ## [133] "Qatar"                               
-    ## [134] "Côte d’Ivoire"                       
-    ## [135] "Bolivia"                             
-    ## [136] "Rwanda"                              
-    ## [137] "French Guiana"                       
-    ## [138] "Palestinian Territories"             
-    ## [139] "The Bahamas"                         
-    ## [140] "Sierra Leone"                        
-    ## [141] NA                                    
-    ## [142] "Bahrain"                             
-    ## [143] "Kuwait"                              
-    ## [144] "Oman"                                
-    ## [145] "Solomon Islands"                     
-    ## [146] "Macau"                               
-    ## [147] "Burma"                               
-    ## [148] "Haiti"                               
-    ## [149] "American Samoa"                      
-    ## [150] "Algeria"                             
-    ## [151] "Niger"                               
-    ## [152] "Afghanistan"                         
-    ## [153] "Djibouti"                            
-    ## [154] "Cuba"                                
-    ## [155] "Gabon"                               
-    ## [156] "Nicaragua"                           
-    ## [157] "Malta"                               
-    ## [158] "South Sudan"                         
-    ## [159] "Eswatini"                            
-    ## [160] "Libya"                               
-    ## [161] "Madagascar"                          
-    ## [162] "Greenland"                           
-    ## [163] "Central African Republic"            
-    ## [164] "Guinea-Bissau"                       
-    ## [165] "Guam"                                
-    ## [166] "North Korea"                         
-    ## [167] "Holy See"                            
-    ## [168] "Seychelles"                          
-    ## [169] "Belize"                              
-    ## [170] "Maldives"                            
-    ## [171] "Angola"                              
-    ## [172] "Azerbaijan"                          
-    ## [173] "Togo"                                
-    ## [174] "Montenegro"                          
-    ## [175] "Bhutan"                              
-    ## [176] "Namibia"                             
-    ## [177] "Liechtenstein"                       
-    ## [178] "Antigua and Barbuda"                 
-    ## [179] "Lesotho"                             
-    ## [180] "Andorra"                             
-    ## [181] "Nauru"                               
-    ## [182] "French Southern and Antarctic Lands" 
-    ## [183] "Anguilla"                            
-    ## [184] "Chad"                                
-    ## [185] "Virgin Islands"                      
-    ## [186] "Brunei"                              
-    ## [187] "Somalia"                             
-    ## [188] "Saint Martin"                        
-    ## [189] "Cabo Verde"                          
-    ## [190] "Samoa"                               
-    ## [191] "French Polynesia"                    
-    ## [192] "Liberia"                             
-    ## [193] "Grenada"                             
-    ## [194] "Burundi"                             
-    ## [195] "Barbados"                            
-    ## [196] "Suriname"                            
-    ## [197] "Mauritania"                          
-    ## [198] "Cayman Islands"                      
-    ## [199] "New Caledonia"                       
-    ## [200] "Comoros"                             
-    ## [201] "Federal Republic of Yugoslavia"      
-    ## [202] "Jersey"                              
-    ## [203] "Mayotte"                             
-    ## [204] "Saint Kitts and Nevis"               
-    ## [205] "Gibraltar"                           
-    ## [206] "Northern Mariana Islands"            
+    ##  [72] "Jordan"                              
+    ##  [73] "Morocco"                             
+    ##  [74] "Latvia"                              
+    ##  [75] "Iceland"                             
+    ##  [76] "Tunisia"                             
+    ##  [77] "Colombia"                            
+    ##  [78] "Slovenia"                            
+    ##  [79] "Kazakhstan"                          
+    ##  [80] "Sri Lanka"                           
+    ##  [81] "Estonia"                             
+    ##  [82] "Mongolia"                            
+    ##  [83] "Costa Rica"                          
+    ##  [84] "Dominican Republic"                  
+    ##  [85] "Guatemala"                           
+    ##  [86] "Mauritius"                           
+    ##  [87] "Philippines"                         
+    ##  [88] "United Arab Emirates"                
+    ##  [89] "Malawi"                              
+    ##  [90] "Burkina Faso"                        
+    ##  [91] "Kenya"                               
+    ##  [92] "Zimbabwe"                            
+    ##  [93] "Honduras"                            
+    ##  [94] "Luxembourg"                          
+    ##  [95] "Monaco"                              
+    ##  [96] "Bosnia and Herzegovina"              
+    ##  [97] "Tanzania"                            
+    ##  [98] "Benin"                               
+    ##  [99] "Netherlands Antilles"                
+    ## [100] "Venezuela"                           
+    ## [101] "Trinidad and Tobago"                 
+    ## [102] "Cambodia"                            
+    ## [103] "Kyrgyzstan"                          
+    ## [104] "Sudan"                               
+    ## [105] "Ecuador"                             
+    ## [106] "Kosovo"                              
+    ## [107] "Cameroon"                            
+    ## [108] "Syria"                               
+    ## [109] "The Gambia"                          
+    ## [110] "Yemen"                               
+    ## [111] "Panama"                              
+    ## [112] "Democratic Republic of the Congo"    
+    ## [113] "Nepal"                               
+    ## [114] "Qatar"                               
+    ## [115] "Republic of the Congo"               
+    ## [116] "Ghana"                               
+    ## [117] "Côte d’Ivoire"                       
+    ## [118] "Bolivia"                             
+    ## [119] "Rwanda"                              
+    ## [120] "French Guiana"                       
+    ## [121] "Uruguay"                             
+    ## [122] "Sierra Leone"                        
+    ## [123] "Mali"                                
+    ## [124] "Senegal"                             
+    ## [125] "Mozambique"                          
+    ## [126] "Solomon Islands"                     
+    ## [127] "Burma"                               
+    ## [128] "American Samoa"                      
+    ## [129] "Algeria"                             
+    ## [130] "Niger"                               
+    ## [131] "Oman"                                
+    ## [132] "Afghanistan"                         
+    ## [133] "Djibouti"                            
+    ## [134] "Gabon"                               
+    ## [135] "Malta"                               
+    ## [136] "Martinique"                          
+    ## [137] "Albania"                             
+    ## [138] "Nicaragua"                           
+    ## [139] "Eswatini"                            
+    ## [140] "El Salvador"                         
+    ## [141] "Botswana"                            
+    ## [142] "Greenland"                           
+    ## [143] "Central African Republic"            
+    ## [144] "Guam"                                
+    ## [145] "Kuwait"                              
+    ## [146] "Laos"                                
+    ## [147] "North Korea"                         
+    ## [148] "Holy See"                            
+    ## [149] "Guadeloupe"                          
+    ## [150] "Papua New Guinea"                    
+    ## [151] "Guinea-Bissau"                       
+    ## [152] "Cuba"                                
+    ## [153] "Haiti"                               
+    ## [154] "Angola"                              
+    ## [155] "Azerbaijan"                          
+    ## [156] "Belize"                              
+    ## [157] "Togo"                                
+    ## [158] "Bahrain"                             
+    ## [159] "Montenegro"                          
+    ## [160] "South Sudan"                         
+    ## [161] "Reunion"                             
+    ## [162] "Bhutan"                              
+    ## [163] "Liechtenstein"                       
+    ## [164] "Antigua and Barbuda"                 
+    ## [165] "Uzbekistan"                          
+    ## [166] "Lesotho"                             
+    ## [167] "Madagascar"                          
+    ## [168] "Macau"                               
+    ## [169] "Andorra"                             
+    ## [170] "Anguilla"                            
+    ## [171] "Chad"                                
+    ## [172] "Fiji"                                
+    ## [173] "Palestinian Territories"             
+    ## [174] "Brunei"                              
+    ## [175] "Somalia"                             
+    ## [176] "Liberia"                             
+    ## [177] "French Polynesia"                    
+    ## [178] "Grenada"                             
+    ## [179] "Burundi"                             
+    ## [180] "Serbia and Montenegro"               
+    ## [181] "Barbados"                            
+    ## [182] "The Bahamas"                         
+    ## [183] "Suriname"                            
+    ## [184] "Cayman Islands"                      
+    ## [185] "Namibia"                             
+    ## [186] "San Marino"                          
+    ## [187] "Jersey"                              
+    ## [188] "Saint Kitts and Nevis"               
+    ## [189] "New Caledonia"                       
+    ## [190] "Guyana"                              
+    ## [191] "Faroe Islands"                       
+    ## [192] "Virgin Islands"                      
+    ## [193] "Bermuda"                             
+    ## [194] "Aland Islands"                       
+    ## [195] "Mayotte"                             
+    ## [196] "Timor-Leste"                         
+    ## [197] "Antarctica"                          
+    ## [198] "Bonaire, Saint Eustatius and Saba "  
+    ## [199] "Tajikistan"                          
+    ## [200] "Libya"                               
+    ## [201] "Niue"                                
+    ## [202] "Saint Lucia"                         
+    ## [203] "Vanuatu"                             
+    ## [204] "Montserrat"                          
+    ## [205] "Northern Mariana Islands"            
+    ## [206] NA                                    
     ## [207] "United States Minor Outlying Islands"
-    ## [208] "Guyana"                              
-    ## [209] "Faroe Islands"                       
-    ## [210] "Bermuda"                             
-    ## [211] "Aland Islands"                       
-    ## [212] "Timor-Leste"                         
-    ## [213] "Antarctica"                          
-    ## [214] "Equatorial Guinea"                   
-    ## [215] "Bonaire, Saint Eustatius and Saba "  
-    ## [216] "Tajikistan"                          
-    ## [217] "Niue"                                
-    ## [218] "Saint Lucia"                         
-    ## [219] "Vanuatu"                             
-    ## [220] "Montserrat"                          
-    ## [221] "Dominica"                            
-    ## [222] "Saint Vincent and the Grenadines"    
-    ## [223] "Christmas Island"                    
-    ## [224] "Eritrea"                             
-    ## [225] "Palau"                               
-    ## [226] "Micronesia"                          
-    ## [227] "Kiribati"                            
-    ## [228] "Aruba"                               
-    ## [229] "Turkmenistan"                        
-    ## [230] "Curacao"
+    ## [208] "Christmas Island"                    
+    ## [209] "Comoros"                             
+    ## [210] "Samoa"                               
+    ## [211] "Eritrea"                             
+    ## [212] "Equatorial Guinea"                   
+    ## [213] "Micronesia"                          
+    ## [214] "Kiribati"                            
+    ## [215] "Turkmenistan"
 
 ``` r
 unique(daly_df$country)
@@ -779,71 +754,61 @@ setdiff(countries$country, daly_df$country)
     ##  [1] "South Korea"                         
     ##  [2] "Taiwan"                              
     ##  [3] "Russia"                              
-    ##  [4] "Turkey (Türkiye)"                    
-    ##  [5] "United States"                       
-    ##  [6] "Tanzania"                            
-    ##  [7] "Serbia and Montenegro"               
-    ##  [8] "Hong Kong"                           
-    ##  [9] "Iran"                                
-    ## [10] "Moldova"                             
-    ## [11] "Vietnam"                             
-    ## [12] "Monaco"                              
-    ## [13] "San Marino"                          
-    ## [14] "Laos"                                
-    ## [15] "Venezuela"                           
-    ## [16] "Martinique"                          
-    ## [17] "Netherlands Antilles"                
-    ## [18] "South Georgia and the Islands"       
-    ## [19] "Kosovo"                              
-    ## [20] "Syria"                               
-    ## [21] "The Gambia"                          
-    ## [22] "Guadeloupe"                          
-    ## [23] "Reunion"                             
-    ## [24] "Republic of the Congo"               
-    ## [25] "Côte d’Ivoire"                       
-    ## [26] "Bolivia"                             
-    ## [27] "French Guiana"                       
-    ## [28] "Palestinian Territories"             
-    ## [29] "The Bahamas"                         
-    ## [30] NA                                    
-    ## [31] "Macau"                               
-    ## [32] "Burma"                               
-    ## [33] "American Samoa"                      
-    ## [34] "Greenland"                           
-    ## [35] "Guam"                                
-    ## [36] "North Korea"                         
-    ## [37] "Holy See"                            
-    ## [38] "Liechtenstein"                       
-    ## [39] "Andorra"                             
-    ## [40] "Nauru"                               
-    ## [41] "French Southern and Antarctic Lands" 
-    ## [42] "Anguilla"                            
-    ## [43] "Virgin Islands"                      
-    ## [44] "Brunei"                              
-    ## [45] "Saint Martin"                        
-    ## [46] "French Polynesia"                    
-    ## [47] "Cayman Islands"                      
-    ## [48] "New Caledonia"                       
-    ## [49] "Federal Republic of Yugoslavia"      
-    ## [50] "Jersey"                              
-    ## [51] "Mayotte"                             
-    ## [52] "Saint Kitts and Nevis"               
-    ## [53] "Gibraltar"                           
+    ##  [4] "United States"                       
+    ##  [5] "Hong Kong"                           
+    ##  [6] "Turkey (Türkiye)"                    
+    ##  [7] "Iran"                                
+    ##  [8] "Vietnam"                             
+    ##  [9] "Moldova"                             
+    ## [10] "Monaco"                              
+    ## [11] "Tanzania"                            
+    ## [12] "Netherlands Antilles"                
+    ## [13] "Venezuela"                           
+    ## [14] "Kosovo"                              
+    ## [15] "Syria"                               
+    ## [16] "The Gambia"                          
+    ## [17] "Republic of the Congo"               
+    ## [18] "Côte d’Ivoire"                       
+    ## [19] "Bolivia"                             
+    ## [20] "French Guiana"                       
+    ## [21] "Burma"                               
+    ## [22] "American Samoa"                      
+    ## [23] "Martinique"                          
+    ## [24] "Greenland"                           
+    ## [25] "Guam"                                
+    ## [26] "Laos"                                
+    ## [27] "North Korea"                         
+    ## [28] "Holy See"                            
+    ## [29] "Guadeloupe"                          
+    ## [30] "Reunion"                             
+    ## [31] "Liechtenstein"                       
+    ## [32] "Macau"                               
+    ## [33] "Andorra"                             
+    ## [34] "Anguilla"                            
+    ## [35] "Palestinian Territories"             
+    ## [36] "Brunei"                              
+    ## [37] "French Polynesia"                    
+    ## [38] "Serbia and Montenegro"               
+    ## [39] "The Bahamas"                         
+    ## [40] "Cayman Islands"                      
+    ## [41] "San Marino"                          
+    ## [42] "Jersey"                              
+    ## [43] "Saint Kitts and Nevis"               
+    ## [44] "New Caledonia"                       
+    ## [45] "Faroe Islands"                       
+    ## [46] "Virgin Islands"                      
+    ## [47] "Bermuda"                             
+    ## [48] "Aland Islands"                       
+    ## [49] "Mayotte"                             
+    ## [50] "Antarctica"                          
+    ## [51] "Bonaire, Saint Eustatius and Saba "  
+    ## [52] "Niue"                                
+    ## [53] "Montserrat"                          
     ## [54] "Northern Mariana Islands"            
-    ## [55] "United States Minor Outlying Islands"
-    ## [56] "Faroe Islands"                       
-    ## [57] "Bermuda"                             
-    ## [58] "Aland Islands"                       
-    ## [59] "Antarctica"                          
-    ## [60] "Bonaire, Saint Eustatius and Saba "  
-    ## [61] "Niue"                                
-    ## [62] "Montserrat"                          
-    ## [63] "Dominica"                            
-    ## [64] "Christmas Island"                    
-    ## [65] "Palau"                               
-    ## [66] "Micronesia"                          
-    ## [67] "Aruba"                               
-    ## [68] "Curacao"
+    ## [55] NA                                    
+    ## [56] "United States Minor Outlying Islands"
+    ## [57] "Christmas Island"                    
+    ## [58] "Micronesia"
 
 ``` r
 setdiff(daly_df$country, countries$country)
@@ -852,26 +817,31 @@ setdiff(daly_df$country, countries$country)
     ##  [1] "Bahamas"                                                 
     ##  [2] "Bolivia (Plurinational State of)"                        
     ##  [3] "Brunei Darussalam"                                       
-    ##  [4] "Congo"                                                   
-    ##  [5] "Côte d'Ivoire"                                           
-    ##  [6] "Democratic People's Republic of Korea"                   
-    ##  [7] "Gambia"                                                  
-    ##  [8] "Iran (Islamic Republic of)"                              
-    ##  [9] "Lao People's Democratic Republic"                        
-    ## [10] "Micronesia (Federated States of)"                        
-    ## [11] "Myanmar"                                                 
-    ## [12] "occupied Palestinian territory, including east Jerusalem"
-    ## [13] "Republic of Korea"                                       
-    ## [14] "Republic of Moldova"                                     
-    ## [15] "Russian Federation"                                      
-    ## [16] "Sao Tome and Principe"                                   
-    ## [17] "Syrian Arab Republic"                                    
-    ## [18] "Tonga"                                                   
-    ## [19] "Türkiye"                                                 
-    ## [20] "United Republic of Tanzania"                             
-    ## [21] "United States of America"                                
-    ## [22] "Venezuela (Bolivarian Republic of)"                      
-    ## [23] "Viet Nam"
+    ##  [4] "Cabo Verde"                                              
+    ##  [5] "Congo"                                                   
+    ##  [6] "Côte d'Ivoire"                                           
+    ##  [7] "Democratic People's Republic of Korea"                   
+    ##  [8] "Gambia"                                                  
+    ##  [9] "Iran (Islamic Republic of)"                              
+    ## [10] "Lao People's Democratic Republic"                        
+    ## [11] "Maldives"                                                
+    ## [12] "Mauritania"                                              
+    ## [13] "Micronesia (Federated States of)"                        
+    ## [14] "Myanmar"                                                 
+    ## [15] "occupied Palestinian territory, including east Jerusalem"
+    ## [16] "Republic of Korea"                                       
+    ## [17] "Republic of Moldova"                                     
+    ## [18] "Russian Federation"                                      
+    ## [19] "Saint Vincent and the Grenadines"                        
+    ## [20] "Sao Tome and Principe"                                   
+    ## [21] "Seychelles"                                              
+    ## [22] "Syrian Arab Republic"                                    
+    ## [23] "Tonga"                                                   
+    ## [24] "Türkiye"                                                 
+    ## [25] "United Republic of Tanzania"                             
+    ## [26] "United States of America"                                
+    ## [27] "Venezuela (Bolivarian Republic of)"                      
+    ## [28] "Viet Nam"
 
 ``` r
 # make countries the same across data sets
@@ -888,7 +858,7 @@ countries <- countries |>
     ## ℹ In argument: `iso3 = countrycode(country, origin = "country.name",
     ##   destination = "iso3c")`.
     ## Caused by warning:
-    ## ! Some values were not matched unambiguously: Federal Republic of Yugoslavia, Kosovo, Micronesia, Netherlands Antilles, Saint Martin, Serbia and Montenegro, Virgin Islands
+    ## ! Some values were not matched unambiguously: Kosovo, Micronesia, Netherlands Antilles, Serbia and Montenegro, Virgin Islands
     ## To fix unmatched values, please use the `custom_match` argument. If you think the default matching rules should be improved, please file an issue at https://github.com/vincentarelbundock/countrycode/issues
 
 ``` r
