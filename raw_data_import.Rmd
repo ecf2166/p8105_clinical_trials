@@ -4,9 +4,6 @@ output: html_document
 date: "2026-11-17"
 ---
 
-# QUESTION: We talked about merging, but with so many countries, mesh terms, conditions, etc, this would create a df with likely millions of rows. Do we keep them all separate, or merge into a few different dfs? or just create dfs out of the ones we need when making visualizations? 
-
-
 # Loading AACT data
 
 ```{r}
@@ -24,25 +21,36 @@ studies = read_aact("studies", col_select = c(nct_id, brief_title, official_titl
   ) |> 
   filter(start_date >= as.Date("2010-01-01"))
 
+interventional_ids = studies |>
+  filter(study_type == "INTERVENTIONAL") |>
+  pull(nct_id)
+
+studies = studies |> filter(nct_id %in% interventional_ids)
+
 countries = read_aact("countries", col_select = c(nct_id, name, removed)) |>
   rename(country = name) |>
   mutate(removed = str_to_lower(removed) == "t") |> 
   filter(removed == FALSE) |> 
-  select(-removed)
+  select(-removed) |> 
+  filter(nct_id %in% interventional_ids)
 
 sponsors = read_aact("sponsors", col_select = c(nct_id, name, agency_class, lead_or_collaborator)) |>
-  rename(sponsor_name = name)
+  rename(sponsor_name = name) |> 
+  filter(nct_id %in% interventional_ids)
 
 conditions = read_aact("conditions", col_select = c(nct_id, downcase_name)) |>
-  rename(condition_name = downcase_name)
+  rename(condition_name = downcase_name) |> 
+  filter(nct_id %in% interventional_ids)
 
 browse_conditions = read_aact("browse_conditions", col_select = c(nct_id, downcase_mesh_term, mesh_type)) |>
   rename(mesh_term_condition = downcase_mesh_term,
-         mesh_type_condition = mesh_type)
+         mesh_type_condition = mesh_type) |> 
+  filter(nct_id %in% interventional_ids)
 
 browse_interventions = read_aact("browse_interventions", col_select = c(nct_id, downcase_mesh_term, mesh_type)) |>
   rename(mesh_term_intervention = downcase_mesh_term,
-         mesh_type_intervention = mesh_type)
+         mesh_type_intervention = mesh_type) |> 
+  filter(nct_id %in% interventional_ids)
 
 
 # Baseline participants (only trials that posted results)
@@ -52,7 +60,8 @@ baseline_counts = read_aact("baseline_counts", col_select = c(nct_id, units, cou
   filter(units == "Participants") |>
   mutate(count = as.numeric(count)) |>
   group_by(nct_id) |>
-  summarize(baseline_n = max(count))
+  summarize(baseline_n = max(count)) |> 
+  filter(nct_id %in% interventional_ids)
 
 
 ```

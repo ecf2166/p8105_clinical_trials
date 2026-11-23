@@ -355,13 +355,6 @@ display: none;
 </div>
 
 
-<div id="question-we-talked-about-merging-but-with-so-many-countries-mesh-terms-conditions-etc-this-would-create-a-df-with-likely-millions-of-rows.-do-we-keep-them-all-separate-or-merge-into-a-few-different-dfs-or-just-create-dfs-out-of-the-ones-we-need-when-making-visualizations" class="section level1">
-<h1>QUESTION: We talked about merging, but with so many countries, mesh
-terms, conditions, etc, this would create a df with likely millions of
-rows. Do we keep them all separate, or merge into a few different dfs?
-or just create dfs out of the ones we need when making
-visualizations?</h1>
-</div>
 <div id="loading-aact-data" class="section level1">
 <h1>Loading AACT data</h1>
 <pre class="r"><code>library(tidyverse)</code></pre>
@@ -385,25 +378,36 @@ studies = read_aact(&quot;studies&quot;, col_select = c(nct_id, brief_title, off
   ) |&gt; 
   filter(start_date &gt;= as.Date(&quot;2010-01-01&quot;))
 
+interventional_ids = studies |&gt;
+  filter(study_type == &quot;INTERVENTIONAL&quot;) |&gt;
+  pull(nct_id)
+
+studies = studies |&gt; filter(nct_id %in% interventional_ids)
+
 countries = read_aact(&quot;countries&quot;, col_select = c(nct_id, name, removed)) |&gt;
   rename(country = name) |&gt;
   mutate(removed = str_to_lower(removed) == &quot;t&quot;) |&gt; 
   filter(removed == FALSE) |&gt; 
-  select(-removed)
+  select(-removed) |&gt; 
+  filter(nct_id %in% interventional_ids)
 
 sponsors = read_aact(&quot;sponsors&quot;, col_select = c(nct_id, name, agency_class, lead_or_collaborator)) |&gt;
-  rename(sponsor_name = name)
+  rename(sponsor_name = name) |&gt; 
+  filter(nct_id %in% interventional_ids)
 
 conditions = read_aact(&quot;conditions&quot;, col_select = c(nct_id, downcase_name)) |&gt;
-  rename(condition_name = downcase_name)
+  rename(condition_name = downcase_name) |&gt; 
+  filter(nct_id %in% interventional_ids)
 
 browse_conditions = read_aact(&quot;browse_conditions&quot;, col_select = c(nct_id, downcase_mesh_term, mesh_type)) |&gt;
   rename(mesh_term_condition = downcase_mesh_term,
-         mesh_type_condition = mesh_type)
+         mesh_type_condition = mesh_type) |&gt; 
+  filter(nct_id %in% interventional_ids)
 
 browse_interventions = read_aact(&quot;browse_interventions&quot;, col_select = c(nct_id, downcase_mesh_term, mesh_type)) |&gt;
   rename(mesh_term_intervention = downcase_mesh_term,
-         mesh_type_intervention = mesh_type)
+         mesh_type_intervention = mesh_type) |&gt; 
+  filter(nct_id %in% interventional_ids)
 
 
 # Baseline participants (only trials that posted results)
@@ -413,7 +417,8 @@ baseline_counts = read_aact(&quot;baseline_counts&quot;, col_select = c(nct_id, 
   filter(units == &quot;Participants&quot;) |&gt;
   mutate(count = as.numeric(count)) |&gt;
   group_by(nct_id) |&gt;
-  summarize(baseline_n = max(count))</code></pre>
+  summarize(baseline_n = max(count)) |&gt; 
+  filter(nct_id %in% interventional_ids)</code></pre>
 <p>Saving data</p>
 <pre class="r"><code># don&#39;t want to knit this every time, only run once
 # for keeping data in in RDS format to save space (and so this knits)

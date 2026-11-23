@@ -1,0 +1,268 @@
+---
+title: "Exploratory Analyses - Emma"
+output: html_document
+---
+
+Do countries run trials in the diseases that make up most of their burden?
+For each country, we compare its **trial mix** (share of classified trials in each
+GBD analysis category) with its **burden mix** (share of DALYs in each category).
+DALYs come from year *t* and trials from year *t + lag*.
+
+Inputs are the outputs of the tidy script: `data/tidy/daly.rds` and `data/tidy/trial_cause.rds`.
+If `trial_cause.rds` was built with `allow_proposed: true`, these results are provisional.
+
+```{r setup, message = FALSE}
+library(tidyverse)
+library(countrycode)
+library(plotly)
+
+daly_df        = read_rds("data/tidy/daly.rds")
+trial_cause_df = read_rds("data/tidy/trial_cause.rds")
+countries      = read_rds("data/countries.rds")
+
+lag_years   = 1            # trials start this many years after the burden year
+min_trials  = 30           # countries with fewer classified trials are left off the maps
+focus_cause = "Neoplasms"  # category shown in the second map
+```
+
+## Build the comparison table
+
+```{r functions}
+# One row per trial x country. Multinational trials count once in every country they list.
+trial_country = countries |>
+  mutate(
+    iso3 = countrycode(country, "country.name", "iso3c", warn = FALSE),
+    iso3 = if_else(country == "Serbia and Montenegro", NA_character_, iso3)
+  ) |>
+  filter(!is.na(iso3)) |>
+  distinct(nct_id, iso3)
+
+# Burden years that have trials starting `lag` years later
+matched_years = function(lag) {
+  burden_years = sort(unique(daly_df$year))
+  burden_years[(burden_years + lag) %in% unique(trial_cause_df$start_year)]
+}
+
+# One row per country x analysis cause, pooling all matched years
+build_comparison = function(lag) {
+  burden_years = matched_years(lag)
+  if (length(burden_years) == 0) {
+    stop(
+      "No burden year has trials starting ", lag, " year(s) later.\n",
+      "  Burden years available: ", paste(sort(unique(daly_df$year)), collapse = ", "), "\n",
+      "  Trial start years available: ", min(trial_cause_df$start_year), "-",
+      max(trial_cause_df$start_year), "\n",
+      "  Add earlier IHME years, or rerun the tidy script with a later trial_end_year."
+    )
+  }
+  trial_years = burden_years + lag
+
+  burden = daly_df |>
+    filter(year %in% burden_years, !is.na(iso3)) |>
+    group_by(iso3, analysis_cause_id, analysis_cause) |>
+    summarize(location = first(location), daly = sum(daly), .groups = "drop") |>
+    group_by(iso3) |>
+    mutate(daly_share = daly / sum(daly)) |>
+    ungroup()
+
+  # Fractional counting: a trial in k categories adds 1/k to each one,
+  # so a country's trial shares sum to 1, just like its DALY shares.
+  trials = trial_cause_df |>
+    filter(start_year %in% trial_years) |>
+    transmute(nct_id, analysis_cause_id, weight = 1 / n_analysis_causes) |>
+    inner_join(trial_country, by = "nct_id", relationship = "many-to-many") |>
+    group_by(iso3, analysis_cause_id) |>
+    summarize(trial_weight = sum(weight), n_trials = n_distinct(nct_id), .groups = "drop")
+
+  burden |>
+    left_join(trials, by = c("iso3", "analysis_cause_id")) |>
+    mutate(across(c(trial_weight, n_trials), \(x) replace_na(x, 0))) |>
+    group_by(iso3) |>
+    mutate(
+      n_classified_trials = round(sum(trial_weight)),
+      trial_share = trial_weight / sum(trial_weight),
+      # +0.5 pseudo-count so categories with zero trials still get a finite ratio
+      trial_share_smoothed = (trial_weight + 0.5) / (sum(trial_weight) + 0.5 * n()),
+      log2_ratio = log2(trial_share_smoothed / daly_share)
+    ) |>
+    ungroup() |>
+    mutate(
+      lag = lag,
+      window = paste0("DALYs ", min(burden_years), "-", max(burden_years),
+                      " vs trials starting ", min(trial_years), "-", max(trial_years))
+    )
+}
+
+safe_spearman = function(x, y) {
+  if (sd(x) == 0 || sd(y) == 0) return(NA_real_)
+  cor(x, y, method = "spearman")
+}
+
+# One row per country: how far its trial mix is from its burden mix
+summarize_alignment = function(comparison, min_trials) {
+  comparison |>
+    filter(n_classified_trials >= min_trials) |>
+    group_by(iso3, location) |>
+    summarize(
+      n_classified_trials = first(n_classified_trials),
+      # Share of trials that would have to move between categories to match burden (0-1)
+      mismatch = 0.5 * sum(abs(trial_share - daly_share)),
+      # Rank agreement across the 20 categories (-1 to 1)
+      spearman = safe_spearman(trial_share, daly_share),
+      top_burden = analysis_cause[which.max(daly_share)],
+      top_research = analysis_cause[which.max(trial_share)],
+      .groups = "drop"
+    )
+}
+```
+
+```{r build}
+comparison = build_comparison(lag_years)
+alignment  = summarize_alignment(comparison, min_trials)
+
+distinct(comparison, window)
+
+alignment |>
+  arrange(desc(mismatch)) |>
+  mutate(mismatch = scales::percent(mismatch, 1), spearman = round(spearman, 2))
+```
+
+## Map 1: how well each country's trial mix matches its burden
+
+```{r map-alignment}
+geo_style = list(
+  showframe = FALSE, showcoastlines = FALSE,
+  showland = TRUE, landcolor = "#e5e5e5",
+  showcountries = TRUE, countrycolor = "white",
+  projection = list(type = "natural earth")
+)
+
+plot_ly(
+  data = alignment,
+  type = "choropleth",
+  locations = ~iso3,
+  locationmode = "ISO-3",
+  z = ~100 * mismatch,
+  colorscale = "Viridis",
+  reversescale = TRUE,
+  colorbar = list(title = "Mismatch (%)"),
+  text = ~paste0(
+    "<b>", location, "</b>",
+    "<br>Classified trials: ", scales::comma(n_classified_trials),
+    "<br>Mismatch: ", round(100 * mismatch), "% of trials",
+    "<br>Spearman rho: ", round(spearman, 2),
+    "<br>Largest burden: ", top_burden,
+    "<br>Most-studied: ", top_research
+  ),
+  hoverinfo = "text"
+) |>
+  layout(
+    title = paste0("Mismatch between trial mix and burden mix<br><sup>",
+                   distinct(comparison, window)$window,
+                   "; grey = fewer than ", min_trials, " classified trials</sup>"),
+    geo = geo_style
+  )
+```
+
+Mismatch is the share of a country's trials that would have to move between categories for the trial mix to match the burden mix. A value of 0% means a perfect match.
+
+## Map 2: research relative to burden for one category
+
+```{r map-focus}
+if (!focus_cause %in% comparison$analysis_cause) {
+  stop("focus_cause must be one of: ",
+       paste(sort(unique(comparison$analysis_cause)), collapse = "; "))
+}
+
+focus_df = comparison |>
+  filter(analysis_cause == focus_cause, n_classified_trials >= min_trials) |>
+  mutate(ratio_capped = pmin(pmax(log2_ratio, -3), 3))
+
+plot_ly(
+  data = focus_df,
+  type = "choropleth",
+  locations = ~iso3,
+  locationmode = "ISO-3",
+  z = ~ratio_capped,
+  zmin = -3, zmax = 3, zmid = 0,
+  colorscale = "RdBu",
+  colorbar = list(
+    title = "Trial share /<br>DALY share",
+    tickvals = -3:3,
+    ticktext = c("1/8x", "1/4x", "1/2x", "1x", "2x", "4x", "8x")
+  ),
+  text = ~paste0(
+    "<b>", location, "</b>",
+    "<br>", focus_cause,
+    "<br>Share of DALYs: ", scales::percent(daly_share, 0.1),
+    "<br>Share of trials: ", scales::percent(trial_share, 0.1),
+    " (", scales::comma(n_trials), " trials)",
+    "<br>Ratio: ", round(2^log2_ratio, 2), "x"
+  ),
+  hoverinfo = "text"
+) |>
+  layout(
+    title = paste0(focus_cause, ": share of trials vs share of burden<br><sup>",
+                   distinct(comparison, window)$window, "</sup>"),
+    geo = geo_style
+  )
+```
+
+Blue means the category gets more trials than its share of burden; red means fewer.
+
+## The correlation itself
+
+A map shows where things are, but not the correlation. Each panel below plots one category. Each point is a country. The dashed line is where trial share equals DALY share.
+
+```{r scatter-by-cause, fig.width = 11, fig.height = 11}
+plot_df = comparison |> filter(n_classified_trials >= min_trials)
+
+cause_cor = plot_df |>
+  group_by(analysis_cause) |>
+  summarize(rho = safe_spearman(daly_share, trial_share), .groups = "drop") |>
+  mutate(label = paste0("rho = ", round(rho, 2)))
+
+# Give each panel the same range on both axes so the y = x line runs corner to corner
+panel_limits = plot_df |>
+  group_by(analysis_cause) |>
+  summarize(lim = max(daly_share, trial_share), .groups = "drop") |>
+  reframe(daly_share = c(0, lim), trial_share = c(0, lim), .by = analysis_cause)
+
+plot_df |>
+  ggplot(aes(x = daly_share, y = trial_share)) +
+  geom_blank(data = panel_limits) +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed", colour = "grey50") +
+  geom_point(alpha = 0.5, size = 1) +
+  geom_text(data = cause_cor, aes(label = label), x = -Inf, y = Inf,
+            hjust = -0.1, vjust = 1.3, size = 3, inherit.aes = FALSE) +
+  facet_wrap(~ analysis_cause, scales = "free", labeller = label_wrap_gen(28)) +
+  scale_x_sqrt(labels = scales::percent) +
+  scale_y_sqrt(labels = scales::percent) +
+  labs(
+    title = "Trial share vs DALY share, by GBD category",
+    subtitle = paste0(distinct(comparison, window)$window,
+                      "; countries with at least ", min_trials, " classified trials"),
+    x = "Share of country's DALYs (square-root scale)",
+    y = "Share of country's classified trials (square-root scale)"
+  ) +
+  theme_minimal(base_size = 9)
+```
+
+A positive rho means countries where a disease makes up more of the burden also put a larger share of their trials into it.
+
+## Does the lag matter?
+
+```{r lag-sensitivity}
+tibble(lag = 0:3) |>
+  mutate(res = map(lag, \(l) tryCatch(build_comparison(l), error = \(e) NULL))) |>
+  filter(!map_lgl(res, is.null)) |>
+  mutate(
+    window = map_chr(res, \(d) first(d$window)),
+    align  = map(res, \(d) summarize_alignment(d, min_trials)),
+    n_countries     = map_int(align, nrow),
+    median_mismatch = map_dbl(align, \(a) median(a$mismatch)),
+    median_spearman = map_dbl(align, \(a) median(a$spearman, na.rm = TRUE))
+  ) |>
+  select(lag, window, n_countries, median_mismatch, median_spearman) |>
+  knitr::kable(digits = 2)
+```
