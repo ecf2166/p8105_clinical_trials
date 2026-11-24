@@ -1,20 +1,20 @@
 mesh_term,n_trials_in_cohort,proposed_action,proposed_gbd_cause_id,mapping_method,rationale,proposed_gbd_cause,proposed_level2_id,proposed_level2_cause,proposed_analysis_cause,review_decision,reviewed_gbd_cause_id,reviewer,review_note
 breast neoplasms,6039,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-obesity,5676,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,pending,,,
+obesity,5676,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,exclude,,st,metabolic risk
 motor activity,5652,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,pending,,,
 "diabetes mellitus, type 2",4987,map,976,explicit_project_rule,Type 2 diabetes alias.,Diabetes mellitus type 2,974,Diabetes and kidney diseases,Diabetes and kidney diseases,approve,,st,
-pain,4895,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
+pain,4895,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,exclude,,st,non-specific
 neoplasms,4813,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 depression,4322,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
 covid-19,4188,map,1048,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,COVID-19,956,Respiratory infections and tuberculosis,Respiratory infections and tuberculosis,approve,,st,
-stroke,3743,map,494,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Stroke,491,Cardiovascular diseases,Cardiovascular diseases,pending,,st,cvd vs neuro?
+stroke,3743,map,494,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Stroke,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,cvd vs neuro?
 anxiety disorders,3698,map,571,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Anxiety disorders,558,Mental disorders,Mental disorders,approve,,st,
 diabetes mellitus,3674,map,587,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Diabetes mellitus,974,Diabetes and kidney diseases,Diabetes and kidney diseases,approve,,st,
 "carcinoma, non-small-cell lung",3303,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-"pain, postoperative",3117,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
+"pain, postoperative",3117,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,exclude,,st,non-specific
 prostatic neoplasms,2900,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 colorectal neoplasms,2725,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-hypertension,2607,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,pending,,,
+hypertension,2607,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,exclude,,st,metabolic risk
 "pulmonary disease, chronic obstructive",2442,map,509,explicit_project_rule,Chronic obstructive pulmonary disease alias/subtype.,Chronic obstructive pulmonary disease,508,Chronic respiratory diseases,Chronic respiratory diseases,approve,,st,
 heart failure,2315,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
 parkinson disease,2179,map,544,explicit_project_rule,Parkinson disease alias.,Parkinson's disease,542,Neurological disorders,Neurological disorders,approve,,st,
@@ -22,7 +22,7 @@ cardiovascular diseases,2001,review,491,explicit_project_rule,Broad heading is a
 lung neoplasms,1990,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 "osteoarthritis, knee",1888,map,1015,explicit_project_rule,Knee osteoarthritis alias.,Osteoarthritis knee,626,Musculoskeletal disorders,Musculoskeletal disorders,approve,,st,
 alzheimer disease,1878,map,543,explicit_project_rule,Dementia grouped under Neurological disorders in supplied GBD hierarchy.,Alzheimer's disease and other dementias,542,Neurological disorders,Neurological disorders,approve,,st,
-neoplasm metastasis,1858,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,pending,,st,sequelae?
+neoplasm metastasis,1858,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,broad cause -> approved at GBD level-2
 coronary artery disease,1840,map,493,explicit_project_rule,Ischemic heart disease alias/subtype.,Ischemic heart disease,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
 asthma,1820,map,515,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Asthma,508,Chronic respiratory diseases,Chronic respiratory diseases,approve,,st,
 cognitive dysfunction,1811,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
@@ -31,8 +31,8 @@ cognitive dysfunction,1811,review,,explicit_project_rule,"Symptom, impairment, s
 recurrence,1782,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
 pancreatic neoplasms,1757,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 multiple myeloma,1743,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,486,st,specified 'multiple myeloma'
-inflammation,1732,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
-overweight,1699,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,pending,,,
+inflammation,1732,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,exclude,,st,non-specific
+overweight,1699,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,exclude,,st,metabolic risk
 melanoma,1647,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 schizophrenia,1619,map,559,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Schizophrenia,558,Mental disorders,Mental disorders,approve,,st,
 chronic pain,1613,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
@@ -43,7 +43,7 @@ agnosia,1529,review,,explicit_project_rule,"Symptom, impairment, sequela or etio
 stomach neoplasms,1507,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 ovarian neoplasms,1477,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 insulin resistance,1462,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,pending,,,
-"stress disorders, post-traumatic",1445,map,571,explicit_project_rule,Proposed anxiety-disorder grouping; inspect GBD category definitions for OCD/PTSD before approval.,Anxiety disorders,558,Mental disorders,Mental disorders,pending,,st,need to check if ptsd maps to anxiety disorder
+"stress disorders, post-traumatic",1445,map,571,explicit_project_rule,Proposed anxiety-disorder grouping; inspect GBD category definitions for OCD/PTSD before approval.,Anxiety disorders,558,Mental disorders,Mental disorders,approve,,st,
 multiple sclerosis,1439,map,546,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Multiple sclerosis,542,Neurological disorders,Neurological disorders,approve,,st,
 "renal insufficiency, chronic",1384,map,589,explicit_project_rule,Chronic kidney disease grouping; polycystic/diabetic etiologies stay within diabetes/kidney level 2.,Chronic kidney disease,974,Diabetes and kidney diseases,Diabetes and kidney diseases,approve,,st,
 "arthritis, rheumatoid",1338,map,627,explicit_project_rule,Rheumatoid arthritis alias.,Rheumatoid arthritis,626,Musculoskeletal disorders,Musculoskeletal disorders,approve,,st,
@@ -59,31 +59,31 @@ hiv infections,1094,map,298,explicit_project_rule,HIV condition alias; GBD HIV/A
 brain neoplasms,1086,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 "influenza, human",1080,map,322,explicit_project_rule,Proposed lower respiratory infection grouping; influenza site/severity is not identified by this term alone. Review before use.,Lower respiratory infections,956,Respiratory infections and tuberculosis,Respiratory infections and tuberculosis,approve,,st,
 dementia,1078,map,543,explicit_project_rule,Dementia grouped under Neurological disorders in supplied GBD hierarchy.,Alzheimer's disease and other dementias,542,Neurological disorders,Neurological disorders,approve,,st,
-ischemic stroke,1052,map,495,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Ischemic stroke,491,Cardiovascular diseases,Cardiovascular diseases,pending,,st,cvd vs neuro?
+ischemic stroke,1052,map,495,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Ischemic stroke,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,cvd vs neuro?
 spinal cord injuries,1052,map,687,explicit_project_rule,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism.",Injuries,,,Injuries,approve,,st,
 glioblastoma,1048,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-fatigue,1041,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
-weight loss,1015,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,pending,,,
+fatigue,1041,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,exclude,,st,non-specific
+weight loss,1015,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,exclude,,st,non-specific
 wounds and injuries,1013,map,687,explicit_project_rule,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism.",Injuries,,,Injuries,pending,,st,broad MeSH heading includes surgical wounds so not necessarily traumatic injury
 "sleep apnea, obstructive",1007,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
 uterine cervical neoplasms,1006,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 squamous cell carcinoma of head and neck,1004,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 infertility,984,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
 "lymphoma, non-hodgkin",977,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-metabolic syndrome,974,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,pending,,,
-precursor cell lymphoblastic leukemia-lymphoma,970,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,pending,,,
+metabolic syndrome,974,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,exclude,,st,metabolic risk
+precursor cell lymphoblastic leukemia-lymphoma,970,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,broad cause (leukemia and lymphoma) -> approved at GBD level-2
 "kidney failure, chronic",965,map,589,explicit_project_rule,Chronic kidney disease grouping; polycystic/diabetic etiologies stay within diabetes/kidney level 2.,Chronic kidney disease,974,Diabetes and kidney diseases,Diabetes and kidney diseases,approve,,st,
 colonic neoplasms,955,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-smoking cessation,943,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,pending,,,
+smoking cessation,943,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,exclude,,st,behavior
 non-alcoholic fatty liver disease,941,map,971,explicit_project_rule,Fatty liver disease alias; GBD hierarchy label uses NAFLD/NASH.,Nonalcoholic fatty liver disease including cirrhosis,526,Digestive diseases,Digestive diseases,approve,,st,
 autism spectrum disorder,937,map,575,explicit_project_rule,Autism spectrum alias/subtype.,Autism spectrum disorders,558,Mental disorders,Mental disorders,approve,,st,
 infections,922,review,,explicit_project_rule,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.,,,,,pending,,,
 myelodysplastic syndromes,910,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,964,st,"changed to more specific ""Myelodysplastic, myeloproliferative, and other hematopoietic neoplasms"""
 mental disorders,892,review,558,explicit_project_rule,MeSH mental-disorder umbrella may include substance use; do not map its descendants wholesale.,Mental disorders,558,Mental disorders,Mental disorders,pending,,st,"MeSH umbrella includes substance-related disorders and neurocognitive conditions like dementia, which fall outside GBDÕs mental disorders category"
-cerebral palsy,882,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
+cerebral palsy,882,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,approve,382,st,"mapped to ""Neonatal encephalopathy due to birth asphyxia and trauma"""
 alcoholism,880,map,560,explicit_project_rule,Alcohol use disorder alias; not alcohol consumption alone.,Alcohol use disorders,973,Substance use disorders,Substance use disorders,approve,,st,
 rectal neoplasms,877,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-psychological well-being,876,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,pending,,,
+psychological well-being,876,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,exclude,,st,"vauge, non-specific state"
 "carcinoma, renal cell",874,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 hepatitis c,870,review,403,explicit_project_rule,Acute versus chronic not specified; chronic hepatitis C belongs in Digestive diseases.,Acute hepatitis C,961,Other infectious diseases,Other infectious diseases,pending,,st,acute vs chronic (incl cirrhosis)are different level 2 categories
 attention deficit disorder with hyperactivity,859,map,578,explicit_project_rule,ADHD alias.,Attention-deficit/hyperactivity disorder,558,Mental disorders,Mental disorders,approve,,st,
@@ -95,45 +95,45 @@ esophageal neoplasms,805,map,410,explicit_project_rule,Observed neoplasm conditi
 "dermatitis, atopic",793,map,977,explicit_project_rule,Atopic dermatitis alias.,Atopic dermatitis,653,Skin and subcutaneous diseases,Skin and subcutaneous diseases,approve,,st,
 "lymphoma, follicular",783,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 "colitis, ulcerative",779,map,1024,explicit_project_rule,Ulcerative colitis alias.,Ulcerative colitis,526,Digestive diseases,Digestive diseases,approve,,st,
-dry eye syndromes,777,map,679,explicit_project_rule,Proposed other sense-organ disease; check cause scope.,Other sense organ diseases,669,Sense organ diseases,Sense organ diseases,pending,,st,"need to check what ""other"" refers to"
-smoking,760,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,pending,,,
-psychotic disorders,758,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+dry eye syndromes,777,map,679,explicit_project_rule,Proposed other sense-organ disease; check cause scope.,Other sense organ diseases,669,Sense organ diseases,Sense organ diseases,approve,,st,
+smoking,760,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,exclude,,st,"vague, non-specific, risk factor/ behavior"
+psychotic disorders,758,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,558,st,"mapped to ""mental disorders"" broadly at gbd level 2"
 opioid-related disorders,753,map,562,explicit_project_rule,Opioid use disorder alias.,Opioid use disorders,973,Substance use disorders,Substance use disorders,pending,,st,"includes opioid-use disorder, but also disorders resulting from misuse and consequences of abuse"
 triple negative breast neoplasms,752,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 sarcoma,741,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 "brain injuries, traumatic",740,map,687,explicit_project_rule,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism.",Injuries,,,Injuries,approve,,st,
-disease,740,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,pending,,,
-sedentary behavior,739,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,pending,,,
+disease,740,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,exclude,,st,could refer to literally any cause or condition
+sedentary behavior,739,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,exclude,,st,non-specific risk factor
 psoriasis,737,map,655,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Psoriasis,653,Skin and subcutaneous diseases,Skin and subcutaneous diseases,approve,,st,
 epilepsy,736,review,545,explicit_project_rule,MeSH epilepsy may include secondary epilepsy; GBD target is idiopathic epilepsy. Review etiology.,Idiopathic epilepsy,542,Neurological disorders,Neurological disorders,pending,,st,too generic for idiopathic
-sepsis,728,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
+sepsis,728,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,exclude,,st,non-specific
 migraine disorders,710,map,547,explicit_project_rule,Migraine subtype.,Migraine,542,Neurological disorders,Neurological disorders,approve,,st,
 cystic fibrosis,709,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 hematologic neoplasms,707,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 leukemia,706,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 peripheral arterial disease,697,map,502,explicit_project_rule,Proposed peripheral arterial disease mapping; anatomical scope should be checked.,Lower extremity peripheral arterial disease,491,Cardiovascular diseases,Cardiovascular diseases,pending,,st,not restricted to lower extremities
-behavior,695,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,pending,,,
+behavior,695,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,exclude,,st,"vague, non-specific behavior"
 bipolar disorder,686,map,570,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Bipolar disorder,558,Mental disorders,Mental disorders,approve,,st,
-acute pain,682,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
+acute pain,682,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,exclude,,st,non-specific
 myocardial infarction,682,map,493,explicit_project_rule,Ischemic heart disease alias/subtype.,Ischemic heart disease,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
 anemia,676,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
 coronavirus infections,674,review,,explicit_project_rule,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.,,,,,pending,,,
 renal insufficiency,672,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
 cataract,669,map,671,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Cataract,669,Sense organ diseases,Sense organ diseases,approve,,st,
 glioma,665,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-pediatric obesity,662,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,pending,,,
-hemorrhage,659,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
+pediatric obesity,662,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,exclude,,st,metabolic risk
+hemorrhage,659,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,exclude,,st,non-specific
 neck pain,630,map,631,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Neck pain,626,Musculoskeletal disorders,Musculoskeletal disorders,approve,,st,
 respiratory insufficiency,629,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
-critical illness,615,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
+critical illness,615,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,exclude,,st,non-specific
 endometrial neoplasms,614,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 respiratory distress syndrome,601,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
 glaucoma,596,map,670,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Glaucoma,669,Sense organ diseases,Sense organ diseases,approve,,st,
 inflammatory bowel diseases,595,map,532,explicit_project_rule,Inflammatory bowel disease umbrella.,Inflammatory bowel disease,526,Digestive diseases,Digestive diseases,approve,,st,
-health behavior,593,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,pending,,,
+health behavior,593,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,exclude,,st,"vague, non-specific behavior"
 acute coronary syndrome,588,map,493,explicit_project_rule,Ischemic heart disease alias/subtype.,Ischemic heart disease,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
 malnutrition,580,review,386,explicit_project_rule,Broad nutrition term can include excess as well as deficiency; review.,Nutritional deficiencies,386,Nutritional deficiencies,Nutritional deficiencies,approve,,st,
-medication adherence,575,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,pending,,,
+medication adherence,575,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,exclude,,st,non-specific health behavior
 myopia,574,map,999,explicit_project_rule,Refraction-disorder alias/subtype.,Refraction disorders,669,Sense organ diseases,Sense organ diseases,approve,,st,
 malaria,569,map,345,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Malaria,344,Neglected tropical diseases and malaria,Neglected tropical diseases and malaria,approve,,st,IHME combines malaria with NTDs
 dental caries,563,map,680,explicit_project_rule,Oral condition mapping at parent level; no split between deciduous/permanent teeth inferred.,Oral disorders,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
@@ -141,42 +141,42 @@ pneumonia,561,map,322,explicit_project_rule,Proposed lower respiratory infection
 diabetic foot,551,review,587,explicit_project_rule,"Diabetes complication; category attribution needs review, especially vision/neuropathy studies.",Diabetes mellitus,974,Diabetes and kidney diseases,Diabetes and kidney diseases,approve,,st,
 fibromyalgia,551,map,639,explicit_project_rule,Proposed other musculoskeletal disorder; confirm GBD residual scope; systemic conditions cross MeSH organ trees.,Other musculoskeletal disorders,626,Musculoskeletal disorders,Musculoskeletal disorders,approve,,st,GBD methods explicitly include it within Other musculoskeletal disorders
 small cell lung carcinoma,549,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-heart diseases,546,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-tobacco use disorder,546,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,pending,,,
-feeding behavior,540,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,pending,,,
-fibrosis,540,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
+heart diseases,546,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,491,st,broad cause so approved at GBD Level 2
+tobacco use disorder,546,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,exclude,,st,non-specific risk-factor/behavior
+feeding behavior,540,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,exclude,,st,behavior
+fibrosis,540,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,exclude,,st,non-specific pathological process
 periodontitis,540,map,680,explicit_project_rule,Oral condition mapping at parent level; no split between deciduous/permanent teeth inferred.,Oral disorders,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
 sarcopenia,539,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
-dyslipidemias,535,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,pending,,,
+dyslipidemias,535,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,exclude,,st,metabolic risk
 acute kidney injury,534,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
-postoperative complications,531,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
+postoperative complications,531,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,exclude,,st,non-specific surgical complication
 prediabetic state,531,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,pending,,,
 liver neoplasms,522,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 "anemia, sickle cell",521,map,615,explicit_project_rule,Sickle cell disorder alias.,Sickle cell disorders,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
-hypoxia,517,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
-irritable bowel syndrome,516,map,1161,explicit_project_rule,Proposed other digestive disease; validate scope of residual category.,Other digestive diseases,526,Digestive diseases,Digestive diseases,pending,,st,"need to check what ""other"" refers to"
-emergencies,515,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,pending,,,
-breast feeding,511,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,pending,,,
-osteoporosis,509,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+hypoxia,517,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,exclude,,st,non-specific condition
+irritable bowel syndrome,516,map,1161,explicit_project_rule,Proposed other digestive disease; validate scope of residual category.,Other digestive diseases,526,Digestive diseases,Digestive diseases,approve,532,st,"mapped to ""inflammatory bowel disease"""
+emergencies,515,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,exclude,,st,could mean a whole host of things
+breast feeding,511,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,exclude,,st,health-related behavior
+osteoporosis,509,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,639,st,"mapped to ""Other musculoskeletal disorders"""
 tuberculosis,509,map,297,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Tuberculosis,956,Respiratory infections and tuberculosis,Respiratory infections and tuberculosis,approve,,st,
 liver cirrhosis,506,map,521,explicit_project_rule,Chronic liver disease; not acute infectious hepatitis.,Cirrhosis and other chronic liver diseases,526,Digestive diseases,Digestive diseases,approve,,st,
-"stress, psychological",498,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,pending,,,
+"stress, psychological",498,exclude,,explicit_project_rule,"Nonspecific state, behavior, outcome or process; no disease cause assigned from this term alone.",,,,,exclude,,st,non-specific behavioral symptom
 hodgkin disease,497,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-hypercholesterolemia,491,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,pending,,,
-frailty,481,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
+hypercholesterolemia,491,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,exclude,,st,metabolic risk
+frailty,481,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,exclude,,st,non-specific pathological process
 autistic disorder,478,map,575,explicit_project_rule,Autism spectrum alias/subtype.,Autism spectrum disorders,558,Mental disorders,Mental disorders,approve,,st,
 vitamin d deficiency,475,map,391,explicit_project_rule,Specified deficiency; proposed other nutritional deficiencies.,Other nutritional deficiencies,386,Nutritional deficiencies,Nutritional deficiencies,approve,,st,
 sleep apnea syndromes,473,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
 "glaucoma, open-angle",471,map,670,explicit_project_rule,Glaucoma subtype.,Glaucoma,669,Sense organ diseases,Sense organ diseases,approve,,st,
 "lymphoma, mantle-cell",470,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-atherosclerosis,468,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+atherosclerosis,468,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,491,st,"mapped to ""Cardiovascular diseases"" broadly at gbd level 2"
 neuralgia,466,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
-"obesity, morbid",466,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,pending,,,
+"obesity, morbid",466,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,exclude,,st,metabolic risk
 "lymphoma, b-cell",462,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 lung diseases,459,review,,explicit_project_rule,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.,,,,,pending,,,
 urinary incontinence,459,map,602,explicit_project_rule,Proposed other urinary disease; confirm symptom-specific scope.,Other urinary diseases,640,Other non-communicable diseases,Other non-communicable diseases,pending,,st,very broad symptom. Could be neurologic or due to surgery or maybe even other conditions
-macular degeneration,456,map,672,explicit_project_rule,Age-related macular degeneration candidate; generic macular degeneration requires review.,Age-related macular degeneration,669,Sense organ diseases,Sense organ diseases,pending,,st,unsure if strictly age-related
-"shock, septic",451,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,pending,,,
+macular degeneration,456,map,672,explicit_project_rule,Age-related macular degeneration candidate; generic macular degeneration requires review.,Age-related macular degeneration,669,Sense organ diseases,Sense organ diseases,approve,,st,icd-10 code matched the (H53.30) matched the 672 gbd casue
+"shock, septic",451,review,,explicit_project_rule,"Symptom, impairment, sequela or etiology-ambiguous condition; review trial context/GBD definitions rather than assigning an organ-system bucket.",,,,,exclude,,st,non-specific sequala
 gastroesophageal reflux,448,map,536,explicit_project_rule,GERD candidate; distinguish disease from physiological reflux in review.,Gastroesophageal reflux disease,526,Digestive diseases,Digestive diseases,approve,,st,
 acne vulgaris,447,map,661,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Acne vulgaris,653,Skin and subcutaneous diseases,Skin and subcutaneous diseases,approve,,st,
 "lupus erythematosus, systemic",446,map,639,explicit_project_rule,Proposed other musculoskeletal disorder; confirm GBD residual scope; systemic conditions cross MeSH organ trees.,Other musculoskeletal disorders,626,Musculoskeletal disorders,Musculoskeletal disorders,approve,,st,GBD explicitly includes systemic lupus within Other musculoskeletal disorders
@@ -184,26 +184,26 @@ respiratory aspiration,445,review,,unresolved,No proposed mapping. Review the me
 polycystic ovary syndrome,439,map,605,explicit_project_rule,Polycystic ovarian syndrome alias.,Polycystic ovarian syndrome,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
 glucose intolerance,431,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,pending,,,
 fallopian tube neoplasms,428,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-alcohol drinking,425,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,pending,,,
+alcohol drinking,425,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,exclude,,st,behavioral risk
 depressive disorder,423,map,567,explicit_project_rule,Depressive disorder alias.,Depressive disorders,558,Mental disorders,Mental disorders,approve,,st,
 amyotrophic lateral sclerosis,421,map,554,explicit_project_rule,Motor neuron disease alias/subtype.,Motor neuron disease,542,Neurological disorders,Neurological disorders,approve,,st,
 "hepatitis b, chronic",417,map,522,explicit_project_rule,GBD 2023 explicitly places chronic hepatitis B in Digestive diseases.,Chronic hepatitis B including cirrhosis,526,Digestive diseases,Digestive diseases,approve,,st,
-hyperlipidemias,416,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,pending,,,
+hyperlipidemias,416,review,,explicit_project_rule,Risk factor or metabolic state; not automatically equivalent to a GBD Cause Hierarchy disease. Use trial context or separate risk analysis.,,,,,exclude,,st,metabolic risk
 cholangiocarcinoma,415,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-constipation,412,map,1161,explicit_project_rule,Proposed other digestive disease; validate scope of residual category.,Other digestive diseases,526,Digestive diseases,Digestive diseases,pending,,st,symptom
+constipation,412,map,1161,explicit_project_rule,Proposed other digestive disease; validate scope of residual category.,Other digestive diseases,526,Digestive diseases,Digestive diseases,pending,,st,non-specific symptom
 coronary disease,410,map,493,explicit_project_rule,Ischemic heart disease alias/subtype.,Ischemic heart disease,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
 brain injuries,408,map,687,explicit_project_rule,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism.",Injuries,,,Injuries,pending,,st,could include non-traumatic?
 hearing loss,403,map,674,explicit_project_rule,Hearing loss grouping.,Age-related and other hearing loss,669,Sense organ diseases,Sense organ diseases,approve,,st,
 hepatitis b,398,review,402,explicit_project_rule,Acute versus chronic not specified; chronic hepatitis B belongs in Digestive diseases.,Acute hepatitis B,961,Other infectious diseases,Other infectious diseases,pending,,st,acute vs chronic (incl cirrhosis)are different level 2 categories
 "hepatitis c, chronic",397,map,523,explicit_project_rule,GBD 2023 explicitly places chronic hepatitis C in Digestive diseases.,Chronic hepatitis C including cirrhosis,526,Digestive diseases,Digestive diseases,approve,,st,
 hypersensitivity,397,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-surgical wound infection,397,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+surgical wound infection,397,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,non-specific surgical complication
 aortic valve stenosis,395,map,504,explicit_project_rule,Rheumatic/nonrheumatic subtype is not specified; both fall within cardiovascular level 2. Review detailed target.,Non-rheumatic valvular heart disease,491,Cardiovascular diseases,Cardiovascular diseases,pending,,st,might include rheumatic
-vomiting,391,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-chronic disease,388,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-patient satisfaction,387,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+vomiting,391,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,non-specific sequela
+chronic disease,388,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,too broad
+patient satisfaction,387,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,not a cause nor condition
 delirium,386,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-kidney diseases,385,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+kidney diseases,385,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,974,st,"mapped to ""diabetes and kidney diseases"""
 back pain,382,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 dyspnea,382,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 myocardial ischemia,381,map,493,explicit_project_rule,Ischemic heart disease alias/subtype.,Ischemic heart disease,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
@@ -215,27 +215,27 @@ metabolic diseases,373,review,,unresolved,No proposed mapping. Review the mesh t
 nasopharyngeal carcinoma,372,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 deglutition disorders,371,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 headache,371,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-"hypertension, pulmonary",371,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-"diabetes, gestational",370,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+"hypertension, pulmonary",371,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,1004,st,"mapped to ""pulmonary arterial hypertension"""
+"diabetes, gestational",370,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,369,st,"mapped to ""maternal hypertensive disorders"""
 hyperglycemia,370,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 periodontal diseases,370,map,680,explicit_project_rule,Oral condition mapping at parent level; no split between deciduous/permanent teeth inferred.,Oral disorders,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
 "carcinoma, transitional cell",365,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 respiratory tract infections,364,map,956,explicit_project_rule,Respiratory infection umbrella; distinct from chronic respiratory causes.,Respiratory infections and tuberculosis,956,Respiratory infections and tuberculosis,Respiratory infections and tuberculosis,approve,,st,
 hypoglycemia,363,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 burns,362,map,687,explicit_project_rule,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism.",Injuries,,,Injuries,approve,,st,
-nervous system diseases,362,review,,explicit_project_rule,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.,,,,,pending,,,
-"arrhythmias, cardiac",361,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+nervous system diseases,362,review,,explicit_project_rule,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.,,,,,approve,542,st,"mapped to ""neurological disorders"" broadly at gbd level 2"
+"arrhythmias, cardiac",361,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,491,st,"mapped to ""cardiovascular diseases"" broadly at gbd level 2"
 shoulder pain,360,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-arthritis,358,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+arthritis,358,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,626,st,"mapped to ""musculoskeletal disorders"" broadly at gbd level 2"
 liver diseases,356,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 prostatic hyperplasia,355,map,597,explicit_project_rule,Benign prostatic hyperplasia alias.,Benign prostatic hyperplasia,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,MeSH aligns with the benign interpretation of prostatic hyperplasia
 hip fractures,354,map,687,explicit_project_rule,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism.",Injuries,,,Injuries,approve,,st,
-postoperative nausea and vomiting,354,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+postoperative nausea and vomiting,354,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,non-specific surgical sequala
 brain concussion,350,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-body weight,346,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+body weight,346,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,non-specific feature of the body
 endometriosis,346,map,607,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Endometriosis,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
 "heart defects, congenital",345,map,641,explicit_project_rule,Congenital defects go to Other non-communicable diseases rather than the affected organ system.,Congenital birth defects,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
-patient compliance,345,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+patient compliance,345,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,behavior
 bronchiolitis obliterans syndrome,344,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 carcinoma,344,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 virus diseases,343,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -245,13 +245,13 @@ urinary tract infections,341,map,595,explicit_project_rule,"Urinary infection br
 "urinary incontinence, stress",335,map,602,explicit_project_rule,Proposed other urinary disease; confirm symptom-specific scope.,Other urinary diseases,640,Other non-communicable diseases,Other non-communicable diseases,pending,,st,makes sense but need to check GBD definition
 ocular hypertension,333,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 heart arrest,332,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-obsessive-compulsive disorder,332,map,571,explicit_project_rule,Proposed anxiety-disorder grouping; inspect GBD category definitions for OCD/PTSD before approval.,Anxiety disorders,558,Mental disorders,Mental disorders,pending,,st,need to check if ocd maps to anxiety disorder
+obsessive-compulsive disorder,332,map,571,explicit_project_rule,Proposed anxiety-disorder grouping; inspect GBD category definitions for OCD/PTSD before approval.,Anxiety disorders,558,Mental disorders,Mental disorders,approve,,st,
 pulmonary arterial hypertension,332,map,1004,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Pulmonary Arterial Hypertension,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
 thrombosis,332,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "anemia, iron-deficiency",330,review,390,explicit_project_rule,Dietary versus non-dietary etiology requires review.,Dietary iron deficiency,386,Nutritional deficiencies,Nutritional deficiencies,pending,,st,can result from blood loss or impaired absorption as well as inadequate intake
 anterior cruciate ligament injuries,328,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-communication,328,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-suicide,328,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+communication,328,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,behavior
+suicide,328,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,718,st,"mapped to ""self-harm"""
 parasomnias,326,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 burkitt lymphoma,323,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 hemophilia a,323,map,619,explicit_project_rule,Specified endocrine/blood condition; broad MeSH endocrine headings cannot all be assigned here.,"Endocrine, metabolic, blood, and immune disorders",640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
@@ -261,68 +261,68 @@ rotator cuff injuries,320,review,,unresolved,No proposed mapping. Review the mes
 sleep wake disorders,317,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 gingivitis,312,map,680,explicit_project_rule,Oral condition mapping at parent level; no split between deciduous/permanent teeth inferred.,Oral disorders,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
 muscle spasticity,308,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-adenocarcinoma,305,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+adenocarcinoma,305,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,410,st,"mapped to ""neoplasms"" broadly at gbd level 2"
 "osteoarthritis, hip",304,map,1014,explicit_project_rule,Hip osteoarthritis alias.,Osteoarthritis hip,626,Musculoskeletal disorders,Musculoskeletal disorders,approve,,st,
 kidney neoplasms,303,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 "carcinoma, squamous cell",302,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 hypotension,301,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-"rhinitis, allergic",301,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+"rhinitis, allergic",301,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,non-specific condition
 thyroid neoplasms,300,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 pre-eclampsia,299,map,369,explicit_project_rule,"Maternal hypertensive condition, not general cardiovascular grouping.",Maternal hypertensive disorders,962,Maternal and neonatal disorders,Maternal and neonatal disorders,approve,,st,
 "infertility, female",298,map,606,explicit_project_rule,Female infertility branch.,Female infertility,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
 erectile dysfunction,297,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-neuroendocrine tumors,297,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-nausea,296,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-emotional regulation,294,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+neuroendocrine tumors,297,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,410,st,"mapped to ""neoplasms"" broadly at gbd level 2"
+nausea,296,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,non-specific symptom or sequala
+emotional regulation,294,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,non-specific behavior
 carpal tunnel syndrome,292,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-vascular diseases,292,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+vascular diseases,292,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,491,st,"mapped to ""cardiovascular diseases"" broadly at gbd level 2"
 autoimmune diseases,290,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-"multiple sclerosis, relapsing-remitting",290,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-suicidal ideation,290,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+"multiple sclerosis, relapsing-remitting",290,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,546,st,"mapped to ""multiple sclerosis"""
+suicidal ideation,290,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,non-specific
 "depression, postpartum",289,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 marijuana abuse,288,map,565,explicit_project_rule,Cannabis use disorder alias.,Cannabis use disorders,973,Substance use disorders,Substance use disorders,approve,,st,
 feeding and eating disorders,286,review,572,explicit_project_rule,Feeding disorders can extend beyond GBD eating-disorder scope.,Eating disorders,558,Mental disorders,Mental disorders,pending,,st,mesh term is broad but the gbd one is more specific
 graft vs host disease,286,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "fractures, bone",283,map,687,explicit_project_rule,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism.",Injuries,,,Injuries,pending,,st,could be pathological or fragility-related
 venous thrombosis,283,map,507,explicit_project_rule,Proposed other cardiovascular/circulatory cause; validate against GBD scope.,Other cardiovascular and circulatory diseases,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
-personal satisfaction,277,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+personal satisfaction,277,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,not a condition nor cause
 paresis,276,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-gingival recession,275,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+gingival recession,275,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,683,st,"mapped to ""periodontal diseases"""
 postpartum hemorrhage,274,map,367,explicit_project_rule,Maternal hemorrhage alias.,Maternal hemorrhage,962,Maternal and neonatal disorders,Maternal and neonatal disorders,approve,,st,
 "lymphoma, b-cell, marginal zone",272,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 muscle weakness,265,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 pressure ulcer,264,map,665,explicit_project_rule,Decubitus ulcer alias.,Decubitus ulcer,653,Skin and subcutaneous diseases,Skin and subcutaneous diseases,approve,,st,
-primary myelofibrosis,264,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+primary myelofibrosis,264,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,964,st,"mapped to ""Myelodysplastic, myeloproliferative, and other hematopoietic neoplasms"""
 seizures,263,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 idiopathic pulmonary fibrosis,262,map,516,explicit_project_rule,Interstitial lung disease grouping; confirm primary disease versus secondary fibrosis.,Interstitial lung disease and pulmonary sarcoidosis,508,Chronic respiratory diseases,Chronic respiratory diseases,approve,,st,
-skin diseases,262,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+skin diseases,262,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,653,st,"mapped to ""skin and subcutaneous diseases"" broadly at gbd level 2"
 bacterial infections,260,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 temporomandibular joint disorders,260,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-cigarette smoking,259,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+cigarette smoking,259,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,behavioral risk
 gastrointestinal diseases,259,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 hematologic diseases,259,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-"behavior, addictive",258,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+"behavior, addictive",258,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,non-specific behavior
 neuroblastoma,257,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-post-acute covid-19 syndrome,256,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+post-acute covid-19 syndrome,256,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,1048,st,"mapped to ""COVID-19"""
 alopecia,255,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-communicable diseases,255,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+communicable diseases,255,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,too broad
 "carcinoma, ovarian epithelial",252,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-chronic periodontitis,252,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+chronic periodontitis,252,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,683,st,"mapped to ""periodontal diseases"""
 fatty liver,252,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 pulmonary embolism,252,map,507,explicit_project_rule,Proposed other cardiovascular/circulatory cause; validate against GBD scope.,Other cardiovascular and circulatory diseases,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
 cicatrix,251,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 edema,251,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 pelvic organ prolapse,251,map,608,explicit_project_rule,Genital prolapse alias.,Genital prolapse,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
-"depressive disorder, treatment-resistant",250,map,568,explicit_project_rule,Major depressive disorder alias/subtype.,Major depressive disorder,558,Mental disorders,Mental disorders,pending,,st,not sure if these trials spcifify MDD
-eczema,250,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+"depressive disorder, treatment-resistant",250,map,568,explicit_project_rule,Major depressive disorder alias/subtype.,Major depressive disorder,558,Mental disorders,Mental disorders,approve,567,st,"mapped to ""depressive disorders"""
+eczema,250,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,653,st,"mapped to ""skin and subcutaneous diseases"" broadly at gbd level 2"
 biliary tract neoplasms,247,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 sexually transmitted diseases,247,map,393,explicit_project_rule,STI umbrella remains within GBD HIV/AIDS and STI level 2.,Sexually transmitted infections excluding HIV,955,HIV/AIDS and sexually transmitted infections,HIV/AIDS and sexually transmitted infections,approve,,st,
 diabetic retinopathy,246,review,587,explicit_project_rule,"Diabetes complication; category attribution needs review, especially vision/neuropathy studies.",Diabetes mellitus,974,Diabetes and kidney diseases,Diabetes and kidney diseases,approve,,st,
 muscular atrophy,246,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 skin neoplasms,246,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 emergence delirium,243,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-pruritus,243,map,663,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Pruritus,653,Skin and subcutaneous diseases,Skin and subcutaneous diseases,pending,,st,"need to check trial contexts bc could describe kidney, liver,other organ dz"
-labor pain,242,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+pruritus,243,map,663,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Pruritus,653,Skin and subcutaneous diseases,Skin and subcutaneous diseases,approve,,st,
+labor pain,242,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,366,st,"mapped to ""maternal disorders"""
 diabetic neuropathies,239,review,587,explicit_project_rule,"Diabetes complication; category attribution needs review, especially vision/neuropathy studies.",Diabetes mellitus,974,Diabetes and kidney diseases,Diabetes and kidney diseases,approve,,st,
 hemiplegia,239,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 myeloproliferative disorders,237,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,964,st,"changed to ""Myelodysplastic, myeloproliferative, and other hematopoietic neoplasms"""
@@ -330,57 +330,57 @@ tinnitus,237,review,,unresolved,No proposed mapping. Review the mesh term and tr
 brain diseases,235,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "muscular dystrophy, duchenne",235,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "hernia, inguinal",234,map,531,explicit_project_rule,Abdominal hernia subtype.,"Inguinal, femoral, and abdominal hernia",526,Digestive diseases,Digestive diseases,approve,,st,
-mood disorders,234,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-tobacco use,234,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+mood disorders,234,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,558,st,"mapped to ""mental disorders"" broadly at gbd level 2"
+tobacco use,234,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,behavioral risk
 "scleroderma, systemic",232,map,639,explicit_project_rule,Proposed other musculoskeletal disorder; confirm GBD residual scope; systemic conditions cross MeSH organ trees.,Other musculoskeletal disorders,626,Musculoskeletal disorders,Musculoskeletal disorders,approve,,st,included in GBDÕs Other musculoskeletal disorders framework
 venous thromboembolism,232,map,507,explicit_project_rule,Proposed other cardiovascular/circulatory cause; validate against GBD scope.,Other cardiovascular and circulatory diseases,491,Cardiovascular diseases,Cardiovascular diseases,pending,,st,"need to check what ""other"" refers to"
-generalized anxiety disorder,231,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+generalized anxiety disorder,231,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,571,st,"mapped to ""anxiety disorders"""
 kidney calculi,230,map,596,explicit_project_rule,Urolithiasis alias.,Urolithiasis,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
 "arthritis, psoriatic",229,map,639,explicit_project_rule,Proposed other musculoskeletal disorder; confirm GBD residual scope; systemic conditions cross MeSH organ trees.,Other musculoskeletal disorders,626,Musculoskeletal disorders,Musculoskeletal disorders,approve,,st,included in GBDÕs Other musculoskeletal disorders framework
 essential hypertension,228,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 astigmatism,227,map,999,explicit_project_rule,Refraction-disorder alias/subtype.,Refraction disorders,669,Sense organ diseases,Sense organ diseases,approve,,st,
-musculoskeletal pain,227,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+musculoskeletal pain,227,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,626,st,"mapped to ""musculoskeletal disorders"" broadly at gbd level 2"
 immune system diseases,226,review,,explicit_project_rule,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.,,,,,pending,,,
-vaping,226,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+vaping,226,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,behavioral risk
 diabetic nephropathies,225,map,589,explicit_project_rule,Chronic kidney disease grouping; polycystic/diabetic etiologies stay within diabetes/kidney level 2.,Chronic kidney disease,974,Diabetes and kidney diseases,Diabetes and kidney diseases,approve,,st,
 refractive errors,224,map,999,explicit_project_rule,Refraction-disorder alias/subtype.,Refraction disorders,669,Sense organ diseases,Sense organ diseases,approve,,st,
-"parkinson disease 4, autosomal dominant lewy body",223,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+"parkinson disease 4, autosomal dominant lewy body",223,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,544,st,"mapped to ""parkinson's disease"""
 papillomavirus infections,222,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 heart valve diseases,221,map,504,explicit_project_rule,Rheumatic/nonrheumatic subtype is not specified; both fall within cardiovascular level 2. Review detailed target.,Non-rheumatic valvular heart disease,491,Cardiovascular diseases,Cardiovascular diseases,pending,,st,might include rheumatic
-astrocytoma,220,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+astrocytoma,220,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,477,st,"mapped to ""brain and central nervous system cancer"""
 "gait disorders, neurologic",220,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "lung diseases, interstitial",220,map,516,explicit_project_rule,Interstitial lung disease grouping; confirm primary disease versus secondary fibrosis.,Interstitial lung disease and pulmonary sarcoidosis,508,Chronic respiratory diseases,Chronic respiratory diseases,approve,,st,
 lymphedema,219,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 peripheral nervous system diseases,219,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-cough,217,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+cough,217,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,non-specific symptom
 hypothermia,217,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-patient participation,217,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-health education,216,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+patient participation,217,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,behavior
+health education,216,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,non-specific intervention
 presbyopia,216,map,1000,explicit_project_rule,Near vision loss candidate.,Near vision loss,669,Sense organ diseases,Sense organ diseases,approve,,st,
-fasting,215,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+fasting,215,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,non-specific behavior
 "malaria, falciparum",215,map,345,explicit_project_rule,Malaria subtype.,Malaria,344,Neglected tropical diseases and malaria,Neglected tropical diseases and malaria,approve,,st,IHME combines malaria with NTDs
 mobility limitation,215,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 central nervous system diseases,212,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "leukemia, myelomonocytic, chronic",212,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 macular edema,212,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "purpura, thrombocytopenic, idiopathic",212,map,619,explicit_project_rule,Specified endocrine/blood condition; broad MeSH endocrine headings cannot all be assigned here.,"Endocrine, metabolic, blood, and immune disorders",640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
-caregiver burden,211,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+caregiver burden,211,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,social
 digestive system diseases,211,review,,explicit_project_rule,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.,,,,,pending,,,
 severe acute respiratory syndrome,210,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 varicose ulcer,208,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-adolescent behavior,207,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+adolescent behavior,207,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,behavior
 intervertebral disc displacement,207,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 myofascial pain syndromes,207,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-osteosarcoma,207,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-intermittent fasting,206,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-"phobia, social",206,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+osteosarcoma,207,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,1012,st,"mapped to ""malignant neoplasm of bone and articular cartilage"""
+intermittent fasting,206,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,behavior
+"phobia, social",206,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,558,st,"mapped to ""mental disorders"" broadly at gbd level 2"
 "lymphoma, t-cell, peripheral",204,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 aphasia,203,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 glucose metabolism disorders,202,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "keratosis, actinic",202,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-leiomyoma,202,review,604,explicit_project_rule,Leiomyoma without uterine site is ambiguous.,Uterine fibroids,640,Other non-communicable diseases,Other non-communicable diseases,pending,,st,benign tumor that can also occur outside uterus
+leiomyoma,202,review,604,explicit_project_rule,Leiomyoma without uterine site is ambiguous.,Uterine fibroids,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
 respiratory tract diseases,202,review,,explicit_project_rule,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.,,,,,pending,,,
-"burnout, psychological",201,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+"burnout, psychological",201,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,non-specific
 radiculopathy,201,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 anorexia nervosa,200,map,573,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Anorexia nervosa,558,Mental disorders,Mental disorders,approve,,st,
 memory disorders,200,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -394,7 +394,7 @@ shoulder impingement syndrome,190,review,,unresolved,No proposed mapping. Review
 dental plaque,188,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "spondylitis, ankylosing",188,map,639,explicit_project_rule,Proposed other musculoskeletal disorder; confirm GBD residual scope; systemic conditions cross MeSH organ trees.,Other musculoskeletal disorders,626,Musculoskeletal disorders,Musculoskeletal disorders,approve,,st,
 ischemia,187,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-neurodegenerative diseases,187,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+neurodegenerative diseases,187,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,542,st,"mapped to ""neurological disorders"" broadly at gbd level 2"
 oropharyngeal neoplasms,187,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 cerebrovascular disorders,186,map,494,explicit_project_rule,Cerebrovascular grouping proposed; confirm the term represents stroke rather than a risk state.,Stroke,491,Cardiovascular diseases,Cardiovascular diseases,pending,,st,broader than stroke
 dentin sensitivity,185,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -413,7 +413,7 @@ abdominal pain,178,review,,unresolved,No proposed mapping. Review the mesh term 
 congenital abnormalities,177,map,641,explicit_project_rule,Congenital defects go to Other non-communicable diseases rather than the affected organ system.,Congenital birth defects,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
 drug-related side effects and adverse reactions,177,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 surgical wound,177,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-tobacco smoking,177,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+tobacco smoking,177,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,behavioral risk
 wrist fractures,176,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 pulmonary atelectasis,175,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 alveolar bone loss,174,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -423,32 +423,32 @@ uterine cervical dysplasia,174,review,,unresolved,No proposed mapping. Review th
 bites and stings,173,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "lymphoma, t-cell",173,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 mitral valve insufficiency,173,map,504,explicit_project_rule,Rheumatic/nonrheumatic subtype is not specified; both fall within cardiovascular level 2. Review detailed target.,Non-rheumatic valvular heart disease,491,Cardiovascular diseases,Cardiovascular diseases,pending,,st,might include rheumatic
-"tachycardia, ventricular",173,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+"tachycardia, ventricular",173,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,491,st,"mapped to ""cardiovascular diseases"" broadly at gbd level 2"
 respiration disorders,172,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 ankle injuries,170,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "genetic diseases, inborn",170,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-"obesity, abdominal",170,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-treatment adherence and compliance,170,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+"obesity, abdominal",170,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,metabolic risk
+treatment adherence and compliance,170,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,health-related behavior
 cardiomyopathies,169,map,499,explicit_project_rule,Cardiomyopathy grouping.,Cardiomyopathy and myocarditis,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
 mesothelioma,169,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 subarachnoid hemorrhage,169,map,497,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Subarachnoid hemorrhage,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
-vision disorders,169,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+vision disorders,169,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,669,st,"mapped to ""sense organ diseases"" broadly at gbd level 2"
 angina pectoris,168,map,493,explicit_project_rule,Ischemic heart disease alias/subtype.,Ischemic heart disease,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
 mouth neoplasms,168,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-hypertriglyceridemia,166,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+hypertriglyceridemia,166,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,metabolic risk
 "lymphoma, t-cell, cutaneous",166,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-peripheral vascular diseases,166,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+peripheral vascular diseases,166,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,491,st,"mapped to ""cardiovascular diseases"" broadly at gbd level 2"
 "carcinoma, basal cell",165,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 intervertebral disc degeneration,164,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-tobacco use cessation,163,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+tobacco use cessation,163,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,behavior
 appendicitis,162,map,529,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Appendicitis,526,Digestive diseases,Digestive diseases,approve,,st,
 food hypersensitivity,162,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-"pneumonia, ventilator-associated",162,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-bronchopulmonary dysplasia,161,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+"pneumonia, ventilator-associated",162,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,956,st,"mapped to ""respiratory infections and tubercolosis"" broadly at gbd level 2"
+bronchopulmonary dysplasia,161,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,380,st,"mapped to ""neonatal disorders"" at gbd level 2"
 tennis elbow,161,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 respiratory syncytial virus infections,160,map,322,explicit_project_rule,Proposed lower respiratory infection grouping; influenza site/severity is not identified by this term alone. Review before use.,Lower respiratory infections,956,Respiratory infections and tuberculosis,Respiratory infections and tuberculosis,approve,,st,
 aneurysm,158,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-self-injurious behavior,158,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+self-injurious behavior,158,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,718,st,"mapped to ""self-harm"""
 psychomotor agitation,157,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 chronic limb-threatening ischemia,156,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 endocrine system diseases,156,review,,explicit_project_rule,Broad MeSH heading spans multiple GBD causes. Prefer more specific directly assigned condition terms.,,,,,pending,,,
@@ -458,11 +458,11 @@ intermittent claudication,156,map,502,explicit_project_rule,Proposed peripheral 
 patellofemoral pain syndrome,155,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 wound infection,155,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 scoliosis,154,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-weight gain,153,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+weight gain,153,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,metabolic risk
 hot flashes,152,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 shock,152,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 cerebral hemorrhage,151,review,496,explicit_project_rule,Traumatic/nontraumatic distinction is necessary for broad hemorrhage terms.,Intracerebral hemorrhage,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
-fever,151,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+fever,151,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,non-specific symptom
 intellectual disability,151,review,582,explicit_project_rule,Idiopathic versus syndromic cause not identified; candidate only.,Idiopathic developmental intellectual disability,558,Mental disorders,Mental disorders,pending,,st,"proposed GBD cause is ""idiopathic developmental intellectual disability"" but the broad MeSH term doesn't say that the cause is idiopathic"
 pneumococcal infections,151,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 keratoconus,150,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -470,19 +470,19 @@ poliomyelitis,150,review,,unresolved,No proposed mapping. Review the mesh term a
 acute lung injury,149,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "tuberculosis, pulmonary",149,map,297,explicit_project_rule,"Tuberculosis subtypes roll to respiratory infections and tuberculosis, regardless of organ.",Tuberculosis,956,Respiratory infections and tuberculosis,Respiratory infections and tuberculosis,approve,,st,
 xerostomia,149,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-emphysema,148,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-retinal diseases,148,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+emphysema,148,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,509,st,"mapped to ""Chronic obstructive pulmonary disease"""
+retinal diseases,148,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,669,st,"mapped to ""sense organ diseases"" broadly at gbd level 2"
 rosacea,148,map,668,explicit_project_rule,Proposed other skin disease; validate residual scope.,Other skin and subcutaneous diseases,653,Skin and subcutaneous diseases,Skin and subcutaneous diseases,pending,,,
 clostridium infections,147,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-patient acceptance of health care,147,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+patient acceptance of health care,147,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,non-specific behavior
 "anemia, aplastic",146,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-adenocarcinoma of lung,145,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-coitus,145,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-movement disorders,145,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+adenocarcinoma of lung,145,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,426,st,"mapped to ""Tracheal, bronchus, and lung cancer"""
+coitus,145,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,behavior
+movement disorders,145,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,542,st,"mapped to ""neurological disorders"" broadly at gbd level 2"
 nephrolithiasis,145,map,596,explicit_project_rule,Urolithiasis alias.,Urolithiasis,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
 neuromuscular diseases,145,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-gliosarcoma,144,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-peri-implantitis,144,map,680,explicit_project_rule,Oral condition mapping at parent level; no split between deciduous/permanent teeth inferred.,Oral disorders,640,Other non-communicable diseases,Other non-communicable diseases,pending,,,
+gliosarcoma,144,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,477,st,"mapped to ""brain and central nervous system cancer"""
+peri-implantitis,144,map,680,explicit_project_rule,Oral condition mapping at parent level; no split between deciduous/permanent teeth inferred.,Oral disorders,640,Other non-communicable diseases,Other non-communicable diseases,approve,683,st,"mapped to ""periodontal diseases"""
 "osteoporosis, postmenopausal",143,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "aortic aneurysm, abdominal",142,map,501,explicit_project_rule,Aortic aneurysm subtype.,Aortic aneurysm,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
 gastrointestinal hemorrhage,142,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -491,18 +491,18 @@ gastrointestinal hemorrhage,142,review,,unresolved,No proposed mapping. Review t
 malocclusion,141,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 tendinopathy,141,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 celiac disease,140,map,1161,explicit_project_rule,Proposed other digestive disease; validate scope of residual category.,Other digestive diseases,526,Digestive diseases,Digestive diseases,pending,,,
-child behavior,140,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-death,140,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+child behavior,140,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,behavior
+death,140,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,non-specific
 hepatitis,140,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 intracranial aneurysm,140,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-vitiligo,140,map,668,explicit_project_rule,Proposed other skin disease; validate residual scope.,Other skin and subcutaneous diseases,653,Skin and subcutaneous diseases,Skin and subcutaneous diseases,pending,,,
-borderline personality disorder,139,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+vitiligo,140,map,668,explicit_project_rule,Proposed other skin disease; validate residual scope.,Other skin and subcutaneous diseases,653,Skin and subcutaneous diseases,Skin and subcutaneous diseases,approve,,st,
+borderline personality disorder,139,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,approve,585,st,"mapped to ""other mental disorders"""
 "plaque, amyloid",139,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 uveal melanoma,139,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,pending,,,
 cocaine-related disorders,138,map,563,explicit_project_rule,Cocaine use disorder alias.,Cocaine use disorders,973,Substance use disorders,Substance use disorders,pending,,st,need to whether the trials are about cocaine-use disorder or consequences like toxicity or other complications
 dysmenorrhea,138,map,612,explicit_project_rule,Proposed other gynecological disease.,Other gynecological diseases,640,Other non-communicable diseases,Other non-communicable diseases,pending,,,
-neurologic manifestations,138,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-hyperphagia,137,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+neurologic manifestations,138,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,sign/symptom
+hyperphagia,137,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,non-specific symptom
 "hypertension, portal",137,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 hyperthermia,137,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "scleroderma, diffuse",137,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -547,7 +547,7 @@ sjogren's syndrome,129,review,,unresolved,No proposed mapping. Review the mesh t
 barrett esophagus,128,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 body weight changes,128,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 dyspepsia,128,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-herpes zoster,128,map,342,explicit_project_rule,Varicella/herpes zoster branch.,Varicella and herpes zoster,961,Other infectious diseases,Other infectious diseases,pending,,,
+herpes zoster,128,map,342,explicit_project_rule,Varicella/herpes zoster branch.,Varicella and herpes zoster,961,Other infectious diseases,Other infectious diseases,approve,,st,
 intestinal diseases,128,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 nutrition disorders,128,review,386,explicit_project_rule,Broad nutrition term can include excess as well as deficiency; review.,Nutritional deficiencies,386,Nutritional deficiencies,Nutritional deficiencies,pending,,st,nutrition disorders includes both undernutrition and overnutrition
 pelvic pain,128,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -596,7 +596,7 @@ digestive system neoplasms,116,map,410,explicit_project_rule,Observed neoplasm c
 "fasciitis, plantar",116,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 meibomian gland dysfunction,116,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 retinitis pigmentosa,116,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-tetanus,116,map,340,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Tetanus,961,Other infectious diseases,Other infectious diseases,pending,,,
+tetanus,116,map,340,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Tetanus,961,Other infectious diseases,Other infectious diseases,approve,,st,
 whooping cough,116,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 altitude sickness,115,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 diabetes complications,115,review,587,explicit_project_rule,"Diabetes complication; category attribution needs review, especially vision/neuropathy studies.",Diabetes mellitus,974,Diabetes and kidney diseases,Diabetes and kidney diseases,approve,,st,
@@ -660,12 +660,12 @@ developmental disabilities,101,review,,unresolved,No proposed mapping. Review th
 "leukemia, biphenotypic, acute",101,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 occupational stress,101,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 uveitis,101,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-diphtheria,100,map,338,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Diphtheria,961,Other infectious diseases,Other infectious diseases,pending,,,
+diphtheria,100,map,338,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Diphtheria,961,Other infectious diseases,Other infectious diseases,approve,,st,
 hepatic encephalopathy,100,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 nasal obstruction,100,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 arterial occlusive diseases,99,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 bile duct neoplasms,99,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-"hernia, ventral",99,map,531,explicit_project_rule,Abdominal hernia subtype.,"Inguinal, femoral, and abdominal hernia",526,Digestive diseases,Digestive diseases,pending,,,
+"hernia, ventral",99,map,531,explicit_project_rule,Abdominal hernia subtype.,"Inguinal, femoral, and abdominal hernia",526,Digestive diseases,Digestive diseases,approve,,st,
 pelvic floor disorders,99,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 cutis laxa,98,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 hernia,98,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -718,7 +718,7 @@ parkinsonian disorders,88,review,,unresolved,No proposed mapping. Review the mes
 phantom limb,88,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 sezary syndrome,88,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "ventricular dysfunction, left",88,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-frontotemporal dementia,87,map,543,explicit_project_rule,Dementia grouped under Neurological disorders in supplied GBD hierarchy.,Alzheimer's disease and other dementias,542,Neurological disorders,Neurological disorders,pending,,,
+frontotemporal dementia,87,map,543,explicit_project_rule,Dementia grouped under Neurological disorders in supplied GBD hierarchy.,Alzheimer's disease and other dementias,542,Neurological disorders,Neurological disorders,approve,,st,
 hypercapnia,87,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 problem behavior,87,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 alcohol-related disorders,86,map,560,explicit_project_rule,Alcohol use disorder alias; not alcohol consumption alone.,Alcohol use disorders,973,Substance use disorders,Substance use disorders,pending,,,
@@ -728,8 +728,8 @@ empowerment,86,review,,unresolved,No proposed mapping. Review the mesh term and 
 multiple system atrophy,86,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 mycoses,86,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "pneumonia, viral",86,map,322,explicit_project_rule,Proposed lower respiratory infection grouping; influenza site/severity is not identified by this term alone. Review before use.,Lower respiratory infections,956,Respiratory infections and tuberculosis,Respiratory infections and tuberculosis,approve,,st,
-atrial flutter,85,map,500,explicit_project_rule,Atrial fibrillation/flutter combined GBD cause.,Atrial fibrillation and flutter,491,Cardiovascular diseases,Cardiovascular diseases,pending,,,
-cholecystitis,85,map,534,explicit_project_rule,Gallbladder/biliary disease subtype.,Gallbladder and biliary diseases,526,Digestive diseases,Digestive diseases,pending,,,
+atrial flutter,85,map,500,explicit_project_rule,Atrial fibrillation/flutter combined GBD cause.,Atrial fibrillation and flutter,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
+cholecystitis,85,map,534,explicit_project_rule,Gallbladder/biliary disease subtype.,Gallbladder and biliary diseases,526,Digestive diseases,Digestive diseases,approve,,st,
 "cicatrix, hypertrophic",85,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 colonic diseases,85,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 communication disorders,85,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -747,20 +747,20 @@ hypertrophy,84,review,,unresolved,No proposed mapping. Review the mesh term and 
 bone diseases,83,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "death, sudden, cardiac",83,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 disorders of excessive somnolence,83,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-gallstones,83,map,534,explicit_project_rule,Gallbladder/biliary disease subtype.,Gallbladder and biliary diseases,526,Digestive diseases,Digestive diseases,pending,,,
+gallstones,83,map,534,explicit_project_rule,Gallbladder/biliary disease subtype.,Gallbladder and biliary diseases,526,Digestive diseases,Digestive diseases,approve,,st,
 pituitary neoplasms,83,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-premenstrual syndrome,83,map,609,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Premenstrual syndrome,640,Other non-communicable diseases,Other non-communicable diseases,pending,,,
+premenstrual syndrome,83,map,609,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Premenstrual syndrome,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
 short bowel syndrome,83,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 anosmia,82,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 appetitive behavior,82,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-cerebral infarction,82,map,494,explicit_project_rule,Cerebrovascular grouping proposed; confirm the term represents stroke rather than a risk state.,Stroke,491,Cardiovascular diseases,Cardiovascular diseases,pending,,,
+cerebral infarction,82,map,494,explicit_project_rule,Cerebrovascular grouping proposed; confirm the term represents stroke rather than a risk state.,Stroke,491,Cardiovascular diseases,Cardiovascular diseases,approve,495,st,changed to 'ischemic stroke'
 deafness,82,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "hemoglobinuria, paroxysmal",82,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-hyperopia,82,map,999,explicit_project_rule,Refraction-disorder alias/subtype.,Refraction disorders,669,Sense organ diseases,Sense organ diseases,pending,,,
+hyperopia,82,map,999,explicit_project_rule,Refraction-disorder alias/subtype.,Refraction disorders,669,Sense organ diseases,Sense organ diseases,approve,,st,
 "hyperparathyroidism, secondary",82,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 liver failure,82,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "lung diseases, obstructive",82,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-"pancreatitis, chronic",82,map,535,explicit_project_rule,Pancreatitis subtype.,Pancreatitis,526,Digestive diseases,Digestive diseases,pending,,,
+"pancreatitis, chronic",82,map,535,explicit_project_rule,Pancreatitis subtype.,Pancreatitis,526,Digestive diseases,Digestive diseases,approve,,st,
 radiodermatitis,82,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 aortic valve disease,81,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "cardiomyopathy, dilated",81,map,499,explicit_project_rule,Cardiomyopathy grouping.,Cardiomyopathy and myocarditis,491,Cardiovascular diseases,Cardiovascular diseases,pending,,,
@@ -801,7 +801,7 @@ incisional hernia,78,review,,unresolved,No proposed mapping. Review the mesh ter
 kinesiophobia,78,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 syncope,78,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 wilms tumor,78,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-craniocerebral trauma,77,map,687,explicit_project_rule,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism.",Injuries,,,Injuries,pending,,,
+craniocerebral trauma,77,map,687,explicit_project_rule,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism.",Injuries,,,Injuries,approve,,st,
 tricuspid valve insufficiency,77,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 gastroenteritis,76,review,302,explicit_project_rule,Infectious versus noninfectious etiology cannot be inferred; candidate only.,Diarrheal diseases,957,Enteric infections,Enteric infections,pending,,,
 homosexuality,76,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -871,7 +871,7 @@ dental pulp diseases,69,review,,unresolved,No proposed mapping. Review the mesh 
 dystonia,69,map,557,explicit_project_rule,Proposed other neurological disorder; residual-category scope needs review.,Other neurological disorders,542,Neurological disorders,Neurological disorders,pending,,,
 laryngeal diseases,69,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 pneumothorax,69,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-risk-taking,69,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
+risk-taking,69,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,exclude,,st,refer to a non-specific behavior
 thoracic neoplasms,69,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 "breast neoplasms, male",68,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 "candidiasis, vulvovaginal",68,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -890,7 +890,7 @@ respiratory sounds,67,review,,unresolved,No proposed mapping. Review the mesh te
 wet macular degeneration,67,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 albuminuria,66,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 breast cancer lymphedema,66,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-cholelithiasis,66,map,534,explicit_project_rule,Gallbladder/biliary disease subtype.,Gallbladder and biliary diseases,526,Digestive diseases,Digestive diseases,pending,,,
+cholelithiasis,66,map,534,explicit_project_rule,Gallbladder/biliary disease subtype.,Gallbladder and biliary diseases,526,Digestive diseases,Digestive diseases,approve,,st,
 epstein-barr virus infections,66,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 fistula,66,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 hand injuries,66,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -919,7 +919,7 @@ vaccination hesitancy,64,review,,unresolved,No proposed mapping. Review the mesh
 acute-on-chronic liver failure,63,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 cluster headache,63,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 febrile neutropenia,63,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-hypothyroidism,63,map,619,explicit_project_rule,Specified endocrine/blood condition; broad MeSH endocrine headings cannot all be assigned here.,"Endocrine, metabolic, blood, and immune disorders",640,Other non-communicable diseases,Other non-communicable diseases,pending,,,
+hypothyroidism,63,map,619,explicit_project_rule,Specified endocrine/blood condition; broad MeSH endocrine headings cannot all be assigned here.,"Endocrine, metabolic, blood, and immune disorders",640,Other non-communicable diseases,Other non-communicable diseases,approve,1032,st,changed to 'thyroid diseases'
 mental fatigue,63,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 neuromyelitis optica,63,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "phobia, specific",63,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -931,11 +931,11 @@ rare diseases,63,review,,unresolved,No proposed mapping. Review the mesh term an
 "rejection, psychology",63,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 sleep hygiene,63,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 spasm,63,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-tension-type headache,63,map,548,explicit_project_rule,Tension-type headache exact condition.,Tension-type headache,542,Neurological disorders,Neurological disorders,pending,,,
+tension-type headache,63,map,548,explicit_project_rule,Tension-type headache exact condition.,Tension-type headache,542,Neurological disorders,Neurological disorders,approve,,st,
 tooth loss,63,map,680,explicit_project_rule,Oral condition mapping at parent level; no split between deciduous/permanent teeth inferred.,Oral disorders,640,Other non-communicable diseases,Other non-communicable diseases,pending,,,
 tremor,63,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 trismus,63,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-cleft lip,62,map,641,explicit_project_rule,Congenital defects go to Other non-communicable diseases rather than the affected organ system.,Congenital birth defects,640,Other non-communicable diseases,Other non-communicable diseases,pending,,,
+cleft lip,62,map,641,explicit_project_rule,Congenital defects go to Other non-communicable diseases rather than the affected organ system.,Congenital birth defects,640,Other non-communicable diseases,Other non-communicable diseases,approve,644,st,changed to 'orofacial clefts'
 "lichen planus, oral",62,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 meningeal carcinomatosis,62,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 pancreatic diseases,62,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -945,14 +945,14 @@ trigeminal neuralgia,62,review,,unresolved,No proposed mapping. Review the mesh 
 venous insufficiency,62,map,507,explicit_project_rule,Proposed other cardiovascular/circulatory cause; validate against GBD scope.,Other cardiovascular and circulatory diseases,491,Cardiovascular diseases,Cardiovascular diseases,pending,,,
 ataxia,61,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 failed back surgery syndrome,61,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-motor neuron disease,61,map,554,explicit_project_rule,Motor neuron disease alias/subtype.,Motor neuron disease,542,Neurological disorders,Neurological disorders,pending,,,
+motor neuron disease,61,map,554,explicit_project_rule,Motor neuron disease alias/subtype.,Motor neuron disease,542,Neurological disorders,Neurological disorders,approve,,st,
 seroma,61,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 systemic inflammatory response syndrome,61,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 vaginal neoplasms,61,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 esophageal and gastric varices,60,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 gaucher disease,60,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 hyperhidrosis,60,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-migraine without aura,60,map,547,explicit_project_rule,Migraine subtype.,Migraine,542,Neurological disorders,Neurological disorders,pending,,,
+migraine without aura,60,map,547,explicit_project_rule,Migraine subtype.,Migraine,542,Neurological disorders,Neurological disorders,approve,,st,
 pathologic complete response,60,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 rhabdoid tumor,60,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 rumination syndrome,60,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -960,7 +960,7 @@ rumination syndrome,60,review,,unresolved,No proposed mapping. Review the mesh t
 spinal dysraphism,60,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "tooth, impacted",60,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 airway obstruction,59,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-aortic aneurysm,59,map,501,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Aortic aneurysm,491,Cardiovascular diseases,Cardiovascular diseases,pending,,,
+aortic aneurysm,59,map,501,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Aortic aneurysm,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
 catheter-related infections,59,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 condylomata acuminata,59,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "dilatation, pathologic",59,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1021,26 +1021,26 @@ adenomyosis,54,review,,unresolved,No proposed mapping. Review the mesh term and 
 aortic dissection,54,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 epiretinal membrane,54,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 epistaxis,54,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-headache disorders,54,map,972,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Headache disorders,542,Neurological disorders,Neurological disorders,pending,,,
+headache disorders,54,map,972,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Headache disorders,542,Neurological disorders,Neurological disorders,approve,,st,
 hematoma,54,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "hematoma, subdural, chronic",54,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 hypopharyngeal neoplasms,54,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 literacy,54,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 lung injury,54,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 lysosomal storage diseases,54,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-smoldering multiple myeloma,54,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,pending,,,
+smoldering multiple myeloma,54,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,486,st,"mapped to ""Multiple myeloma"""
 vulvodynia,54,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "amyloid neuropathies, familial",53,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 aortic valve insufficiency,53,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 blood coagulation disorders,53,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-chickenpox,53,map,342,explicit_project_rule,Varicella/herpes zoster branch.,Varicella and herpes zoster,961,Other infectious diseases,Other infectious diseases,pending,,,
+chickenpox,53,map,342,explicit_project_rule,Varicella/herpes zoster branch.,Varicella and herpes zoster,961,Other infectious diseases,Other infectious diseases,approve,,st,
 "dendritic cell sarcoma, interdigitating",53,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 lethargy,53,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 lymphatic diseases,53,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 meniere disease,53,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-migraine with aura,53,map,547,explicit_project_rule,Migraine subtype.,Migraine,542,Neurological disorders,Neurological disorders,pending,,,
+migraine with aura,53,map,547,explicit_project_rule,Migraine subtype.,Migraine,542,Neurological disorders,Neurological disorders,approve,,st,
 placenta accreta,53,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-graves disease,52,map,619,explicit_project_rule,Specified endocrine/blood condition; broad MeSH endocrine headings cannot all be assigned here.,"Endocrine, metabolic, blood, and immune disorders",640,Other non-communicable diseases,Other non-communicable diseases,pending,,,
+graves disease,52,map,619,explicit_project_rule,Specified endocrine/blood condition; broad MeSH endocrine headings cannot all be assigned here.,"Endocrine, metabolic, blood, and immune disorders",640,Other non-communicable diseases,Other non-communicable diseases,approve,1032,st,changed to 'thyroid diseases'
 hyperpigmentation,52,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 perinatal death,52,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 premature ejaculation,52,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1066,7 +1066,7 @@ vaginitis,51,review,,unresolved,No proposed mapping. Review the mesh term and tr
 ventilator-induced lung injury,51,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 dysphonia,50,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "glomerulonephritis, membranous",50,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-ileus,50,map,530,explicit_project_rule,Paralytic ileus/intestinal obstruction combined category.,Paralytic ileus and intestinal obstruction,526,Digestive diseases,Digestive diseases,pending,,,
+ileus,50,map,530,explicit_project_rule,Paralytic ileus/intestinal obstruction combined category.,Paralytic ileus and intestinal obstruction,526,Digestive diseases,Digestive diseases,approve,,st,
 "lymphohistiocytosis, hemophagocytic",50,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 neuroinflammatory diseases,50,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 peptic ulcer,50,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1138,7 +1138,7 @@ affective symptoms,45,review,,unresolved,No proposed mapping. Review the mesh te
 brain edema,45,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 bundle-branch block,45,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 cellulite,45,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-cleft palate,45,map,641,explicit_project_rule,Congenital defects go to Other non-communicable diseases rather than the affected organ system.,Congenital birth defects,640,Other non-communicable diseases,Other non-communicable diseases,pending,,,
+cleft palate,45,map,641,explicit_project_rule,Congenital defects go to Other non-communicable diseases rather than the affected organ system.,Congenital birth defects,640,Other non-communicable diseases,Other non-communicable diseases,approve,644,st,changed to 'orofacial clefts'
 conduct disorder,45,map,579,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Conduct disorder,558,Mental disorders,Mental disorders,approve,,st,
 esophageal diseases,45,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 familial primary pulmonary hypertension,45,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1152,10 +1152,10 @@ tauopathies,45,review,,unresolved,No proposed mapping. Review the mesh term and 
 "telangiectasia, hereditary hemorrhagic",45,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 thoracic diseases,45,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 tinea pedis,45,map,659,explicit_project_rule,Specified fungal skin disease; skin infections belong to Skin and subcutaneous diseases.,Fungal skin diseases,653,Skin and subcutaneous diseases,Skin and subcutaneous diseases,approve,,st,
-tonsillitis,45,map,328,explicit_project_rule,Upper respiratory infection grouping; chronic/noninfectious presentations require review.,Upper respiratory infections,956,Respiratory infections and tuberculosis,Respiratory infections and tuberculosis,pending,,,
+tonsillitis,45,map,328,explicit_project_rule,Upper respiratory infection grouping; chronic/noninfectious presentations require review.,Upper respiratory infections,956,Respiratory infections and tuberculosis,Respiratory infections and tuberculosis,approve,,st,
 autonomic nervous system diseases,44,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 bone marrow failure disorders,44,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-brain infarction,44,map,495,explicit_project_rule,Ischemic stroke alias.,Ischemic stroke,491,Cardiovascular diseases,Cardiovascular diseases,pending,,,
+brain infarction,44,map,495,explicit_project_rule,Ischemic stroke alias.,Ischemic stroke,491,Cardiovascular diseases,Cardiovascular diseases,approve,495,st,changed to 'ischemic stroke'
 cholera,44,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 friedreich ataxia,44,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "histiocytosis, langerhans-cell",44,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1173,9 +1173,9 @@ blepharoptosis,43,review,,unresolved,No proposed mapping. Review the mesh term a
 delayed graft function,43,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 facies,43,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 failure to thrive,43,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-gastritis,43,map,528,explicit_project_rule,Combined GBD gastritis/duodenitis category.,Gastritis and duodenitis,526,Digestive diseases,Digestive diseases,pending,,,
+gastritis,43,map,528,explicit_project_rule,Combined GBD gastritis/duodenitis category.,Gastritis and duodenitis,526,Digestive diseases,Digestive diseases,approve,,st,
 "hand, foot and mouth disease",43,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-hepatoblastoma,43,map,1005,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Hepatoblastoma,410,Neoplasms,Neoplasms,pending,,,
+hepatoblastoma,43,map,1005,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Hepatoblastoma,410,Neoplasms,Neoplasms,approve,,st,
 hyperparathyroidism,43,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 hypoventilation,43,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "infant, premature, diseases",43,map,381,explicit_project_rule,Neonatal preterm-birth grouping; neonatal disease context required.,Neonatal preterm birth,962,Maternal and neonatal disorders,Maternal and neonatal disorders,pending,,st,diseases occurring in premature infants but not necessarily diseases caused by prematurity
@@ -1187,13 +1187,13 @@ optic neuritis,43,review,,unresolved,No proposed mapping. Review the mesh term a
 "pain, intractable",43,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 spinocerebellar ataxias,43,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 stillbirth,43,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-stomach ulcer,43,map,527,explicit_project_rule,Peptic ulcer disease subtype.,Peptic ulcer disease,526,Digestive diseases,Digestive diseases,pending,,,
+stomach ulcer,43,map,527,explicit_project_rule,Peptic ulcer disease subtype.,Peptic ulcer disease,526,Digestive diseases,Digestive diseases,approve,,st,
 ventricular premature complexes,43,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 behcet syndrome,42,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 binge drinking,42,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 bronchiolitis obliterans,42,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 candidiasis,42,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-endocarditis,42,map,503,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Endocarditis,491,Cardiovascular diseases,Cardiovascular diseases,pending,,,
+endocarditis,42,map,503,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Endocarditis,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
 epidermolysis bullosa,42,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 gallbladder diseases,42,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 giant cell arteritis,42,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1202,7 +1202,7 @@ heat stress disorders,42,review,,unresolved,No proposed mapping. Review the mesh
 immunoproliferative disorders,42,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "infant, newborn, diseases",42,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 intraocular lymphoma,42,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-measles,42,map,341,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Measles,961,Other infectious diseases,Other infectious diseases,pending,,,
+measles,42,map,341,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Measles,961,Other infectious diseases,Other infectious diseases,approve,,st,
 oppositional defiant disorder,42,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 rhinosinusitis,42,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "syncope, vasovagal",42,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1248,7 +1248,7 @@ median neuropathy,40,review,,unresolved,No proposed mapping. Review the mesh ter
 paraganglioma,40,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 shoulder fractures,40,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "vasospasm, intracranial",40,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-"aortic aneurysm, thoracic",39,map,501,explicit_project_rule,Aortic aneurysm subtype.,Aortic aneurysm,491,Cardiovascular diseases,Cardiovascular diseases,pending,,,
+"aortic aneurysm, thoracic",39,map,501,explicit_project_rule,Aortic aneurysm subtype.,Aortic aneurysm,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
 bunion,39,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 carcinoma in situ,39,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 cerebellar ataxia,39,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1322,7 +1322,7 @@ hyperandrogenism,36,review,,unresolved,No proposed mapping. Review the mesh term
 intraabdominal infections,36,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "leukemia, megakaryoblastic, acute",36,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 "liver failure, acute",36,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-multiple trauma,36,map,687,explicit_project_rule,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism.",Injuries,,,Injuries,pending,,,
+multiple trauma,36,map,687,explicit_project_rule,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism.",Injuries,,,Injuries,approve,,st,
 myelodysplastic-myeloproliferative diseases,36,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "myopia, degenerative",36,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "neoplasms, squamous cell",36,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
@@ -1359,11 +1359,11 @@ anomia,34,review,,unresolved,No proposed mapping. Review the mesh term and trial
 central serous chorioretinopathy,34,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 chordoma,34,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 confusion,34,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-"glaucoma, angle-closure",34,map,670,explicit_project_rule,Glaucoma subtype.,Glaucoma,669,Sense organ diseases,Sense organ diseases,pending,,,
+"glaucoma, angle-closure",34,map,670,explicit_project_rule,Glaucoma subtype.,Glaucoma,669,Sense organ diseases,Sense organ diseases,approve,,st,
 health risk behaviors,34,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "hernia, hiatal",34,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 hip injuries,34,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-hyperthyroidism,34,map,619,explicit_project_rule,Specified endocrine/blood condition; broad MeSH endocrine headings cannot all be assigned here.,"Endocrine, metabolic, blood, and immune disorders",640,Other non-communicable diseases,Other non-communicable diseases,pending,,,
+hyperthyroidism,34,map,619,explicit_project_rule,Specified endocrine/blood condition; broad MeSH endocrine headings cannot all be assigned here.,"Endocrine, metabolic, blood, and immune disorders",640,Other non-communicable diseases,Other non-communicable diseases,approve,1032,st,changed to 'thyroid diseases'
 infant nutrition disorders,34,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 intraoperative complications,34,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 leg injuries,34,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1412,10 +1412,10 @@ hypertension resistant to conventional therapy,32,review,,unresolved,No proposed
 intervertebral disc disease,32,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "leukemia, plasma cell",32,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
 muscle hypotonia,32,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-myocarditis,32,map,942,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Myocarditis,491,Cardiovascular diseases,Cardiovascular diseases,pending,,,
+myocarditis,32,map,942,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Myocarditis,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
 oral ulcer,32,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 orthomyxoviridae infections,32,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-"pancreatitis, acute necrotizing",32,map,535,explicit_project_rule,Pancreatitis subtype.,Pancreatitis,526,Digestive diseases,Digestive diseases,pending,,,
+"pancreatitis, acute necrotizing",32,map,535,explicit_project_rule,Pancreatitis subtype.,Pancreatitis,526,Digestive diseases,Digestive diseases,approve,,st,
 peripheral arterial occlusive disease 1,32,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 retrognathia,32,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "sarcoidosis, pulmonary",32,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1425,7 +1425,7 @@ tendon injuries,32,review,,unresolved,No proposed mapping. Review the mesh term 
 thinness,32,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 tooth wear,32,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 uterine hemorrhage,32,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-whiplash injuries,32,map,687,explicit_project_rule,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism.",Injuries,,,Injuries,pending,,,
+whiplash injuries,32,map,687,explicit_project_rule,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism.",Injuries,,,Injuries,approve,,st,
 anaphylaxis,31,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 antisocial personality disorder,31,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 blepharitis,31,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1545,7 +1545,7 @@ enterovirus infections,27,review,,unresolved,No proposed mapping. Review the mes
 "hearing loss, sudden",27,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 hematuria,27,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 hemorrhagic disorders,27,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-"hernia, abdominal",27,map,531,explicit_project_rule,Abdominal hernia subtype.,"Inguinal, femoral, and abdominal hernia",526,Digestive diseases,Digestive diseases,pending,,,
+"hernia, abdominal",27,map,531,explicit_project_rule,Abdominal hernia subtype.,"Inguinal, femoral, and abdominal hernia",526,Digestive diseases,Digestive diseases,approve,,st,
 heroin dependence,27,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 lymphadenopathy,27,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 optic nerve diseases,27,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1554,7 +1554,7 @@ ovarian cysts,27,review,,unresolved,No proposed mapping. Review the mesh term an
 pelvic girdle pain,27,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "pemphigoid, bullous",27,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 phlebitis,27,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-presbycusis,27,map,674,explicit_project_rule,Hearing loss grouping.,Age-related and other hearing loss,669,Sense organ diseases,Sense organ diseases,pending,,,
+presbycusis,27,map,674,explicit_project_rule,Hearing loss grouping.,Age-related and other hearing loss,669,Sense organ diseases,Sense organ diseases,approve,,st,
 prostatitis,27,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 psychomotor disorders,27,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 puerperal disorders,27,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1600,7 +1600,7 @@ craniopharyngioma,25,review,,unresolved,No proposed mapping. Review the mesh ter
 "dermatitis, seborrheic",25,map,979,explicit_project_rule,Seborrhoeic dermatitis alias.,Seborrhoeic dermatitis,653,Skin and subcutaneous diseases,Skin and subcutaneous diseases,approve,,st,
 desmoplastic small round cell tumor,25,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 developmental dysplasia of the hip,25,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-duodenal ulcer,25,map,527,explicit_project_rule,Peptic ulcer disease subtype.,Peptic ulcer disease,526,Digestive diseases,Digestive diseases,pending,,,
+duodenal ulcer,25,map,527,explicit_project_rule,Peptic ulcer disease subtype.,Peptic ulcer disease,526,Digestive diseases,Digestive diseases,approve,,st,
 exanthema,25,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "hearing loss, bilateral",25,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "hearing loss, mixed conductive-sensorineural",25,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1618,7 +1618,7 @@ stereotyping,25,review,,unresolved,No proposed mapping. Review the mesh term and
 telangiectasis,25,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 trauma and stressor related disorders,25,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "urea cycle disorders, inborn",25,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-ureteral calculi,25,map,596,explicit_project_rule,Urolithiasis alias.,Urolithiasis,640,Other non-communicable diseases,Other non-communicable diseases,pending,,,
+ureteral calculi,25,map,596,explicit_project_rule,Urolithiasis alias.,Urolithiasis,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
 "ventricular dysfunction, right",25,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 acrocephalosyndactylia,24,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 alcohol drinking in college,24,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1647,7 +1647,7 @@ mitral valve stenosis,24,review,,unresolved,No proposed mapping. Review the mesh
 nephritis,24,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 parasitic diseases,24,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 piriformis muscle syndrome,24,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-pulmonary emphysema,24,map,509,explicit_project_rule,Chronic obstructive pulmonary disease alias/subtype.,Chronic obstructive pulmonary disease,508,Chronic respiratory diseases,Chronic respiratory diseases,pending,,,
+pulmonary emphysema,24,map,509,explicit_project_rule,Chronic obstructive pulmonary disease alias/subtype.,Chronic obstructive pulmonary disease,508,Chronic respiratory diseases,Chronic respiratory diseases,approve,,st,
 "purpura, thrombotic thrombocytopenic",24,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 root caries,24,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 spondylarthropathies,24,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1656,7 +1656,7 @@ takayasu arteritis,24,review,,unresolved,No proposed mapping. Review the mesh te
 vaginal diseases,24,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 ventricular dysfunction,24,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 abdominal injuries,23,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-"amputation, traumatic",23,map,687,explicit_project_rule,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism.",Injuries,,,Injuries,pending,,,
+"amputation, traumatic",23,map,687,explicit_project_rule,"Nature-of-injury term lacks external cause; use project merged Injuries only, not a fabricated level-2 mechanism.",Injuries,,,Injuries,approve,,st,
 "anemia, diamond-blackfan",23,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "aphasia, broca",23,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 coinfection,23,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1672,7 +1672,7 @@ gender dysphoria,23,review,,unresolved,No proposed mapping. Review the mesh term
 "genetic diseases, x-linked",23,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "genital diseases, male",23,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 gingival hemorrhage,23,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-hepatitis a,23,map,401,explicit_project_rule,Hepatitis A candidate for acute hepatitis.,Acute hepatitis A,961,Other infectious diseases,Other infectious diseases,pending,,,
+hepatitis a,23,map,401,explicit_project_rule,Hepatitis A candidate for acute hepatitis.,Acute hepatitis A,961,Other infectious diseases,Other infectious diseases,approve,,st,
 hepatorenal syndrome,23,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 hoarding disorder,23,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 hyperlactatemia,23,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1797,7 +1797,7 @@ marijuana use,20,review,,unresolved,No proposed mapping. Review the mesh term an
 "meningitis, cryptococcal",20,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 microsatellite instability,20,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 microscopic polyangiitis,20,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-molluscum contagiosum,20,map,660,explicit_project_rule,Specified viral skin disease.,Viral skin diseases,653,Skin and subcutaneous diseases,Skin and subcutaneous diseases,pending,,,
+molluscum contagiosum,20,map,660,explicit_project_rule,Specified viral skin disease.,Viral skin diseases,653,Skin and subcutaneous diseases,Skin and subcutaneous diseases,approve,,st,
 "mycobacterium infections, nontuberculous",20,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 neuroma,20,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "niemann-pick disease, type c",20,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1805,7 +1805,7 @@ oculocerebral hypopigmentation syndrome type preus,20,review,,unresolved,No prop
 panuveitis,20,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 pelvic inflammatory disease,20,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 precursor b-cell lymphoblastic leukemia-lymphoma,20,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
-rheumatic heart disease,20,map,492,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Rheumatic heart disease,491,Cardiovascular diseases,Cardiovascular diseases,pending,,,
+rheumatic heart disease,20,map,492,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Rheumatic heart disease,491,Cardiovascular diseases,Cardiovascular diseases,approve,,st,
 severe combined immunodeficiency,20,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 trachoma,20,map,356,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Trachoma,344,Neglected tropical diseases and malaria,Neglected tropical diseases and malaria,approve,,st,WHO-classified as NTD
 transfusion reaction,20,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -1895,7 +1895,7 @@ laughter,18,review,,unresolved,No proposed mapping. Review the mesh term and tri
 micrognathism,18,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 moyamoya disease,18,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 mycobacterium infections,18,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-neural tube defects,18,map,642,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Neural tube defects,640,Other non-communicable diseases,Other non-communicable diseases,pending,,,
+neural tube defects,18,map,642,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Neural tube defects,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
 neuronal ceroid-lipofuscinoses,18,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 nidovirales infections,18,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 optic nerve glioma,18,map,410,explicit_project_rule,Observed neoplasm condition term; provisional broad Neoplasms mapping only. Confirm non-disease/complication terms are not included.,Neoplasms,410,Neoplasms,Neoplasms,approve,,st,
@@ -1954,7 +1954,7 @@ persistent infection,17,review,,unresolved,No proposed mapping. Review the mesh 
 "signs and symptoms, digestive",17,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 takotsubo cardiomyopathy,17,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 thrombocytosis,17,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-turner syndrome,17,map,646,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Turner syndrome,640,Other non-communicable diseases,Other non-communicable diseases,pending,,,
+turner syndrome,17,map,646,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Turner syndrome,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
 uterine cervical incompetence,17,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 water pipe smoking,17,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "abdomen, acute",16,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -2001,7 +2001,7 @@ premenstrual dysphoric disorder,16,review,,unresolved,No proposed mapping. Revie
 prolonged grief disorder,16,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 root resorption,16,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 seminoma,16,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-sickle cell trait,16,map,838,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Sickle cell trait,640,Other non-communicable diseases,Other non-communicable diseases,pending,,,
+sickle cell trait,16,map,838,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Sickle cell trait,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
 speech intelligibility,16,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 systemic vasculitis,16,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 thrombophilia,16,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -2045,7 +2045,7 @@ impetigo,15,review,,unresolved,No proposed mapping. Review the mesh term and tri
 inappropriate adh syndrome,15,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 intracranial thrombosis,15,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 leg length inequality,15,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-"liver cirrhosis, alcoholic",15,map,521,explicit_project_rule,Chronic liver disease; not acute infectious hepatitis.,Cirrhosis and other chronic liver diseases,526,Digestive diseases,Digestive diseases,pending,,,
+"liver cirrhosis, alcoholic",15,map,521,explicit_project_rule,Chronic liver disease; not acute infectious hepatitis.,Cirrhosis and other chronic liver diseases,526,Digestive diseases,Digestive diseases,approve,524,st,changed to 'cirrhosis due to alcohol'
 magnesium deficiency,15,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 mastocytosis,15,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 mouth breathing,15,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -2094,7 +2094,7 @@ hepatitis d,14,review,,unresolved,No proposed mapping. Review the mesh term and 
 human-animal interaction,14,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 hyperhomocysteinemia,14,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 hypertensive crisis,14,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-klinefelter syndrome,14,map,647,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Klinefelter syndrome,640,Other non-communicable diseases,Other non-communicable diseases,pending,,,
+klinefelter syndrome,14,map,647,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Klinefelter syndrome,640,Other non-communicable diseases,Other non-communicable diseases,approve,,st,
 klippel-feil syndrome,14,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 labyrinth diseases,14,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 leber congenital amaurosis,14,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -2177,7 +2177,7 @@ primary progressive nonfluent aphasia,13,review,,unresolved,No proposed mapping.
 recurrent respiratory papillomatosis,13,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "rhabdomyosarcoma, alveolar",13,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 shy-drager syndrome,13,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-"thyroiditis, autoimmune",13,map,619,explicit_project_rule,Specified endocrine/blood condition; broad MeSH endocrine headings cannot all be assigned here.,"Endocrine, metabolic, blood, and immune disorders",640,Other non-communicable diseases,Other non-communicable diseases,pending,,,
+"thyroiditis, autoimmune",13,map,619,explicit_project_rule,Specified endocrine/blood condition; broad MeSH endocrine headings cannot all be assigned here.,"Endocrine, metabolic, blood, and immune disorders",640,Other non-communicable diseases,Other non-communicable diseases,approve,1032,st,changed to 'thyroid diseases'
 tooth demineralization,13,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 trichomonas infections,13,map,397,explicit_project_rule,Trichomoniasis alias.,Trichomoniasis,955,HIV/AIDS and sexually transmitted infections,HIV/AIDS and sexually transmitted infections,approve,,st,
 vascular system injuries,13,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -3136,7 +3136,7 @@ antisynthetase syndrome,4,review,,unresolved,No proposed mapping. Review the mes
 arterial calcification of infancy,4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 arteriosclerosis obliterans,4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "arthritis, reactive",4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-asbestosis,4,map,512,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Asbestosis,508,Chronic respiratory diseases,Chronic respiratory diseases,pending,,,
+asbestosis,4,map,512,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Asbestosis,508,Chronic respiratory diseases,Chronic respiratory diseases,approve,,st,
 "asthma, occupational",4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 atrioventricular septal defect,4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 beckwith-wiedemann syndrome,4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -3198,7 +3198,7 @@ growth hormone-secreting pituitary adenoma,4,review,,unresolved,No proposed mapp
 hemorrhagic fever with renal syndrome,4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 henipavirus infections,4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 hereditary autoinflammatory diseases,4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-"hernia, femoral",4,map,531,explicit_project_rule,Abdominal hernia subtype.,"Inguinal, femoral, and abdominal hernia",526,Digestive diseases,Digestive diseases,pending,,,
+"hernia, femoral",4,map,531,explicit_project_rule,Abdominal hernia subtype.,"Inguinal, femoral, and abdominal hernia",526,Digestive diseases,Digestive diseases,approve,,st,
 herpangina,4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 herpesviridae infections,4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 hip socket neuropathy,4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -3254,7 +3254,7 @@ otorhinolaryngologic neoplasms,4,map,410,explicit_project_rule,Observed neoplasm
 parkinson disease 10,4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 phosphorus metabolism disorders,4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 phyllodes tumor,4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-pneumoconiosis,4,map,510,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Pneumoconiosis,508,Chronic respiratory diseases,Chronic respiratory diseases,pending,,,
+pneumoconiosis,4,map,510,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Pneumoconiosis,508,Chronic respiratory diseases,Chronic respiratory diseases,approve,,st,
 "polydipsia, psychogenic",4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "polyendocrinopathies, autoimmune",4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 prescription drug misuse,4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -3271,7 +3271,7 @@ retinal vasculitis,4,review,,unresolved,No proposed mapping. Review the mesh ter
 rubinstein-taybi syndrome,4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 schwannomatosis,4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 shyness,4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-silicosis,4,map,511,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Silicosis,508,Chronic respiratory diseases,Chronic respiratory diseases,pending,,,
+silicosis,4,map,511,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Silicosis,508,Chronic respiratory diseases,Chronic respiratory diseases,approve,,st,
 "skin diseases, vascular",4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "skin diseases, vesiculobullous",4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 smith-lemli-opitz syndrome,4,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -3737,7 +3737,7 @@ dissociative identity disorder,2,review,,unresolved,No proposed mapping. Review 
 distal myopathies,2,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "diverticulum, esophageal",2,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 dopamine beta hydroxylase deficiency,2,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-drowning,2,map,698,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Drowning,696,Unintentional injuries,Injuries,pending,,,
+drowning,2,map,698,normalized_label_match,Normalized label matches a GBD cause; equivalence still requires review.,Drowning,696,Unintentional injuries,Injuries,approve,,st,
 "drug metabolism, poor, cyp2c19-related",2,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "drug metabolism, poor, cyp2d6-related",2,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 dyschromatosis symmetrica hereditaria 1,2,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -4004,7 +4004,7 @@ sitosterolemia,2,review,,unresolved,No proposed mapping. Review the mesh term an
 smear layer,2,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 social facilitation,2,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 spastic ataxia charlevoix-saguenay type,2,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-spina bifida cystica,2,map,641,explicit_project_rule,Congenital defects go to Other non-communicable diseases rather than the affected organ system.,Congenital birth defects,640,Other non-communicable diseases,Other non-communicable diseases,pending,,,
+spina bifida cystica,2,map,641,explicit_project_rule,Congenital defects go to Other non-communicable diseases rather than the affected organ system.,Congenital birth defects,640,Other non-communicable diseases,Other non-communicable diseases,approve,642,st,changed to 'neural tube defects'
 spina bifida occulta,2,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 spinocerebellar ataxia 10,2,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 spinocerebellar ataxia 31,2,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -4619,7 +4619,7 @@ oncogene addiction,1,review,,unresolved,No proposed mapping. Review the mesh ter
 oophoritis,1,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "ophthalmia, sympathetic",1,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 ophthalmoplegia,1,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-opium dependence,1,map,562,explicit_project_rule,Opioid use disorder alias.,Opioid use disorders,973,Substance use disorders,Substance use disorders,pending,,,
+opium dependence,1,map,562,explicit_project_rule,Opioid use disorder alias.,Opioid use disorders,973,Substance use disorders,Substance use disorders,approve,,st,
 opsoclonus-myoclonus syndrome,1,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "optic atrophies, hereditary",1,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "optic atrophy, autosomal dominant",1,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
@@ -5180,7 +5180,7 @@ donnai-barrow syndrome,0,review,,unresolved,No proposed mapping. Review the mesh
 donohue syndrome,0,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 dropped head syndrome,0,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 duane retraction syndrome,0,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
-duodenitis,0,map,528,explicit_project_rule,Combined GBD gastritis/duodenitis category.,Gastritis and duodenitis,526,Digestive diseases,Digestive diseases,pending,,,
+duodenitis,0,map,528,explicit_project_rule,Combined GBD gastritis/duodenitis category.,Gastritis and duodenitis,526,Digestive diseases,Digestive diseases,approve,,st,
 duodenogastric reflux,0,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 dyggve-melchior-clausen syndrome,0,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,
 "dysfibrinogenemia, congenital",0,review,,unresolved,No proposed mapping. Review the mesh term and trial condition context.,,,,,pending,,,

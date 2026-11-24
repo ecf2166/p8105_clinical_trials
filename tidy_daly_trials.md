@@ -176,9 +176,9 @@ result$trial_audit |>
 
 | coverage_status              | n_trials | percent |
 |:-----------------------------|---------:|--------:|
-| mapped_no_unresolved_terms   |    97116 |    33.1 |
-| mapped_with_unresolved_terms |    44024 |    15.0 |
-| no_mapped_direct_term        |    87298 |    29.8 |
+| mapped_no_unresolved_terms   |   110451 |    37.7 |
+| mapped_with_unresolved_terms |    36756 |    12.5 |
+| no_mapped_direct_term        |    81231 |    27.7 |
 | no_mesh                      |    64660 |    22.1 |
 
 ``` r
@@ -189,10 +189,11 @@ trial_terms_df |>
 
 | mapping_status     |      n |
 |:-------------------|-------:|
-| excluded_proposed  |  12210 |
-| mapped_provisional |  24232 |
-| mapped_reviewed    | 162645 |
-| needs_review       | 186830 |
+| excluded_proposed  |   5652 |
+| excluded_reviewed  |  48868 |
+| mapped_provisional |   9453 |
+| mapped_reviewed    | 189902 |
+| needs_review       | 132042 |
 
 ``` r
 tibble(
@@ -209,7 +210,7 @@ tibble(
 | daly.rds        |  65280 |
 | daly_income.rds |   1440 |
 | trial_terms.rds | 385917 |
-| trial_cause.rds | 147278 |
+| trial_cause.rds | 154620 |
 
 These checks detect structural problems. The disease burden files cover
 more years than the trial cohort. We need to restrict both to an
