@@ -109,7 +109,7 @@ result = apply_mesh_crosswalk(
 trial_context = result$trial_audit |>
   mutate(start_year = as.integer(format(start_date, "%Y")))
 
-trial_terms_df = result$term_evidence |>
+trial_terms_df = result$trial_terms |>
   select(nct_id, mesh_term, analysis_cause_id, analysis_cause,
          resolved_cause_id, resolved_cause_name, mapping_status,
          review_decision, reviewer, review_note) |>
@@ -176,9 +176,9 @@ result$trial_audit |>
 
 | coverage_status              | n_trials | percent |
 |:-----------------------------|---------:|--------:|
-| mapped_no_unresolved_terms   |   110451 |    37.7 |
-| mapped_with_unresolved_terms |    36756 |    12.5 |
-| no_mapped_direct_term        |    81231 |    27.7 |
+| mapped_no_unresolved_terms   |   112707 |    38.5 |
+| mapped_with_unresolved_terms |    36505 |    12.5 |
+| no_mapped_direct_term        |    79226 |    27.0 |
 | no_mesh                      |    64660 |    22.1 |
 
 ``` r
@@ -192,8 +192,8 @@ trial_terms_df |>
 | excluded_proposed  |   5652 |
 | excluded_reviewed  |  48868 |
 | mapped_provisional |   9453 |
-| mapped_reviewed    | 189902 |
-| needs_review       | 132042 |
+| mapped_reviewed    | 192825 |
+| needs_review       | 129119 |
 
 ``` r
 tibble(
@@ -210,7 +210,7 @@ tibble(
 | daly.rds        |  65280 |
 | daly_income.rds |   1440 |
 | trial_terms.rds | 385917 |
-| trial_cause.rds | 154620 |
+| trial_cause.rds | 156757 |
 
 These checks detect structural problems. The disease burden files cover
 more years than the trial cohort. We need to restrict both to an

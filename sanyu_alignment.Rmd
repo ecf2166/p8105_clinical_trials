@@ -1,0 +1,824 @@
+---
+title: "Where disease burden occurs versus where trials happen"
+author: "Sanyu Takirambudde"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    number_sections: true
+params:
+  start_year: 2010
+  end_year: 2023
+  min_country_trials: 30
+editor_options: 
+  chunk_output_type: inline
+---
+
+**For a given disease category, does clinical trial activity reflect the global distribution of that disease's burden?**
+
+Emma’s analysis (`emma_exploratory.Rmd`) compares diseases **within each country**: do countries run trials in the diseases that make up most of their burden?
+
+This analysis compares countries **within each disease category**: do countries carrying more of that disease’s burden also account for more trial activity?
+
+These analyses complement each other by examining two aspects of trial-burden alignment: whether countries’ research priorities reflect their own disease burden, and whether research for a particular disease is geographically proportional to the global burden of that disease. 
+
+# Settings and inputs
+
+The primary analysis uses approved mappings only. A trial counts once per country per disease category. Multinational trials therefore contribute to more than one country. Summing across countries counts trial-country participations, not unique trials worldwide. Separate disease analyses can contain overlapping trials.
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(countrycode) # convert country names to standardized ISO3 codes
+library(plotly) # interactive scatter plots and maps
+library(DT) # searchable HTML tables
+source("source/mesh_gbd_crosswalk.R")
+
+knitr::opts_chunk$set(error = FALSE, fig.width = 10, fig.height = 6)
+theme_set(theme_minimal(base_size = 12))
+
+start_year = params$start_year
+end_year = params$end_year
+min_country_trials = params$min_country_trials
+stopifnot(start_year <= end_year, min_country_trials >= 1)
+
+# nine disease categories for exploratory analysis
+focus_causes = c(
+  "Neoplasms", "Cardiovascular diseases", "Diabetes and kidney diseases", 
+  "Mental disorders", "Musculoskeletal disorders", "Neurological disorders",
+  "Maternal and neonatal disorders", 
+  "HIV/AIDS and sexually transmitted infections",
+  "Neglected tropical diseases and malaria"
+)
+
+studies = read_rds("data/studies.rds") # AACT extract with trial info
+countries = read_rds("data/countries.rds") # AACT extract of trial-country participations
+browse = read_rds("data/browse_conditions.rds") # AACT extract of trial MeSH terms
+daly_df = read_rds("data/tidy/daly.rds") # tidied IHME GBD country-year-cause DALY table
+hierarchy = read_csv("data/crosswalk/gbd_2023_cause_hierarchy.csv",
+                     show_col_types = FALSE) # IHME GBD extract of causes-category hierarchy
+review = read_csv("data/crosswalk/mesh_gbd_review.csv", # MeSH–GBD mapping review decisions
+  col_types = cols(review_decision = col_character(),
+    reviewed_gbd_cause_id = col_integer(), reviewer = col_character(),
+    review_note = col_character()), show_col_types = FALSE)
+```
+
+# Rebuild the cohort and classify trials
+
+```{r classify}
+full_cohort = crosswalk_cohort(studies, start_year, end_year)
+approved = apply_mesh_crosswalk(browse, full_cohort, review, hierarchy,
+                               allow_proposed = FALSE)
+proposed = apply_mesh_crosswalk(browse, full_cohort, review, hierarchy,
+                               allow_proposed = TRUE)
+cohort = full_cohort |>
+  mutate(start_year = as.integer(format(start_date, "%Y"))) |>
+  filter(start_year >= params$start_year) 
+
+stopifnot(nrow(cohort) > 0,
+          nrow(approved$trial_audit) == nrow(full_cohort),
+          nrow(anti_join(approved$trial_causes, proposed$trial_causes,
+                        by = c("nct_id", "analysis_cause_id"))) == 0)
+```
+
+# Match countries and account for missing geography
+
+The geographic denominator is all locations in the tidied DALY data. Locations without observed trial participation remain in the denominator.
+
+Unmatched names and trial locations absent from the DALY data are listed below. Territories are not automatically merged into a parent country. A trial with both matched and unmatched locations contributes at its matched locations.
+
+```{r countries}
+# Check the DALY data for missing or duplicated rows
+stopifnot(!anyNA(daly_df$iso3),
+          !anyDuplicated(daly_df[c("iso3", "year", "analysis_cause_id")]),
+          all(is.finite(daly_df$daly)), all(daly_df$daly >= 0))
+
+# One row per country/territory in the DALY data
+locations = daly_df |> distinct(iso3, location) 
+
+# One row per disease category in the DALY data
+categories = daly_df |> distinct(analysis_cause_id, analysis_cause)
+
+# Check that the DALY data has unique country and category IDs, and that the focus causes are present in the categories
+stopifnot(!anyDuplicated(locations$iso3),
+          !anyDuplicated(categories$analysis_cause_id),
+          all(focus_causes %in% categories$analysis_cause))
+
+# Convert country names to ISO3 codes and check which ones match the DALY data
+country_lookup = countries |>
+  distinct(country) |>
+  mutate(iso3 = countrycode(country, "country.name", "iso3c", warn = FALSE),
+         iso3 = if_else(country == "Serbia and Montenegro", NA_character_, iso3),
+         matched = !is.na(iso3) & iso3 %in% locations$iso3)
+
+# Attach the ISO3 codes and matched status to the trial-country participations
+country_records = countries |>
+  left_join(country_lookup, by = "country", relationship = "many-to-one")
+
+# Identify trials with at least one matched country
+trial_country = country_records |>
+  filter(matched) |> distinct(nct_id, iso3)
+
+# Summarize the geographic coverage of the cohort
+geography_audit = cohort |>
+  transmute(nct_id, geography_status = case_when(
+    !nct_id %in% country_records$nct_id ~ "No country record",
+    !nct_id %in% trial_country$nct_id ~ "No location matched to DALY data",
+    TRUE ~ "At least one matched location"))
+
+geography_audit |> 
+  count(geography_status, name = "trials") |> 
+  knitr::kable()
+
+# List the unmatched locations and their trial counts
+unmatched_locations = country_records |>
+  semi_join(cohort, by = "nct_id") |>
+  filter(!matched) |>
+  distinct(nct_id, country, iso3) |>
+  count(country, iso3, name = "trials", sort = TRUE)
+knitr::kable(unmatched_locations)
+```
+
+### Geographic coverage and unmatched locations {.unnumbered}
+
+Most eligible trials had at least one country that could be matched to the DALY data. Trials without country records or without any matched location do not contribute to the geographic comparisons, while multinational trials with at least one matched country remain represented at those locations. Hong Kong accounts for the largest number of trial records in the unmatched-location table. Its omission reflects the geographic matching rule and available DALY locations, not an absence of research. Counts across unmatched locations should not be added to estimate excluded trials because a trial can have more than one location.
+
+# Classification coverage
+
+**Of all eligible trials, what proportion can we assign to at least one category?** 
+
+This is a descriptive measure of how well the MeSH–GBD crosswalk covers the trial cohort. It does not imply that unclassified trials are irrelevant to the disease or that classified trials are inherently more relevant.
+
+Coverage uses all eligible trials, including those without MeSH terms or a mapped category. Country coverage uses eligible trial-country participations. Its denominator is different from the within-disease research-share denominator used later.
+
+```{r coverage}
+trial_audit = approved$trial_audit |> 
+  semi_join(cohort, by = "nct_id") |>
+  mutate(has_direct_mesh = n_direct_terms > 0,
+         mapped_approved = n_mapped_terms > 0,
+         mapped_with_proposals = nct_id %in% proposed$trial_causes$nct_id)
+
+cohort_summary = tibble(
+  measure = c("All eligible trials",
+              "With at least one matched country", 
+              "With direct MeSH terms",
+              "With an approved disease category", 
+              "With a disease category when proposed allowed"),
+  trials = c(nrow(cohort), 
+             sum(cohort$nct_id %in% trial_country$nct_id), 
+             sum(trial_audit$has_direct_mesh),
+             sum(trial_audit$mapped_approved),
+             sum(trial_audit$mapped_with_proposals))) |>
+  mutate(percent_of_cohort = 100 * trials / nrow(cohort))
+
+knitr::kable(cohort_summary, digits = 1)
+```
+
+### Incomplete classification limits analysis scope {.unnumbered}
+
+Approximately half of eligible trials receive an approved disease-category assignment, and including eligible pending proposals increases coverage only modestly. The remaining trials include studies without directly assigned MeSH terms, studies with unresolved mappings, and studies whose terms were excluded. These are different sources of missing classification and cannot all be resolved by approving more proposals. The results therefore describe the classified subset of registered trials and are not a complete account of research activity.
+
+```{r country-coverage}
+# Join each trial's countries, then summarize by country
+country_coverage = trial_audit |>
+  inner_join(trial_country, by = "nct_id", relationship = "many-to-many") |>
+  # group and summarize by country
+  group_by(iso3) |> 
+  summarize(n_eligible = n_distinct(nct_id),
+            n_direct_mesh = sum(has_direct_mesh), 
+            n_approved = sum(mapped_approved), 
+            n_with_proposals = sum(mapped_with_proposals), 
+            .groups = "drop") |>
+  # keep all DALY locations, even if no trials
+  right_join(locations, by = "iso3") |> 
+  # replace NA counts with 0 for countries/territories with no trials
+  mutate(across(starts_with("n_"), ~replace_na(.x, 0L)), 
+         # divide trials with approved categories by eligible trials
+         coverage_approved = if_else(n_eligible > 0, n_approved / n_eligible, NA_real_),
+         # divide trials with approved or proposed categories by eligible trials
+         coverage_with_proposals = if_else(n_eligible > 0,
+                                           n_with_proposals / n_eligible, NA_real_))
+
+country_coverage |>
+  # keep only countries with at least the minimum number of eligible trials
+  filter(n_eligible >= min_country_trials) |>
+  # sort approved mapping coverage in ascending order
+  arrange(coverage_approved) |>
+  slice_head(n = 20) |>
+  ggplot(aes(x = coverage_approved, y = reorder(location, coverage_approved))) +
+  geom_col(fill = "#297C8E") +
+  scale_x_continuous(labels = scales::percent, limits = c(0, 1)) +
+  labs(x = "Eligible trials with at least one approved category", y = NULL,
+       title = "Twenty countries with the lowest classification coverage",
+       subtitle = paste0("At least ", min_country_trials,
+                         " eligible trials; ", start_year, "–", end_year))
+```
+
+### Country-level coverage provides context for geographic gaps {.unnumbered}
+
+This chart identifies the twenty lowest-coverage countries among those meeting the minimum-trial threshold. Lower coverage means a larger proportion of that country's eligible trials could not be assigned to any analysis category. Such differences may affect the observed geographic distribution of classified trials. This country-wide measure cannot tell us how completely a particular disease category was captured. A low-coverage country with a negative gap therefore warrants closer inspection before drawing substantive conclusions.
+
+# Build the geographic alignment table
+
+For each disease, **burden share** is the country's summed DALYs divided by summed DALYs across all included countries and years. 
+$$ \text{Burden share} = \frac{\text{Country's DALYs for a given disease category}}{\text{Total DALYs across all countries for that disease category}}$$
+
+For each disease, **research share** is its classified trial-country count divided by that count across all included countries.
+$$ \text{Research share} = \frac{\text{Country's trial count for a given disease category}}{\text{Trial participation across all countries for that disease category}} $$
+These shares each sum to one *across countries within a disease*. They are calculated from counts; `daly_share` has a different denominator.
+
+$$\text{Gap} = 100 × (\text{research share} − \text{burden share})$$
+A gap of +5 percentage points means a country's research share exceeds its burden share by five points. Proportionality is a descriptive reference, not a proven optimal allocation of clinical trial research activity across countries. A gap of zero does not imply that the research is sufficient to address the burden.
+
+The `build_alignment` function below builds the alignment table for a given input set of trial causes and year range. It checks that the DALY data covers all countries and categories for the specified years, and that the trial causes are valid. It then calculates the total DALYs and total trial participations for each disease category, and computes the burden share, research share, and gap for each country-category pair.
+
+```{r alignment-function}
+build_alignment = function(trial_causes, from_year, to_year) {
+  # create a vector of years to filter the DALY data
+  years = seq.int(from_year, to_year)
+  # selects trials starting in the specified year range
+  selected = crosswalk_cohort(full_cohort, from_year, to_year)
+  # create a subset of the DALY data for the specified years
+  burden_rows = daly_df |> 
+    filter(year %in% years)
+  # check that the number of country-year-disease category rows matches expectations
+  expected_rows = nrow(locations) * nrow(categories) * length(years)
+  stopifnot(nrow(burden_rows) == expected_rows,
+            all(years %in% burden_rows$year),
+            all(trial_causes$analysis_cause_id %in% categories$analysis_cause_id))
+
+  # Summarize the DALY data by country and disease category
+  burden = burden_rows |>
+    group_by(iso3, location, analysis_cause_id, analysis_cause) |>
+    summarize(daly = sum(daly), .groups = "drop")
+  
+  # Summarize the trial data by country and disease category
+  participations = trial_causes |>
+    semi_join(selected, by = "nct_id") |>
+    inner_join(trial_country, by = "nct_id", relationship = "many-to-many") |>
+    distinct(nct_id, iso3, analysis_cause_id) |>
+    count(iso3, analysis_cause_id, name = "n_trials")
+
+  # Combine the burden and trial data
+  burden |>
+    left_join(participations, by = c("iso3", "analysis_cause_id")) |>
+    mutate(n_trials = replace_na(n_trials, 0L)) |>
+    # Calculate the total DALYs and trial participations for each disease category
+    group_by(analysis_cause_id) |>
+    # total DALYs across all locations for each disease category
+    mutate(total_daly = sum(daly),
+           # total trial-country participations across all locations for each disease category
+           total_trial_participations = sum(n_trials),
+           # calculate the share of each country's burden and research and gap between them
+           burden_share = if_else(total_daly > 0, daly / total_daly, NA_real_),
+           research_share = if_else(total_trial_participations > 0,
+                                    n_trials / total_trial_participations, NA_real_),
+           gap_pp = 100 * (research_share - burden_share)) |>
+    ungroup() |>
+    mutate(from_year = from_year, to_year = to_year)
+}
+
+# Build the alignment table for approved mappings and proposed mappings, and join with country coverage data
+alignment = build_alignment(approved$trial_causes, start_year, end_year) |>
+  left_join(country_coverage |> select(-location), by = "iso3")
+alignment_proposed = build_alignment(proposed$trial_causes, start_year, end_year)
+
+# Check that the shares sum to 1 across countries within each disease category, and that there are no duplicated country-category pairs
+share_checks = alignment |>
+  group_by(analysis_cause_id) |>
+  summarize(burden_sum = sum(burden_share), research_sum = sum(research_share),
+            trials = first(total_trial_participations), .groups = "drop")
+stopifnot(!anyDuplicated(alignment[c("iso3", "analysis_cause_id")]),
+          all(abs(share_checks$burden_sum - 1) < 1e-8),
+          all(abs(share_checks$research_sum[share_checks$trials > 0] - 1) < 1e-8))
+```
+
+# A look at all disease categories
+
+## Descriptive comparison of trials and geographic gaps by disease category
+
+The comparison table includes all `r nrow(categories)` analysis categories, in order to be able to assess the full dataset before finalizing categories to focus on. 
+
+```{r category-counts}
+# Count unique trials before joining countries. A multinational trial counts once
+# here, but contribute several trial-country participations in the maps.
+# Trials without matched geography are kept so we can report how many are omitted
+# from the geographic analysis instead of disregarding them.
+category_counts = approved$trial_causes |>
+  semi_join(cohort, by = "nct_id") |>
+  group_by(analysis_cause) |>
+  summarize(
+    unique_trials = n_distinct(nct_id),
+    matched_trials = n_distinct(nct_id[nct_id %in% trial_country$nct_id]),
+    .groups = "drop"
+  )
+
+# The proposed version includes approved mappings plus eligible pending proposals.
+proposal_counts = proposed$trial_causes |>
+  semi_join(cohort, by = "nct_id") |>
+  distinct(nct_id, analysis_cause) |>
+  count(analysis_cause, name = "trials_with_proposals")
+```
+
+Unique trials count each study once within its disease category. Participations count it once in each matched country. Counts can overlap across disease categories. Locations with trials have at least one observed approved category trial and they are not restricted by the `min_country_trials` threshold.
+
+The largest positive and negative gaps below use the same country eligibility rule as the ranked searchable explorer (at least `r min_country_trials` eligible trials **across all diseases**). The table also shows how much unique trial counts and country gaps change when pending proposals are allowed. These changes measure sensitivity to the available proposals.
+
+```{r category-comparison}
+# Summarize geography across all DALY locations, retaining observed zero counts.
+category_geography = alignment |>
+  group_by(analysis_cause) |>
+  summarize(participations = sum(n_trials),
+            locations_with_trials = sum(n_trials > 0), .groups = "drop")
+
+# Select one country at each end of the distribution for a compact overview.
+# The detailed explorer below still shows up to five in each direction.
+candidate_countries = alignment |>
+  filter(n_eligible >= min_country_trials, is.finite(gap_pp))
+largest_positive = candidate_countries |>
+  filter(gap_pp > 0) |>
+  arrange(desc(gap_pp), iso3) |>
+  group_by(analysis_cause) |> slice_head(n = 1) |> ungroup() |>
+  select(analysis_cause, positive_country = location, positive_gap = gap_pp)
+largest_negative = candidate_countries |>
+  filter(gap_pp < 0) |>
+  arrange(gap_pp, iso3) |>
+  group_by(analysis_cause) |> slice_head(n = 1) |> ungroup() |>
+  select(analysis_cause, negative_country = location, negative_gap = gap_pp)
+
+gap_changes = candidate_countries |>
+  # Keep the country name so we can identify the most affected country.
+  select(iso3, location, analysis_cause_id, analysis_cause, gap_pp) |>
+  left_join(
+    alignment_proposed |>
+      select(iso3, analysis_cause_id, proposed_gap = gap_pp),
+    by = c("iso3", "analysis_cause_id"),
+    relationship = "one-to-one"
+  ) |>
+  # Calculate the gap change: proposed minus approved.
+  mutate(gap_change = proposed_gap - gap_pp) |>
+  # Sort by magnitude, retaining the original positive or negative value.
+  arrange(desc(abs(gap_change)), iso3) |>
+  group_by(analysis_cause) |>
+  slice_head(n = 1) |>
+  ungroup() |>
+    select(
+    analysis_cause,
+    most_affected_country = location,
+    max_gap_change = gap_change
+  ) |>
+  # If the largest change is exactly zero, no country was affected.
+  # Check the unrounded value so tiny real changes keep their country name.
+  mutate(
+    most_affected_country = if_else(
+      max_gap_change == 0,
+      "No change",
+      most_affected_country
+    )
+  )
+
+# Combine all the summary tables into one comparison table
+# Use the full DALY category list, independently of the exploratory shortlist
+category_comparison = categories |>
+  distinct(analysis_cause) |>
+  arrange(analysis_cause) |>
+  left_join(category_counts, by = "analysis_cause") |>
+  left_join(proposal_counts, by = "analysis_cause") |>
+  left_join(category_geography, by = "analysis_cause") |>
+  left_join(largest_positive, by = "analysis_cause") |>
+  left_join(largest_negative, by = "analysis_cause") |>
+  left_join(gap_changes, by = "analysis_cause") |>
+  mutate(across(c(unique_trials, matched_trials, trials_with_proposals,
+                  participations, locations_with_trials), ~replace_na(.x, 0L)),
+         # NA means a percentage increase cannot be computed from zero trials.
+         trial_increase = if_else(unique_trials > 0,
+           (trials_with_proposals - unique_trials) / unique_trials, NA_real_))
+
+# Check that the comparison table has the expected number of rows and that the counts are consistent.
+stopifnot(nrow(category_comparison) == nrow(categories),
+          all(category_comparison$matched_trials <= category_comparison$unique_trials),
+          all(category_comparison$trials_with_proposals >= category_comparison$unique_trials))
+
+# Retain numeric columns for sorting
+DT::datatable(category_comparison |>
+  transmute(Category = analysis_cause,
+            `Unique approved trials` = unique_trials,
+            `Unique trials with matched geography` = matched_trials,
+            `Trial-country participations` = participations,
+            `Locations with trials` = locations_with_trials,
+            `Trials including proposals` = trials_with_proposals,
+            `Trial count increase` = trial_increase,
+            `Largest positive gap: country` = positive_country,
+            `Positive gap (pp)` = positive_gap,
+            `Largest negative gap: country` = negative_country,
+            `Negative gap (pp)` = negative_gap,
+            `Country most affected` = most_affected_country,
+            `Largest-magnitude gap change (signed pp)` = max_gap_change),
+  rownames = FALSE,
+  options = list(pageLength = 20, lengthMenu = c(10, 20, 50), scrollX = TRUE, order = list())) |>
+  DT::formatPercentage("Trial count increase", digits = 1) |>
+  DT::formatRound(
+    c("Positive gap (pp)", "Negative gap (pp)",
+      "Largest-magnitude gap change (signed pp)"),
+    digits = 2
+)
+```
+
+### Trial counts vary across categories {.unnumbered}
+
+The number of classified trials varied substantially across disease categories, from 43 for enteric infections to 46,511 for neoplasms. These counts reflect both registered trial activity and the extent to which the crosswalk captures each category. In particular, the small enteric-infection count warrants further mapping review before being interpreted as evidence of limited research. Unique trial counts and trial-country participations also describe different features as multinational studies contribute once to the former and once per participating country to the latter.
+
+## Which conditions contribute to each category?
+
+The next table lists up to five of the most frequent approved directly assigned MeSH terms within all `r nrow(categories)` analysis categories. This table covers the full dataset, just like the comparison and country tables. It helps identify whether a broad category is represented mainly by a few conditions. A trial can have several terms, so the percentages can overlap and shouldn't be added together. Terms are not mutually exclusive disease subgroups, and their frequency is not a measure of research funding or quality. The denominator includes all approved trials in the category, including trials without matched countries.
+
+```{r leading-mesh-terms}
+# Deduplicate before counting so repeated records do not inflate term frequency
+leading_terms = approved$trial_terms |>
+  semi_join(cohort, by = "nct_id") |>
+  filter(analysis_cause %in% categories$analysis_cause,
+         mapping_status == "mapped_reviewed") |>
+  distinct(nct_id, analysis_cause, mesh_term) |>
+  count(analysis_cause, mesh_term, name = "term_trials") |>
+  left_join(category_counts |> 
+              select(analysis_cause, unique_trials),
+            by = "analysis_cause") |>
+  mutate(share_of_category_trials = term_trials / unique_trials) |>
+  # Break ties alphabetically so the same inputs always give the same five terms.
+  arrange(desc(term_trials), mesh_term) |>
+  group_by(analysis_cause) |> 
+  slice_head(n = 5) |> 
+  ungroup() |>
+  arrange(
+    analysis_cause, 
+    desc(term_trials), 
+    mesh_term)
+
+DT::datatable(leading_terms |>
+                transmute(Category = analysis_cause, `MeSH term` = mesh_term,
+                          `Unique trials with term` = term_trials,
+                          `Share of category trials` = share_of_category_trials),
+              rownames = FALSE, filter = "top",
+              options = list(pageLength = 10, scrollX = TRUE, order = list())) |>
+  DT::formatPercentage("Share of category trials", digits = 1)
+```
+
+### Broad categories contain different mixtures of conditions {.unnumbered}
+
+The leading MeSH terms show that broad disease categories can contain uneven mixtures of conditions. The term “malaria” appeared in 47.8% of classified NTD/malaria trials, while “diabetes mellitus, type 2” appeared in 40.3% of diabetes/kidney trials. Within neurological disorders, Parkinson disease, Alzheimer disease, and multiple sclerosis were prominent. These patterns help characterize the research represented in each category, but term percentages overlap and do not establish whether research composition matches the composition of disease burden. The input `daly.rds` is already aggregated to analysis disease categories. It can't tell us how much of NTD/malaria burden comes from malaria, or how much maternal/neonatal burden is neonatal. That would require compatible lower-level DALY estimates. 
+
+### Cerebral palsy mapping requires further review {.unnumbered}
+
+One thing to note is that cerebral palsy accounts for 882 trials (24.5%) in the maternal and neonatal category under the current crosswalk because I mapped it specifically to `neonatal encephalopathy due to birth asphyxia and trauma` based on the IHME GBD methods paper appendix. However, they treated cerebral palsy as an impairment rather than cause. This assignment warrants further review before interpreting the category’s geographic patterns.
+
+# Plot the nine-category overview
+
+The nine focus categories selected here are an exploratory shortlist for the scatter plot and interactive map, not a ranking of research need. They encompass nine disease categories spanning infectious diseases, maternal and neonatal conditions, and several major non-communicable disease groups. We can use this overview to identify contrasting geographic patterns for closer examination.
+
+## Scatter plot of research share vs. burden share
+
+The scatter plot below shows the relationship between a country's share of global disease burden and its share of trial-country participations for each disease category. The dashed line represents equal shares. Points above the line indicate countries a larger share of trial participation than of DALYs, while points below indicate the opposite. The color of each point reflects the overall mapping coverage for that country.
+
+Each panel uses the same x- and y-axis limits. Hover over a point for its country, counts, shares, and overall mapping coverage. Coverage is country-wide, not disease-specific. All locations remain in the table.
+
+```{r plotly-scatter, fig.height=11}
+# keep only disease categories of interest and countries with enough eligible trials
+plot_data = alignment |>
+  filter(analysis_cause %in% focus_causes, n_eligible >= min_country_trials) |>
+  # Preserve the shortlist order across the nine panels.
+  mutate(analysis_cause = factor(analysis_cause, levels = focus_causes))
+
+# Set one common axis limit for all panels to facilitate visual comparison
+share_limit = max(c(plot_data$burden_share, plot_data$research_share), na.rm = TRUE) * 1.05
+
+# Add a hover label for each point with detailed information about the country and disease category
+plot_data = plot_data |>
+  mutate(
+    hover_label = paste0(
+      "<b>", location, "</b>",
+      "<br>Disease category: ", analysis_cause,
+      "<br>Burden share: ", scales::percent(burden_share, 0.1),
+      "<br>Trial participation share: ", scales::percent(research_share, 0.1),
+      "<br>Gap: ", round(gap_pp, 2), " percentage points",
+      "<br>Trial count: ", n_trials,
+      "<br>Overall classification coverage: ",
+      scales::percent(coverage_approved, 0.1))
+    )
+
+p = ggplot(
+  plot_data,
+  aes(x = burden_share, y = research_share, 
+      color = coverage_approved, text = hover_label)) +
+  # Add a dashed line representing when shares match (y = x)
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey") +
+  # Add points for each country-category pair
+  geom_point(alpha = 0.8, size = 2) +
+  # Create separate panels for each disease category, wrapping long labels
+  facet_wrap(~analysis_cause, ncol = 3, scales = "fixed",
+             labeller = label_wrap_gen(23)) +
+  # Spread out small shares while retaining zero values.
+  # Labels still display the original shares as percentages.
+  scale_x_sqrt(labels = scales::percent) +
+  scale_y_sqrt(labels = scales::percent) +
+  scale_color_viridis_c(labels = scales::percent, limits = c(0, 1)) +
+  coord_cartesian(xlim = c(0, share_limit), ylim = c(0, share_limit)) +
+  labs(x = "Country share of disease category DALYs (sqrt scale)",
+       y = "Country share of trial participations (sqrt scale)",
+       color = "Overall classification\n coverage",
+       caption = "Dashed line indicates equal burden and research shares",
+       title = "Clinical trial activity vs. disease burden",
+       subtitle = paste0(
+         "Country share of trial participations vs. disease category DALYs (", 
+         start_year, "–", end_year, "); dashed line = equal shares"))
+
+ggplotly(p, tooltip = "text", height = 1000) |>
+  layout(
+    title = list(
+      text = paste0("Clinical trial activity vs. disease burden",
+                    "<br><sup>", 
+                    "Country share of trial participations vs. disease category DALYs (", 
+                    start_year, "–", end_year, 
+                    "); dashed line = equal shares</sup>"),
+      x = 0, y = 0.95, font = list(size = 18)),
+    margin = list(t = 100, b = 80, l = 80, r = 140),
+    hoverlabel = list(align = "left")
+  )
+```
+
+### Alignment differs across countries and disease categories {.unnumbered}
+
+The panels show departures from equal burden and research shares in both directions. Many countries account for small shares of both distributions, while a smaller number account for substantial shares of burden, research participation, or both. A point near the origin can therefore have a small percentage-point gap without implying adequate research activity. The common axes allow comparisons across categories, while the hover labels provide the underlying counts and shares needed to interpret individual countries. These plots describe geographic proportionality but they don't establish an optimal distribution of research activity or a causal relationship in either direction.
+
+## Maps of Research-Burden Gap 
+
+The maps below illustrate the gap between research share and burden share for each category in `focus_causes`, using the same color scale. Blue indicates countries with more research than burden, while red indicates the opposite. The color scale is centered at zero, and the hover text provides additional information about each country. Grey means not displayed (including low/no observed eligible trial counts or unavailable geography), not zero disease burden.
+
+```{r gap-map}
+# Use one color scale based on the nine-category overview for comparable maps
+color_limit = max(abs(plot_data$gap_pp), na.rm = TRUE)
+# Set a default color limit if necessary
+if (!is.finite(color_limit) || color_limit == 0) {
+  color_limit = 1
+}
+
+# Define a function that makes a map for one disease category
+make_gap_map = function(cause_name) {
+
+  # Keep only the category supplied to the function
+  map_data = plot_data |>
+    filter(analysis_cause == cause_name)
+
+  # Create the interactive country-colored map using plotly
+  plot_ly(
+    data = map_data, type = "choropleth", locations = ~iso3,
+    # Use gap between research and burden shares to color countries
+    locationmode = "ISO-3", z = ~gap_pp,
+    # Symmetric color scale centered at zero, with limits based on the maximum absolute gap
+    zmin = -color_limit, zmax = color_limit, zmid = 0,
+    colorscale = "RdBu", colorbar = list(title = "Gap (pp)"),
+    height = 450,
+    text = ~paste0("<b>", location, "</b>", 
+                   "<br>Trial-country count: ", n_trials,
+                   "<br>Research share: ", scales::percent(research_share, 0.1),
+                   "<br>Burden share: ", scales::percent(burden_share, 0.1),
+                   "<br>Gap: ", round(gap_pp, 2), " percentage points",
+                   "<br>Overall classification coverage: ",
+                   scales::percent(coverage_approved, 0.1)),
+    hoverinfo = "text") |>
+    layout(title = list(
+      text = paste0(cause_name, "<br><sup>Research share minus burden share; ",
+                    start_year, "–", end_year, "</sup>"),
+      font = list(size = 16)),
+      margin = list(t = 90, b = 20),
+      geo = list(showframe = FALSE, showcoastlines = FALSE,
+                 showland = TRUE, landcolor = "#e5e5e5",
+                 projection = list(type = "natural earth")))
+}
+
+# Run the function only for the provisional map categories
+gap_maps = map(focus_causes, make_gap_map)
+
+# Display the selected interactive maps in the HTML report
+htmltools::tagList(gap_maps)
+```
+
+### Contrasting burden and research shares in cardiovascular diseases {.unnumbered}
+
+Countries’ shares of trial participation often differed substantially from their shares of disease burden. For cardiovascular diseases, the USA accounted for 19.24% of trial-country participations and 4.36% of DALYs, whereas India accounted for 0.64% of participations and 18.45% of DALYs. These differences produced gaps of +14.88 and −17.81 percentage points, respectively. The comparison identifies geographic differences in the distributions of burden and recorded research but it does not measure research funding, local enrollment, or the eventual distribution of research benefits.
+
+### A country's alignment can differ by disease {.unnumbered}
+
+Although some countries repeatedly appeared at the extremes, their alignment varied by disease category. China had a negative gap for cardiovascular diseases (−14.00 percentage points) but a small positive gap for maternal and neonatal disorders (+0.55 points). Kenya had a positive gap for NTDs/malaria (+3.92 points) and a slightly negative gap for HIV/AIDS/STIs (−0.69 points). These contrasts suggest that national research participation is disease-specific rather than uniformly above or below the burden benchmark.
+
+### A closer look: neglected tropical diseases (NTDs) and malaria {.unnumbered}
+
+Nigeria accounted for 24.64% of NTD/malaria DALYs but 1.32% of recorded trial-country participations, producing a gap of −23.32 percentage points. Kenya showed the opposite pattern, accounting for 0.58% of burden and 4.50% of participations. This contrast illustrates substantial variation between countries within the same disease category. Interpretation should account for the mixture of diseases included, incomplete classification, and the possibility that research conducted in one country benefits populations elsewhere.
+
+# Explore countries and disease categories
+
+The searchable table below includes every country/territory in the tidied DALY data for all `r nrow(categories)` analysis categories, including countries below the plot minimum trial threshold. 
+
+Use the search box for a country name or the column filters to select a category. Click a column heading to sort. Shares and gaps remain numeric for correct sorting meaning that a country with a large positive gap will appear at the top of the table when sorted by that column. Blank coverage means there are no eligible trials for that location. Zero category trials means no observed classified participation, not necessarily no research activity.
+
+```{r country-table}
+# Keep every country-category pair; focus_causes is only a plotting shortlist.
+country_table = alignment |>
+  arrange(analysis_cause, location)
+
+# Reuse the same labels and numeric formatting for both tables.
+show_country_table = function(data, ranked = FALSE) {
+  display = data |>
+    transmute(
+      Country = location,
+      ISO3 = iso3,
+      `Disease category` = analysis_cause,
+      `Category trial participations` = n_trials,
+      `All eligible trials in country` = n_eligible,
+      `Burden share` = burden_share,
+      `Research share` = research_share,
+      # Explicitly replace values that round to zero with positive zero.
+      `Gap (pp)` = if_else(round(gap_pp, 2) == 0, 0, round(gap_pp, 2)),      
+      `Overall classification coverage` = coverage_approved
+    )
+  if (ranked) {
+    display = bind_cols(
+      data |> transmute(Direction = direction, Rank = rank), display
+    )
+  }
+  DT::datatable(
+    display, rownames = FALSE, filter = "top",
+    options = list(pageLength = 10, lengthMenu = c(10, 25, 50, 100),
+                   scrollX = TRUE, order = list())
+  ) |>
+    DT::formatPercentage(
+      c("Burden share", "Research share", "Overall classification coverage"),
+      digits = 1
+    ) |>
+    DT::formatRound("Gap (pp)", digits = 2) |>    
+    DT::formatRound(c("Category trial participations",
+                      "All eligible trials in country"), digits = 0)
+}
+
+show_country_table(country_table)
+```
+
+### Use counts and coverage to interpret individual gaps {.unnumbered}
+
+The full explorer retains locations omitted from the filtered figures, allowing readers to examine whether an apparent pattern depends on the minimum-trial threshold. A zero category trial count indicates no observed approved classification for that country-category pair, not necessarily an absence of relevant research. Likewise, a gap displayed as 0.00 may be a small rounded difference rather than exact equality. Read the gap alongside the category trial count, the two shares, and overall classification coverage. Furthermore, a small gap alone does not demonstrate sufficient research.
+
+## Countries with the largest positive and negative gaps
+
+Within each of the full set of analysis categories, the five countries with the largest positive gaps and five with the most negative gaps are selected among countries with at least `r min_country_trials` eligible trials during `r start_year`–`r end_year`. Countries are ranked using unrounded gaps and values are rounded only for display. Rank 1 is the largest positive or most negative gap in its respective category.
+
+The trial threshold uses all eligible trials in the country, not only trials classified into that disease. Zero category counts remain eligible meaning that the country/territory has at least one trial in the dataset, but it is not classified into the specific disease category. Overall classification coverage is reported but not used as an additional selection filter. Low coverage can affect the apparent gap. These are descriptive extremes among eligible countries, not a representative sample or a ranking of research quality.
+
+Both shares retain the full DALY-country denominator used in the analysis.
+
+```{r ranked-country-table}
+# Keep only countries with enough eligible trials
+rank_eligible = country_table |>
+  filter(n_eligible >= min_country_trials, is.finite(gap_pp))
+
+# Select the five largest positive research-burden gaps within given disease category
+positive_gaps = rank_eligible |>
+  filter(gap_pp > 0) |>
+  arrange(desc(gap_pp), iso3) |>
+  group_by(analysis_cause) |>
+  slice_head(n = 5) |>
+  mutate(direction = "Positive gap", rank = row_number()) |>
+  ungroup()
+
+# Select the five largest negative research-burden gaps within given disease category
+negative_gaps = rank_eligible |>
+  filter(gap_pp < 0) |>
+  arrange(gap_pp, iso3) |>
+  group_by(analysis_cause) |>
+  slice_head(n = 5) |>
+  mutate(direction = "Negative gap", rank = row_number()) |>
+  ungroup()
+
+# Combine the positive and negative gaps into one table
+# Sort by disease category, gap direction, and rank
+ranked_countries = bind_rows(positive_gaps, negative_gaps) |>
+  arrange(analysis_cause, desc(direction), rank)
+
+show_country_table(ranked_countries, ranked = TRUE)
+```
+
+### Recurring extremes reflect large shares of burden and research {.unnumbered}
+
+The USA repeatedly showed the largest positive gaps, while India, China, and Nigeria frequently showed the largest negative gaps across disease categories. Percentage-point gaps tend to emphasize countries accounting for large shares of either distribution. The repetition suggests a common geographic concentration of research across diseases, although differences in ClinicalTrials.gov coverage and MeSH mapping may also contribute. These findings do not establish that research is excessive in the USA or quantify unmet research needs elsewhere. Because disease burden is measured using total DALYs rather than per-capita rates, countries with larger populations can account for greater shares of global burden even when their burden per person is not higher.
+
+# Sensitivity Analysis
+
+## Does including proposed mappings change the results?
+
+This sensitivity analysis compares two versions of the same trial cohort: one using **approved mappings only**, and another using **approved mappings plus eligible pending proposals**. Eligible proposals are pending crosswalk entries marked `proposed_action = "map"` with a valid GBD target. Pending entries marked `"review"` remain unresolved, even if a suggested target is listed, and excluded entries remain excluded. It is best to consider the second version as a hypothetical scenario if the proposed mappings are confirmed.
+
+For each version, we recalculate countries' shares of trial participation within each disease category. The DALY data, study period, geographic denominator, and minimum-trial threshold stay the same. Adding mappings can change both a country's trial count and the category-wide total, so its research share can increase or decrease. The change in gap is calculated as **the gap including proposals minus the approved-only gap**, in percentage points. A positive change means a more positive research-minus-burden gap.
+
+The first table summarizes the **median and maximum absolute changes** across eligible countries for each of the nine specified focus categories. It describes the size of the changes without their direction. The median absolute change summarizes the average size of the mapping-related change across eligible countries, while the maximum highlights the most affected country in each category.
+
+The second table lists the ten country-category pairs with the largest absolute changes, showing both the direction and magnitude of the changes. A small median can coexist with a larger change in a particular country, which is why the individual comparisons below are also useful.
+
+```{r sensitivity}
+sensitivity = alignment |>
+  select(iso3, location, analysis_cause_id, analysis_cause, n_eligible,
+         gap_primary = gap_pp) |>
+  left_join(alignment_proposed |>
+              select(iso3, analysis_cause_id, gap_proposed = gap_pp),
+            by = c("iso3", "analysis_cause_id")) |>
+  mutate(mapping_change_pp = gap_proposed - gap_primary)
+
+sensitivity |>
+  filter(analysis_cause %in% focus_causes, n_eligible >= min_country_trials) |>
+  group_by(analysis_cause) |>
+  summarize(countries = n(),
+            median_mapping_change_pp = median(abs(mapping_change_pp)),
+            max_mapping_change_pp = max(abs(mapping_change_pp)),
+            .groups = "drop") |>
+  knitr::kable(digits = 3)
+
+# Identify the country-category results most affected by proposed mappings.
+sensitivity |>
+  filter(analysis_cause %in% focus_causes, n_eligible >= min_country_trials) |>
+  arrange(desc(abs(mapping_change_pp))) |>
+  select(location, analysis_cause, gap_primary, gap_proposed, mapping_change_pp) |>
+  slice_head(n = 10) |> knitr::kable(digits = 2)
+```
+
+### Stability to proposed mappings {.unnumbered}
+
+Including proposed mappings produced relatively small changes in the analyzed research–burden gaps, with the largest change occurring for cardiovascular diseases in Germany (+0.30 percentage points). Cardiovascular diseases accounted for most of the largest changes, but none of the displayed gaps changed direction. This suggests illustrated geographic gaps were relatively stable to the available pending proposals for these comparisons. However, that finding does not extend to every category: the all-category comparison showed changes of +7.13 percentage points for substance use disorders in the USA and −4.66 points for injuries in the USA.
+
+## Does the minimum trial threshold affect the results?
+
+The threshold is a provisional selection rule, not a statistical significance criterion or a guarantee of reliable mapping. It counts all eligible trials in a country across diseases, not only trials assigned to the category being plotted. A country can pass the cutoff while having zero classified trials in a particular category.
+
+Below shows four reference cutoffs for the nine focus categories:
+
+- **0 trials:** includes every location in the prepared DALY data, including those with no observed eligible trials. This is the full-data reference. Zero observed trials does not prove there is no research, and mapping coverage is undefined when a country has no eligible trials.
+- **10 trials:** a more inclusive alternative that retains countries with small observed trial counts while excluding locations with fewer than ten.
+- **30 trials:** the current cutoff, retained for comparison.
+- **100 trials:** a stricter comparison that shows whether restricting the display to countries with more observed research hides substantial disease burden.
+
+For each cutoff, the table reports the number of locations that would remain visible, their combined share of the category's DALYs, and their combined share of its trial-country participations. Shares retain their original denominators across all included locations as they are not recalculated among the retained countries. At cutoff zero, both shares should therefore equal 100% for categories with observed research.
+
+```{r threshold-sensitivity}
+thresholds = sort(unique(c(0, 10, 30, 100, min_country_trials)))
+
+# Run the same summary once per cutoff and combine the results into one table.
+threshold_summary = map_dfr(thresholds, function(cutoff) {
+  alignment |>
+    filter(analysis_cause %in% focus_causes) |>
+    group_by(analysis_cause) |>
+    summarize(
+      threshold = cutoff,
+      # n_eligible counts all eligible trials in the country, across diseases.
+      # >= 0 retains every DALY location, including observed zero-trial countries.
+      countries_displayed = sum(n_eligible >= cutoff),
+      # Select and add ORIGINAL shares; do not divide by the retained totals.
+      burden_share_displayed = sum(burden_share[n_eligible >= cutoff]),
+      research_share_displayed = sum(research_share[n_eligible >= cutoff]),
+      .groups = "drop"
+    )
+}) |>
+  # Put each category's cutoffs together to make the comparison easy to read
+  arrange(analysis_cause, threshold)
+
+threshold_summary |>
+  transmute(
+    Category = analysis_cause,
+    `Minimum eligible trials` = threshold,
+    `Locations retained` = countries_displayed,
+    `Burden share retained` = scales::percent(burden_share_displayed, 0.1),
+    `Research share retained` = scales::percent(research_share_displayed, 0.1)
+  ) |>
+  knitr::kable()
+```
+
+### Stricter cutoffs hide more burden than research {.unnumbered}
+
+Raising the minimum-trial threshold removed a larger share of disease burden than recorded research participation across all nine categories. This effect was particularly pronounced for neglected tropical diseases and malaria, maternal and neonatal disorders, and HIV/AIDS and sexually transmitted infections. At the current threshold of 30, retained locations represented 83.0% of NTD/malaria burden but 93.1% of research participation; for maternal/neonatal disorders, they represented 87.5% of burden and 99.9% of participation. Lowering the threshold to 10 retained more burden and more locations, supporting its consideration for the visualizations.
+
+# Questions for review
+
+1. **Should we use 10 eligible trials as the display cutoff?** It retains more disease burden than 30, especially for NTDs/malaria, maternal/neonatal disorders, and HIV/AIDS/STIs. Should maps also offer an unfiltered view?
+
+2. **Which disease categories should we look into further?** Perhaps ones with the highest burden or the largest gaps. Or even complementary ones that might provide a more complete picture and reveal distinct patterns. Should we avoid repeating categories that reflect similar geographic concentration of research?
+
+3. **How should we interpret the recurring country extremes?** Are we clearly explaining the influence of total population burden, research concentration, registry coverage, and incomplete mapping? Lauren's per-capita analysis may be helpful in this regard.
+
+4. **Are our findings sufficiently stable under alternative mappings?** The displayed changes are small, but which unresolved terms or approved decisions still warrant review? We can also check whether the largest changes are concentrated in a few countries or spread across many. After deciding on which categories to focus, we can attend to any remaining mapping issues in those categories.
+
+5. **Is 2010–2023 our final study period?** Could pooling those years obscure changes in research geography or disease burden? We may want to consider the temporal dynamics of the data.
+
+6. **What is the main finding beyond the rankings?** What does comparing categories add to the observation that the USA often has positive gaps and India, China, or Nigeria have negative gaps? Resolving the per-capita vs. total-burden question may help clarify this.
+
+# Next steps
+
+- Confirm the study period and minimum-trial threshold. 
+- Select disease categories for closer examination, using a focussed overview to identify contrasting patterns.
+- Review the leading MeSH terms within those categories and assess whether their broad groupings obscure important differences.
+- Incorporate temporal dynamics of research and burden, as well as World Bank income groups, to identify whether the observed patterns are consistent across time and income levels.
+- Build interactive websites to allow users to explore the data and findings, including maps, plots, and tables.

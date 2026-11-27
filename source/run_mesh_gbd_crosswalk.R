@@ -94,7 +94,7 @@ write_csv(result$resolved_crosswalk |>
           file.path(out, "proposed_mappings_to_check.csv"), na = "")
 
 # save a few example trials for each unresolved term to help with review and context
-examples = result$term_evidence |> 
+examples = result$trial_terms |> 
   filter(mapping_status == "needs_review") |>
   arrange(mesh_term, nct_id) |> 
   group_by(mesh_term) |> 

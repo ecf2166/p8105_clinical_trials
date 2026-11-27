@@ -183,10 +183,10 @@ resolve_mesh_review = function(review, hierarchy, allow_proposed = FALSE) {
 apply_mesh_crosswalk = function(browse_conditions, cohort, review, hierarchy,
                                 allow_proposed = FALSE) {
   term_map = resolve_mesh_review(review, hierarchy, allow_proposed)
-  evidence = direct_mesh(browse_conditions, cohort) |>
+  trial_terms = direct_mesh(browse_conditions, cohort) |>
     left_join(term_map, by = "mesh_term") |>
     mutate(mapping_status = replace_na(mapping_status, "needs_review"))
-  mapped = evidence |> filter(!is.na(analysis_cause_id))
+  mapped = trial_terms |> filter(!is.na(analysis_cause_id))
   trial_causes = mapped |>
     group_by(nct_id, analysis_cause_id, analysis_cause) |>
     summarize(
@@ -197,7 +197,7 @@ apply_mesh_crosswalk = function(browse_conditions, cohort, review, hierarchy,
     group_by(nct_id) |>
     mutate(n_analysis_causes = n()) |>
     ungroup()
-  flags = evidence |>
+  flags = trial_terms |>
     group_by(nct_id) |>
     summarize(
       n_direct_terms = n_distinct(mesh_term),
@@ -222,6 +222,6 @@ apply_mesh_crosswalk = function(browse_conditions, cohort, review, hierarchy,
         n_mapped_terms == 0 ~ "no_mapped_direct_term",
         n_unresolved_terms > 0 ~ "mapped_with_unresolved_terms",
         TRUE ~ "mapped_no_unresolved_terms"))
-  list(trial_causes = trial_causes, term_evidence = evidence,
+  list(trial_causes = trial_causes, trial_terms = trial_terms,
        trial_audit = audit, resolved_crosswalk = term_map)
 }
